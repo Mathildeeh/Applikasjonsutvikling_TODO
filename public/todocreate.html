@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>TestClient</title>
+</head>
+<body>
+
+    <!----------- HTML-elements -------------->
+    <input id="inpHeading" type="text" /><br>
+    <textarea id="inpDescription" cols="80" rows="10"></textarea><br>
+    <button id="btnCreate">Legg til</button><br>
+    <h3 id="txtResult"></h3>
+        
+    <!------------- JavaScript --------------->
+    <script>
+
+        let inpHeading = document.getElementById('inpHeading');
+        let inpDescription = document.getElementById('inpDescription');
+        let btnCreate = document.getElementById('btnCreate');
+        let txtResult = document.getElementById('txtResult');
+
+        btnCreate.addEventListener('click', async function(evt) {
+
+            let url = "/todo";
+
+            let updata = {
+                heading: inpHeading.value,
+                description: inpDescription.value
+            }
+
+            let cfg = {
+                method: "POST",
+                headers: {"content-type":"application/json"},
+                body: JSON.stringify(updata)
+            }
+
+            try {
+                let response = await fetch(url, cfg);
+                let data = await response.json();
+
+                if (response.status != 200) {
+                    throw data.error;
+                }
+
+                txtResult.innerHTML = data.msg;
+            }
+            catch(error){
+                //console.log(error);
+                txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
+            }
+        });
+
+    </script>
+
+    <!---------------- CSS ------------------->
+    <style>        
+
+    </style>
+
+</body>
+
+</html>
