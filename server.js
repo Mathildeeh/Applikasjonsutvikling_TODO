@@ -6,12 +6,14 @@ const PORT = process.env.PORT || 8080;
 server.set("port", PORT);
 
 const todotasks = require("./modules/todotasks.js");
+const users = require("./modules/users.js");
 
 // middleware ---------------------------
 server.use(express.static("public"));
 server.use(express.json());
 
 server.use(todotasks);
+server.use(users);
 
 //general error handling ---------------
 server.use(function (err, req, res, next){
