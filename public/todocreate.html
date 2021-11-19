@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>TestClient</title>
+    <title>todocreate</title>
 </head>
 <body>
 
@@ -30,9 +30,14 @@
                 description: inpDescription.value
             }
 
+            let token = localStorage.getItem("token");
+
             let cfg = {
                 method: "POST",
-                headers: {"content-type":"application/json"},
+                headers: {
+                    "content-type":"application/json",
+                    "authorization":token
+                },
                 body: JSON.stringify(updata)
             }
 
@@ -47,7 +52,7 @@
                 txtResult.innerHTML = data.msg;
             }
             catch(error){
-                //console.log(error);
+                console.log(error);
                 txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
             }
         });

@@ -8,55 +8,55 @@ const pool = new pg.Pool({
 });
 
 // database methods -------------------------
-let tdMethods = {}; //create empty object
+let dbMethods = {}; //create empty object
 
 // ------------------------------------
-tdMethods.getAllToDoTasks = function() {
+dbMethods.getAllToDoTasks = function() {
     let sql = "SELECT * FROM todo";	
 	return pool.query(sql); 
 }
 
 // ------------------------------------
-tdMethods.createToDoTask = function(heading, description, userid) {  
+dbMethods.createToDoTask = function(heading, description, userid) {  
     let sql = "INSERT INTO todo (id, date, heading, description, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning *";
 	let values = [heading, description, userid];	
     return pool.query(sql, values); 
 }
 
 // ------------------------------------
-tdMethods.deleteToDoTask = function(id, userid) {  
-    let sql = "DELETE FROM todo WHERE id = $1 RETURNING *";
-	let values = [id];
+dbMethods.deleteToDoTask = function(id, userid) {  
+    let sql = "DELETE FROM todo WHERE id = $1 AND userid = $2 RETURNING *";
+	let values = [id, userid];
     return pool.query(sql, values); //return the promise
 }
 
 //---------------------------------------------
-tdMethods.getAllUsers = function() {  
+dbMethods.getAllUsers = function() {  
     let sql = "SELECT id, username FROM users";
     return pool.query(sql); //return the promise
 }
 
 //---------------------------------------------
-tdMethods.getUser = function(username) {  
+dbMethods.getUser = function(username) {  
     let sql = "SELECT * FROM users WHERE username = $1";
     let values = [username];
     return pool.query(sql, values); //return the promise
 }
 
 //---------------------------------------------
-tdMethods.createUser = function(username, password, salt) {  
+dbMethods.createUser = function(username, password, salt) {  
     let sql = "INSERT INTO users (id, username, password, salt) VALUES(DEFAULT, $1, $2, $3) returning *";
     let values = [username, password, salt];
     return pool.query(sql,values); //return the promise
 }
 
 //---------------------------------------------
-tdMethods.deleteUser = function(id) {  
+dbMethods.deleteUser = function(id) {  
     let sql = "DELETE FROM users WHERE id = $1 RETURNING *";
     let values = [id];
     return pool.query(sql, values); //return the promise
 }
 
 // export todoMethods -------------------------
-module.exports = tdMethods;
+module.exports = dbMethods;
 

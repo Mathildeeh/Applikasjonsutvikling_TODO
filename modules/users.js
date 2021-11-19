@@ -1,29 +1,44 @@
 const express = require('express');
-const td = require('./td.js');
+const db = require('./db.js');
 const authUtils = require("./auth_utils.js");
 const router = express.Router();
 
 //endpoints ----------------------------------
 
 //user login----------------------------
+/*
 router.post("/users/login", async function(req, res, next) {
     res.status(200).send("Hello from POST - /users/login").end();
 });
+*/
 
 
 //list all users------------------------
 router.get("/users", async function(req, res, next) {
 
     try {
-        let data = await td.getAllUsers();
+        let data = await db.getAllUsers();
         res.status(200).json(data.rows).end();
-    }
-    catch(err) {
+    
+    }catch(err) {
         next(err);
     }
-    
+    /*
+    try {
+        let data = await td.getUser(cred.username, hash.value, hash.salt);
+       
+    if (data.rows.length > 0) {
+        res.status(200).json({msg: "The user was created succefully"}).end();
+    } 
+    else {
+        throw "The user couldn't be created";
+    }    
+}
+    catch(err) {
+        next(err);
+    } 
+    */
 });
-
 
 //create a new user----------------------
 router.post("/users", async function(req, res, next) {
@@ -39,7 +54,7 @@ if (cred.username == "" || cred.password == "") {
 let hash = authUtils.createHash(cred.password);
 
 try {
-    let data = await td.createUser(cred.username, hash.value, hash.salt);
+    let data = await db.createUser(cred.username, hash.value, hash.salt);
     
     if (data.rows.length > 0) {
         res.status(200).json({msg: "The user was created succefully"}).end();
@@ -66,7 +81,7 @@ router.post("/users/login", async function (req, res, next) {
     }
 
     try {
-        let data = await td.getUser(cred.username);
+        let data = await db.getUser(cred.username);
 
         if (data.rows.length > 0) {
 

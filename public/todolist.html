@@ -20,8 +20,15 @@
 
             let url = "/todo";
 
-            try{
-                let response = await fetch(url);
+            let token = localStorage.getItem("token");
+
+            let cfg = {
+                method: "GET",
+                headers: {"authorization": token}
+            };
+
+            try {
+                let response = await fetch(url, cfg);
                 let data = await response.json();
 
                 if (response.status != 200) {
@@ -54,13 +61,14 @@
                 }
             }
             catch (error){
-                //console.log(error);
+            console.log(error);
             }
         }
 
         async function deleteToDoTask(todoID){
 
             let url = "/todo";
+            let token = localStorage.getItem("token");
 
             let updata = {
                 id: todoID
@@ -68,7 +76,10 @@
 
             let cfg = {
                 method: "DELETE",
-                headers: {"content-type":"application/json"},
+                headers: {
+                    "content-type":"application/json",
+                    "authorization": token
+                },
                 body: JSON.stringify(updata)
             }
 
@@ -83,7 +94,7 @@
                 listToDo();
             }
             catch(error){
-                //console.log(error);
+                console.log(error);
             }
 
         }

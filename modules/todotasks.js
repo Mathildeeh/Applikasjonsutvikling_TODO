@@ -1,12 +1,16 @@
 const express = require("express");
-const todo = require('./td.js');
+const db = require('./db.js');
 const router = express.Router();
+const protect = require('./auth');
 
 // endpoints ----------------------------
-router.get("/todo", async function(req, res, next) {
+router.get("/todo", protect, async function(req, res, next) {
+
+    //console.log(res.locals.username);
+   // console.log(res.locals.userid);
 	
     try {
-        let data = await todo.getAllToDoTasks();
+        let data = await db.getAllToDoTasks();
         res.status(200).json(data.rows).end();
     }
     catch (err) {
@@ -15,13 +19,14 @@ router.get("/todo", async function(req, res, next) {
     
 });
 
-router.post("/todo", async function(req, res, next) {	
+router.post("/todo", protect, async function(req, res, next) {	
 
     let updata = req.body;
-    let userid = 1;
+    let userid = res.locals.userid;
+    
 
     try {
-        let data = await todo.createToDoTask(updata.heading, updata.description, userid);
+        let data = await db.createToDoTask(updata.heading, updata.description, userid);
 
         if (data.rows.length > 0) {
             res.status(200).json({msg: "Nytt gjøremål ble opprettet"}).end();
@@ -35,12 +40,13 @@ router.post("/todo", async function(req, res, next) {
     }
 });
 
-router.delete("/todo", async function(req, res, next) {
+router.delete("/todo", protect, async function(req, res, next) {
 
     let updata = req.body;
+    let userid = res.locals.userid;
 
     try {
-        let data = await todo.deleteToDoTask(updata.id);
+        let data = await db.deleteToDoTask(updata.id, userid);
 
         if (data.rows.length > 0) {
             res.status(200).json({msg: "Gjøremålet ble slettet"}).end();

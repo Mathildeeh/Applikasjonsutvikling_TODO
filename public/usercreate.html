@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>TestClient</title>
+    <title>usercreate</title>
 </head>
 <body>
 
@@ -13,7 +13,7 @@
     <input id="inpPassword" type="text" placeholder="Password" /><br><br>
 
     <button id="btnCreate">Create user</button><br>
-    <h3 id="txtResult">Result...</h3>
+    <h3 id="txtResult"></h3>
         
     <!------------- JavaScript --------------->
     <script>
@@ -26,7 +26,7 @@
         //-------------------------------------
         btnCreate.addEventListener('click', async function(evt) {
 
-            let url = "/todo";
+            let url = "/users";
             let credString = createCredentialString(inpUsername.value, inpPassword.value);
 
             let cfg = {

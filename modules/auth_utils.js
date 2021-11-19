@@ -62,12 +62,14 @@ utils.verifyToken = function(token) {
     
     //using the string-method split to extract the three parts into an array
     let tokenArr = token.split(".");
+
     let openPart = tokenArr[0] + "." + tokenArr[1];
     let signToCheck = tokenArr[2];
 
     let secret = "dronningmaudsland"; //must be stored in an env. variable in the finished app
-    let sign = secret.createHmac("SHA256", secret).update(openPart).digest("base64");
+    let sign = crypto.createHmac("SHA256", secret).update(openPart).digest("base64");
 
+   
     if (signToCheck != sign) {
         //signature not ok
         return false
@@ -87,11 +89,11 @@ utils.verifyToken = function(token) {
 }
 
 //-----------------------------------
-utils.verifyPassword = function (pswFromUser, hashFromTD, saltFromTD) {
+utils.verifyPassword = function (pswFromUser, hashFromDB, saltFromDB) {
 
-    hash = crypto.scryptSync(pswFromUser, saltFromTD, 64).toString("hex");
+    hash = crypto.scryptSync(pswFromUser, saltFromDB, 64).toString("hex");
 
-    if (hash == hashFromTD) {
+    if (hash == hashFromDB) {
         return true;
     }
     return false;
