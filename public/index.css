@@ -14,13 +14,13 @@ body{
     align-items: center;
     min-height: 100vh;
     font-family: 'Jost', sans-serif;
-    background: linear-gradient(to bottom, #5D54A4, #C7C5F4, #5D54A4);
+    background: linear-gradient(to bottom, #79b179, #c9f1c7, #79b179);
 }
 
-.main{
+.master{
     width: 350px;
     height: 500px;
-    background: #5D54A4;
+    background: #79b179;
     overflow: hidden;
     box-shadow: 5px 20px 50px rgb(41, 41, 41);
 }
@@ -47,7 +47,7 @@ body{
 }
 
 #signinbox{
-    color: #5D54A4;
+    color: #79b179;
     font-size: 40px;
     justify-content: center;
     display: flex;
@@ -74,8 +74,8 @@ input{
     margin: 10px auto;
     justify-content: center;
     display: block;
-    color: #5D54A4;
-    background: #C7C5F4;
+    color: #79b179;
+    background: #c9f1c7;
     font-size: 15px;
     font-weight: bold;
     margin-top: 20px;
@@ -94,8 +94,8 @@ input{
     margin: 10px auto;
     justify-content: center;
     display: block;
-    color: #C7C5F4;
-    background: #5D54A4;
+    color: #c9f1c7;
+    background: #79b179;
     font-size: 15px;
     font-weight: bold;
     margin-top: 20px;
@@ -104,13 +104,13 @@ input{
     transition: .2s ease-in;
     cursor: pointer;
 }
-#btnsignin:hover{
+#btnSignin:hover{
     background: black;
 }
 
 .newuser{
     height: 600px;
-    background: #C7C5F4;
+    background: #c9f1c7;
     border-radius: 100% / 10%;
     transform: translateY(-210px);
     transition: .8s ease-in-out;
