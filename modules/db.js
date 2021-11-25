@@ -17,6 +17,7 @@ dbMethods.getAllToDoTasks = function() {
 }
 
 // ------------------------------------
+
 dbMethods.createToDoTask = function(heading, description, userid) {  
     let sql = "INSERT INTO todo (id, date, heading, description, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning *";
 	let values = [heading, description, userid];	
@@ -62,6 +63,7 @@ dbMethods.deleteUser = function(id) {
     let values = [id];
     return pool.query(sql, values); //return the promise
 }
+
 
 // export todoMethods -------------------------
 module.exports = dbMethods;
