@@ -19,8 +19,8 @@ dbMethods.getAllToDoTasks = function() {
 // ------------------------------------
 
 dbMethods.createToDoTask = function(heading, description, userid) {  
-    let sql = "INSERT INTO todo (id, date, heading, description, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning *";
-	let values = [heading, description, userid];	
+    let sql = "INSERT INTO todo (id, date, heading, description, userid) VALUES(DEFAULT, $4, $1, $2, $3) returning *";
+	let values = [heading, description, userid, Date.now()];	
     return pool.query(sql, values); 
 }
 
