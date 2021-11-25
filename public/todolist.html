@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>todolist</title>
+</head>
+<body>
+
+    <!----------- HTML-elements -------------->
+        
+    <div id="container"></div>
+
+    <!------------- JavaScript --------------->
+    <script>
+
+        let container = document.getElementById('container');
+
+        async function listToDo() {
+
+            let url = "/todo";
+
+            let token = localStorage.getItem("token");
+
+            let cfg = {
+                method: "GET",
+                headers: {"authorization": token}
+            };
+
+            try {
+                let response = await fetch(url, cfg);
+                let data = await response.json();
+
+                if (response.status != 200) {
+                throw data.error;
+            }
+
+            container.innerHTML = "";
+            
+                for (let value of data){
+
+                    let date = new Date(value.date);
+                    
+                    let html = "<h2>" + value.heading + "</h2>";
+                    html += "<p>" + date.toLocaleDateString() + "</p>";
+                    html += "<p>" + value.description + "</p><hr>";
+
+                    let div = document.createElement("div");
+                    div.innerHTML = html;
+                    container.appendChild(div);            
+
+                    let delbtn = document.createElement("button");
+                    delbtn.innerText ="Slett";
+
+                    delbtn.addEventListener('click', function(evt){
+                        deleteToDoTask(value.id);
+                    });
+
+                    div.insertBefore(delbtn, div.lastElementChild);
+
+                }
+            }
+            catch (error){
+            console.log(error);
+            }
+        }
+
+        async function deleteToDoTask(todoID){
+
+            let url = "/todo";
+            let token = localStorage.getItem("token");
+
+            let updata = {
+                id: todoID
+            }
+
+            let cfg = {
+                method: "DELETE",
+                headers: {
+                    "content-type":"application/json",
+                    "authorization": token
+                },
+                body: JSON.stringify(updata)
+            }
+
+            try {
+                let response = await fetch(url, cfg);
+                let data = await response.json();
+
+                if (response.status != 200) {
+                    throw data.error;
+                }
+
+                listToDo();
+            }
+            catch(error){
+                console.log(error);
+            }
+
+        }
+
+        listToDo();
+        
+
+    </script>
+
+    <!---------------- CSS ------------------->
+    <style>        
+
+    </style>
+
+</body>
+
+</html>
