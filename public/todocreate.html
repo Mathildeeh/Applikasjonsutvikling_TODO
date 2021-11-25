@@ -8,92 +8,105 @@
 </head>
 <body>
 
-    <!----------- HTML-elements -------------->
-    <h1 id="overskrift">Legg til gjøremål</h1><br>
-    <input id="inpHeading" type="text" placeholder="Tittel"/><br><br>
-    <textarea id="inpDescription" cols="80" rows="10" placeholder="Beskrivelse"></textarea><br>
-    <div id= "create">
-        <input type="date" id="date">
-       <button id="btnCreate" onclick="location.href='todolist.html'">Legg til</button>
-    </div>
+<!----------- HTML-elements -------------->
+<h1 id="overskrift">Legg til gjøremål</h1><br>
+<input id="inpHeading" type="text" placeholder="Tittel"/><br><br>
+<textarea id="inpDescription" cols="80" rows="10" placeholder="Beskrivelse"></textarea><br>
+<div id= "create">
+    <input type="date" id="date">
+    <button id="btnCreate" onclick="location.href='todolist.html'">Legg til</button>
+</div>
 
-    <div class="openBtn">
-        <button class="openButton" onclick="openForm()"><strong>Rediger</strong></button>
-      </div>
-      <div class="loginPopup">
-        <div class="formPopup" id="popupForm">
-          <form action="/action_page.php" class="formContainer">
-            <label for="tittel">
-              <strong>Tittel</strong>
-            </label>
-            <input type="text" id="tittel" placeholder="Tittel" name="tittel" required>
-            <label for="psw">
-              <strong>Beskrivelse</strong>
-            </label>
-            <input type="beskrivelse" id="beskrivelse" placeholder="Beskrivelse" name="beskrivelse" required>
-            <button type="submit" class="btn">Lagre</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Lukk</button>
-          </form>
-        </div>
-      </div>
+<div class="openBtn">
+    <button class="openButton" onclick="openForm()"><strong>Rediger</strong></button>
+  </div>
+  <div class="loginPopup">
+    <div class="formPopup" id="popupForm">
+      <form action="/action_page.php" class="formContainer">
+        <label for="tittel">
+          <strong>Tittel</strong>
+        </label>
+        <input type="text" id="tittel" placeholder="Tittel" name="tittel" required>
+        <label for="psw">
+          <strong>Beskrivelse</strong>
+        </label>
+        <input type="beskrivelse" id="beskrivelse" placeholder="Beskrivelse" name="beskrivelse" required>
+        <button type="submit" class="btn">Lagre</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Lukk</button>
+      </form>
+    </div>
+  </div>
     
 
-    <!------------- JavaScript --------------->
-    <script>
+<!------------- JavaScript --------------->
+<script>
 
-        let inpHeading = document.getElementById('inpHeading');
-        let inpDescription = document.getElementById('inpDescription');
-        let btnCreate = document.getElementById('btnCreate');
-        let txtResult = document.getElementById('txtResult');
-        let title = document.getElementById('title');
+  let inpHeading = document.getElementById('inpHeading');
+  let inpDescription = document.getElementById('inpDescription');
+  let btnCreate = document.getElementById('btnCreate');
+  let txtResult = document.getElementById('txtResult');
+  let title = document.getElementById('title');
 
-    function openForm() {
-        document.getElementById("popupForm").style.display = "block";
+
+  function openForm() {
+    document.getElementById("popupForm").style.display = "block";
+  }
+
+  function closeForm() {
+    document.getElementById("popupForm").style.display = "none";
+  }
+
+  inpDescription.addEventListener = document.getElementById("keyup", function(evt){
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("btnCreate").click();
+    }
+  });
+
+
+
+  btnCreate.addEventListener('click', async function(evt) {
+      
+    let dato = document.getElementById("date").value;
+    
+    let url = "/todo";
+
+    let updata = {
+      heading: inpHeading.value,
+      description: inpDescription.value
+    }
+
+    let token = localStorage.getItem("token");
+
+    let cfg = {
+      method: "POST",
+      headers: {
+        "content-type":"application/json",
+        "authorization":token
+      },
+      body: JSON.stringify(updata)
+    }
+
+    try {
+      let response = await fetch(url, cfg);
+      let data = await response.json();
+
+      if (response.status != 200) {
+        throw data.error;
       }
-    function closeForm() {
-        document.getElementById("popupForm").style.display = "none";
-      }
 
-        btnCreate.addEventListener('click', async function(evt) {
-            
-            let dato = document.getElementById("date").value;
-           
-            let url = "/todo";
+      //txtResult.innerHTML = data.msg;
+      
+    }
+    catch(error){
+      console.log(error);
+      txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
+    }
+  });
 
-            let updata = {
-                heading: inpHeading.value,
-                description: inpDescription.value
-            }
+        
 
-            let token = localStorage.getItem("token");
-
-            let cfg = {
-                method: "POST",
-                headers: {
-                    "content-type":"application/json",
-                    "authorization":token
-                },
-                body: JSON.stringify(updata)
-            }
-
-            try {
-                let response = await fetch(url, cfg);
-                let data = await response.json();
-
-                if (response.status != 200) {
-                    throw data.error;
-                }
-
-                //txtResult.innerHTML = data.msg;
-              
-            }
-            catch(error){
-                console.log(error);
-                txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
-            }
-        });
-
-    </script>
+</script>
 
 </body>
 

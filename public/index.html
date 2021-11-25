@@ -44,6 +44,7 @@
         let btnSignin = document.getElementById('btnSignin');
         let txtResult2 = document.getElementById('txtResult2');
 
+        
 
         //LOGG INN------------------------------
         btnLogin.addEventListener('click', async function(evt) {
@@ -71,8 +72,17 @@
             catch(error){
                 console.log(error);
                 txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
-            }
+            }        
+        
         });
+        
+        inpPassword.addEventListener("keyup", function(event){
+                if (event.keyCode === 13) {
+                    
+                    event.preventDefault();
+                    document.getElementById("btnLogin").click();
+                }
+            });
 
         //------------------------------
         function createCredentialString(username, password) {
