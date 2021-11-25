@@ -25,7 +25,7 @@ router.get("/users", async function(req, res, next) {
     }
     /*
     try {
-        let data = await td.getUser(cred.username, hash.value, hash.salt);
+        let data = await db.getUser(cred.username, hash.value, hash.salt);
        
     if (data.rows.length > 0) {
         res.status(200).json({msg: "The user was created succefully"}).end();
