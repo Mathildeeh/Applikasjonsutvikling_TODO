@@ -10,7 +10,20 @@
     text-align: center;
 }
 
-#title{
+div {
+    border-bottom: 2px solid white;
+}
+
+body {
+    margin: 0px;
+}
+
+.checkmark {
+    width: 15px;
+    height: 20px;
+}
+
+#title {
     border-bottom: solid 1px white;
     background-color: #5d54a4;
 }
@@ -22,16 +35,16 @@
 }
 
 h2 {
-    margin-left: 10px;
+    padding-left: 10px;
 }
 
 p {
-    margin-left: 10px;
+    padding-left: 10px;
 }
 
 a {
     color: white;
-    margin: 2px;
+    padding: 2px;
 }
 
 a:hover {
