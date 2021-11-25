@@ -30,6 +30,12 @@ dbMethods.deleteToDoTask = function(id, userid) {
     return pool.query(sql, values); //return the promise
 }
 
+dbMethods.editToDoTask = function(id, userid) {
+    let sql = "EDIT todo (id, date, heading, description, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning *";
+    let values = [heading, description, userid];
+    return pool.query(sql, values); 
+}
+
 //---------------------------------------------
 dbMethods.getAllUsers = function() {  
     let sql = "SELECT id, username FROM users";

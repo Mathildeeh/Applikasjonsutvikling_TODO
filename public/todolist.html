@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="todolist.css"> 
     <title>todolist</title>
 </head>
 <body>
 
     <!----------- HTML-elements -------------->
+    <div class="header">
+        <h1 id="title">To Do List</h1>
+        <button id="btnLogout">Logg ut</button>
+        <button id="btnDelUser">Slett buker</button>
+    </div> 
+
+    <div id="container">
         
-    <div id="container"></div>
+    </div>
 
     <!------------- JavaScript --------------->
     <script>
 
+        let btnLogout = document.getElementById('btnLogout');
+        let btnDelUser = document.getElementById('btnDelUser');
         let container = document.getElementById('container');
 
         async function listToDo() {
@@ -43,7 +53,7 @@
                     
                     let html = "<h2>" + value.heading + "</h2>";
                     html += "<p>" + date.toLocaleDateString() + "</p>";
-                    html += "<p>" + value.description + "</p><hr>";
+                    html += "<p>" + value.description + "</p><br>";
 
                     let div = document.createElement("div");
                     div.innerHTML = html;
@@ -51,13 +61,25 @@
 
                     let delbtn = document.createElement("button");
                     delbtn.innerText ="Slett";
+                    
+                    let editbtn = document.createElement("button");
+                    editbtn.innerText ="Rediger";
 
+                    let checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.class = "checkmark";
+                    
                     delbtn.addEventListener('click', function(evt){
                         deleteToDoTask(value.id);
                     });
+                    
+                    editbtn.addEventListener('click', function(evt){
+                        // code
+                    });
 
-                    div.insertBefore(delbtn, div.lastElementChild);
-
+                    div.appendChild(delbtn, div.lastElementChild);
+                    div.appendChild(editbtn, div.lastElementChild);
+                    div.appendChild(checkbox, div.lastElementChild);
                 }
             }
             catch (error){
@@ -100,6 +122,14 @@
         }
 
         listToDo();
+    
+        btnLogout.addEventListener('click', function(evt){
+            location.href = 'index.html';
+        });
+
+        btnDelUser.addEventListener('click', function(evt){
+            location.href = 'index.html';
+        });
         
 
     </script>
