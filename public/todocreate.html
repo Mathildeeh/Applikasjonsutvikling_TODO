@@ -4,40 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <title>todocreate</title>
-    <link rel="stylesheet" href="todocreate.css">
 </head>
 <body>
 
     <!----------- HTML-elements -------------->
-    <h1 id="overskrift">Legg til gjøremål</h1><br>
-    <input id="inpHeading" type="text" placeholder="Tittel"/><br><br>
-    <textarea id="inpDescription" cols="80" rows="10" placeholder="Beskrivelse"></textarea><br>
-    <div id= "create">
-        <input type="date" id="date">
-       <button id="btnCreate" onclick="location.href='todolist.html'">Legg til</button>
-    </div>
-
-    <div class="openBtn">
-        <button class="openButton" onclick="openForm()"><strong>Rediger</strong></button>
-      </div>
-      <div class="loginPopup">
-        <div class="formPopup" id="popupForm">
-          <form action="/action_page.php" class="formContainer">
-            <label for="tittel">
-              <strong>Tittel</strong>
-            </label>
-            <input type="text" id="tittel" placeholder="Tittel" name="tittel" required>
-            <label for="psw">
-              <strong>Beskrivelse</strong>
-            </label>
-            <input type="beskrivelse" id="beskrivelse" placeholder="Beskrivelse" name="beskrivelse" required>
-            <button type="submit" class="btn">Lagre</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Lukk</button>
-          </form>
-        </div>
-      </div>
-    
-
+    <input id="inpHeading" type="text" /><br>
+    <textarea id="inpDescription" cols="80" rows="10"></textarea><br>
+    <button id="btnCreate">Legg til</button><br>
+    <h3 id="txtResult"></h3>
+        
     <!------------- JavaScript --------------->
     <script>
 
@@ -45,19 +20,9 @@
         let inpDescription = document.getElementById('inpDescription');
         let btnCreate = document.getElementById('btnCreate');
         let txtResult = document.getElementById('txtResult');
-        let title = document.getElementById('title');
-
-    function openForm() {
-        document.getElementById("popupForm").style.display = "block";
-      }
-    function closeForm() {
-        document.getElementById("popupForm").style.display = "none";
-      }
 
         btnCreate.addEventListener('click', async function(evt) {
-            
-            let dato = document.getElementById("date").value;
-           
+
             let url = "/todo";
 
             let updata = {
@@ -84,8 +49,7 @@
                     throw data.error;
                 }
 
-                //txtResult.innerHTML = data.msg;
-              
+                txtResult.innerHTML = data.msg;
             }
             catch(error){
                 console.log(error);
@@ -94,6 +58,11 @@
         });
 
     </script>
+
+    <!---------------- CSS ------------------->
+    <style>        
+
+    </style>
 
 </body>
 
