@@ -102,7 +102,7 @@ router.post("/users/login", async function (req, res, next) {
             }).end();
         }
         else {
-            throw "The huser couldn't be found";
+            throw "The user couldn't be found";
         }
     }
     catch(err) {

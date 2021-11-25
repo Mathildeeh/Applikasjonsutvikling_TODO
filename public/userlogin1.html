@@ -42,8 +42,9 @@
                     throw data.error;
                 }
 
-                txtResult.innerHTML = data.msg;
+                //txtResult.innerHTML = data.msg;
                 localStorage.setItem("token", data.token);
+				window.location.href = 'todolist.html';
             }
             catch(error){
                 console.log(error);

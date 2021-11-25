@@ -17,9 +17,10 @@ dbMethods.getAllToDoTasks = function() {
 }
 
 // ------------------------------------
-dbMethods.createToDoTask = function(heading, description, userid, date) {  
-    let sql = "INSERT INTO todo (id, date, heading, description, userid) VALUES(DEFAULT, $1, $2, $3, $4) returning *";
-	let values = [heading, description, userid, date];	
+
+dbMethods.createToDoTask = function(heading, description, userid) {  
+    let sql = "INSERT INTO todo (id, date, heading, description, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning *";
+	let values = [heading, description, userid];	
     return pool.query(sql, values); 
 }
 
@@ -28,6 +29,12 @@ dbMethods.deleteToDoTask = function(id, userid) {
     let sql = "DELETE FROM todo WHERE id = $1 AND userid = $2 RETURNING *";
 	let values = [id, userid];
     return pool.query(sql, values); //return the promise
+}
+
+dbMethods.editToDoTask = function(id, userid) {
+    let sql = "EDIT todo (id, date, heading, description, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning *";
+    let values = [heading, description, userid];
+    return pool.query(sql, values); 
 }
 
 //---------------------------------------------
@@ -57,5 +64,7 @@ dbMethods.deleteUser = function(id) {
     return pool.query(sql, values); //return the promise
 }
 
+
+// export todoMethods -------------------------
 module.exports = dbMethods;
 

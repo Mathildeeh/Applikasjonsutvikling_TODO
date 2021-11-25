@@ -1,4 +1,3 @@
-//const db = require('./modules/db.js');
 const express = require("express");
 const server = express();
 const PORT = process.env.PORT || 8080;

@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-   <link rel="stylesheet" href="index.css">
-    <title>Logg inn/ Lag ny bruker</title>
+    <title>userlogin</title>
 </head>
 <body>
 
@@ -70,7 +69,7 @@
 
                 //txtResult.innerHTML = data.msg;
                 localStorage.setItem("token", data.token);
-				location.href = 'todolist.html';
+				window.location.href = 'todolist.html';
             }
             catch(error){
                 console.log(error);
@@ -105,7 +104,7 @@
                 }
 
                 //txtResult2.innerHTML = data.msg;
-                location.href = 'todolist.html';
+                window.location.href = 'todolist.html';
             }
             catch(error){
                 console.log(error);
@@ -124,6 +123,138 @@
 
     <!---------------- CSS ------------------->
     <style> 
+
+    #txtResult{
+        color: #fff;
+        font-size: 15px;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+    }
+
+    body{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: 'Jost', sans-serif;
+        background: linear-gradient(to bottom, #5D54A4, #C7C5F4, #5D54A4);
+    }
+    
+    .main{
+        width: 350px;
+        height: 500px;
+        background: #5D54A4;
+        overflow: hidden;
+        box-shadow: 5px 20px 50px rgb(41, 41, 41);
+    }
+
+    #chk{
+        display: none;
+    }
+
+    .login{
+        position: relative;
+        width:100%;
+        height: 100%;
+    }
+
+    #logintitle{
+        color: #fff;
+        font-size: 40px;
+        justify-content: center;
+        display: flex;
+        margin: 60px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: .5s ease-in-out;
+    }
+
+    #signinbox{
+        color: #5D54A4;
+        font-size: 40px;
+        justify-content: center;
+        display: flex;
+        margin: 80px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: .5s ease-in-out;
+    }
+
+    input{
+        width: 60%;
+        height: 20px;
+        background: #efeff7;
+        justify-content: center;
+        display: flex;
+        margin: 20px auto;
+        padding: 10px;
+        border: none;
+        outline: none;
+    }
+    #btnLogin{
+        width: 40%;
+        height: 40px;
+        margin: 10px auto;
+        justify-content: center;
+        display: block;
+        color: #5D54A4;
+        background: #C7C5F4;
+        font-size: 15px;
+        font-weight: bold;
+        margin-top: 20px;
+        outline: none;
+        border: none;
+        transition: .2s ease-in;
+        cursor: pointer;
+    }
+    #btnLogin:hover{
+        background: black;
+    }
+
+    #btnSignin{
+        width: 40%;
+        height: 40px;
+        margin: 10px auto;
+        justify-content: center;
+        display: block;
+        color: #C7C5F4;
+        background: #5D54A4;
+        font-size: 15px;
+        font-weight: bold;
+        margin-top: 20px;
+        outline: none;
+        border: none;
+        transition: .2s ease-in;
+        cursor: pointer;
+    }
+    #btnsignin:hover{
+        background: black;
+    }
+
+    .newuser{
+        height: 600px;
+        background: #C7C5F4;
+        border-radius: 100% / 10%;
+        transform: translateY(-210px);
+        transition: .8s ease-in-out;
+    }
+    .newuser label{
+        transform: scale(.9); /*ny bruker teskt først*/
+    }
+
+    #chk:checked ~ .newuser{ /*hvor høyt ny bruker kommer opp*/
+        transform: translateY(-520px);
+    }
+    #chk:checked ~ .newuser label{ /*ny bruker teskt etterpå*/
+        transform: scale(1);	
+    }
+    #chk:checked ~ .login label{ /*logg inn teskt*/
+        transform: scale(.6);
+    }
+
 
     </style>
 
