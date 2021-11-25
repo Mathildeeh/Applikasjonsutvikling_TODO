@@ -1,0 +1,132 @@
+* {
+margin: 0;
+padding-left: 10px;
+padding-top: 10px; 
+font-family: 'Jost', sans-serif;
+}
+
+body{
+background: linear-gradient(90deg, #5d54a4, #c7c5f4);
+}
+
+#btnCreate{
+width: 10%;
+height: 40px;
+justify-content: center;
+display: block; 
+color: #5D54A4;
+background: #C7C5F4;
+font-size: 17px;
+font-weight: bold;
+margin-top: 10px;
+outline: none;
+border: none;
+cursor: pointer;
+padding-bottom: 10px;
+}
+
+#overskrift{
+color: white;
+}
+
+#inpHeading{
+width: 25%;
+height: 25px;
+background: #efeff7;
+border: none;
+outline: none;
+}
+
+#inpDescription{
+background: #efeff7;
+border: none;
+outline: none;
+
+}
+
+#create{
+display: flex;
+grid-template-columns: 1fr 1fr;
+align-items: center;
+justify-items: center;
+}
+
+#date {
+margin-right: 50px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.openBtn {
+  display: flex;
+  justify-content: left;
+}
+
+.openButton {
+  border: none;
+  border-radius: 5px;
+  background-color: #737573;
+  color: white;
+  padding: 14px 20px;
+  cursor: pointer;
+  position: fixed;
+}
+
+.loginPopup {
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.formPopup {
+  display: none;
+  position: fixed;
+  left: 45%;
+  top: 5%;
+  transform: translate(-50%, 5%);
+  z-index: 9;
+}
+
+.formContainer {
+  max-width: 300px;
+  padding: 20px;
+  background-color: #5d54a4;
+}
+
+.formContainer input[type=text],
+.formContainer input[type=beskrivelse] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 20px 0;
+  border: none;
+  background: #eee;
+}
+
+.formContainer input[type=text]:focus,
+.formContainer input[type=beskrivelse]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.formContainer .btn {
+  padding: 12px 20px;
+  border: none;
+  background-color: #c7c5f4;
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+
+.formContainer .cancel {
+  background-color: #fff;
+  color: rgb(121, 119, 119);
+}
+
+.formContainer .btn:hover,
+.openButton:hover {
+  opacity: 1;
+}
