@@ -25,6 +25,10 @@ cursor: pointer;
 padding-bottom: 10px;
 }
 
+#btnCreate:hover {
+  background-color: lightgray;
+}
+
 #overskrift{
 color: white;
 }

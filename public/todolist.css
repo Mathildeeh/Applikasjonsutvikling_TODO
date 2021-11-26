@@ -24,7 +24,6 @@ body {
 }
 
 #title {
-    
     background-color: #79b179;
 }
 
@@ -106,6 +105,33 @@ button {
     transition: .2s ease-in;
     cursor: pointer;
     margin: 5px;
+}
+
+#btnToDoCreate:hover {
+    background-color: lightgray;
+}
+
+#btnDelUser:hover {
+    background-color: lightgray;
+}
+
+#btnLogout:hover {
+    background-color: lightgray;
+}
+
+#btnToDoCreate:active {
+    background-color: #c9f1c7;
+    color: white;
+}
+
+#btnDelUser:active {
+    background-color: #c9f1c7;
+    color: white;
+}
+
+#btnLogout:active {
+    background-color: #c9f1c7;
+    color: white;
 }
 
 button:hover {
