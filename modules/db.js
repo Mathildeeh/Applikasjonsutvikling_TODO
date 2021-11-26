@@ -68,6 +68,35 @@ dbMethods.deleteUser = function(id) {
 }
 
 
+
+
+
+// CREATETODOLIST!!!!!!!!!!!!!!!!!!!!!
+// ------------------------------------
+
+dbMethods.createToDoList = function(listname, userid) {  
+    let sql = "INSERT INTO todolists (id, listname, userid) VALUES(DEFAULT, $1, $2) returning *";
+	let values = [listname, userid];	
+    return pool.query(sql, values); 
+}
+
+// ------------------------------------
+dbMethods.deleteToDoList = function(id, userid) {  
+    let sql = "DELETE FROM todolists WHERE id = $1 AND userid = $2 RETURNING *";
+	let values = [id, userid];
+    return pool.query(sql, values); //return the promise
+}
+
+dbMethods.editToDoList = function(listname, id) {
+
+    console.log(listname, id);
+
+    let sql = "UPDATE todolists SET listname = $1 WHERE id = $2 RETURNING *";
+    let values = [listname, id];
+    return pool.query(sql, values); 
+}
+
+
 // export todoMethods -------------------------
 module.exports = dbMethods;
 
