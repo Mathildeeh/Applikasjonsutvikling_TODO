@@ -18,9 +18,9 @@ dbMethods.getAllToDoTasks = function() {
 
 // ------------------------------------
 
-dbMethods.createToDoTask = function(heading, description, userid) {  
+dbMethods.createToDoTask = function(heading, date, description, userid) {  
     let sql = "INSERT INTO todo (id, date, heading, description, userid) VALUES(DEFAULT, $4, $1, $2, $3) returning *";
-	let values = [heading, description, userid, Date.now()];	
+	let values = [heading, description, userid, date];	
     return pool.query(sql, values); 
 }
 
@@ -31,9 +31,12 @@ dbMethods.deleteToDoTask = function(id, userid) {
     return pool.query(sql, values); //return the promise
 }
 
-dbMethods.editToDoTask = function(id, userid) {
-    let sql = "EDIT todo (id, date, heading, description, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning *";
-    let values = [heading, description, userid];
+dbMethods.editToDoTask = function(heading, date, description, id) {
+
+    console.log(date, heading, description, id);
+
+    let sql = "UPDATE todo SET date = $1, heading = $2, description = $3 WHERE id = $4 RETURNING *";
+    let values = [date, heading, description, id];
     return pool.query(sql, values); 
 }
 

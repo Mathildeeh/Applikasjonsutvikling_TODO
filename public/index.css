@@ -1,130 +1,133 @@
-#txtResult{
-    color: #fff;
-    font-size: 15px;
-    text-align: center;
-    justify-content: center;
-    display: flex;
+#txtResult {
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
 }
 
-body{
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: 'Jost', sans-serif;
-    background: linear-gradient(to bottom, #79b179, #c9f1c7, #79b179);
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Jost", sans-serif;
+  background: linear-gradient(to bottom, #79b179, #c9f1c7, #79b179);
 }
 
-.master{
-    width: 350px;
-    height: 500px;
-    background: #79b179;
-    overflow: hidden;
-    box-shadow: 5px 20px 50px rgb(41, 41, 41);
+.master {
+  width: 350px;
+  height: 500px;
+  background: #79b179;
+  overflow: hidden;
+  box-shadow: 5px 20px 50px rgb(41, 41, 41);
 }
 
-#chk{
-    display: none;
+#chk {
+  display: none;
 }
 
-.login{
-    position: relative;
-    width:100%;
-    height: 100%;
+.login {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-#logintitle{
-    color: #fff;
-    font-size: 40px;
-    justify-content: center;
-    display: flex;
-    margin: 60px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .5s ease-in-out;
+#logintitle {
+  color: #fff;
+  font-size: 40px;
+  justify-content: center;
+  display: flex;
+  margin: 60px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
 }
 
-#signinbox{
-    color: #79b179;
-    font-size: 40px;
-    justify-content: center;
-    display: flex;
-    margin: 80px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .5s ease-in-out;
+#signinbox {
+  color: #79b179;
+  font-size: 40px;
+  justify-content: center;
+  display: flex;
+  margin: 80px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
 }
 
-input{
-    width: 60%;
-    height: 20px;
-    background: #efeff7;
-    justify-content: center;
-    display: flex;
-    margin: 20px auto;
-    padding: 10px;
-    border: none;
-    outline: none;
+input {
+  width: 60%;
+  height: 20px;
+  background: #efeff7;
+  justify-content: center;
+  display: flex;
+  margin: 20px auto;
+  padding: 10px;
+  border: none;
+  outline: none;
 }
-#btnLogin{
-    width: 40%;
-    height: 40px;
-    margin: 10px auto;
-    justify-content: center;
-    display: block;
-    color: #79b179;
-    background: #c9f1c7;
-    font-size: 15px;
-    font-weight: bold;
-    margin-top: 20px;
-    outline: none;
-    border: none;
-    transition: .2s ease-in;
-    cursor: pointer;
+#btnLogin {
+  width: 40%;
+  height: 40px;
+  margin: 10px auto;
+  justify-content: center;
+  display: block;
+  color: #79b179;
+  background: #c9f1c7;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 20px;
+  outline: none;
+  border: none;
+  transition: 0.2s ease-in;
+  cursor: pointer;
 }
-#btnLogin:hover{
-    background: black;
-}
-
-#btnSignin{
-    width: 40%;
-    height: 40px;
-    margin: 10px auto;
-    justify-content: center;
-    display: block;
-    color: #c9f1c7;
-    background: #79b179;
-    font-size: 15px;
-    font-weight: bold;
-    margin-top: 20px;
-    outline: none;
-    border: none;
-    transition: .2s ease-in;
-    cursor: pointer;
-}
-#btnSignin:hover{
-    background: black;
+#btnLogin:hover {
+  background: black;
 }
 
-.newuser{
-    height: 600px;
-    background: #c9f1c7;
-    border-radius: 100% / 10%;
-    transform: translateY(-210px);
-    transition: .8s ease-in-out;
+#btnSignin {
+  width: 40%;
+  height: 40px;
+  margin: 10px auto;
+  justify-content: center;
+  display: block;
+  color: #c9f1c7;
+  background: #79b179;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 20px;
+  outline: none;
+  border: none;
+  transition: 0.2s ease-in;
+  cursor: pointer;
 }
-.newuser label{
-    transform: scale(.9); /*ny bruker teskt først*/
+#btnSignin:hover {
+  background: black;
 }
 
-#chk:checked ~ .newuser{ /*hvor høyt ny bruker kommer opp*/
-    transform: translateY(-520px);
+.newuser {
+  height: 600px;
+  background: #c9f1c7;
+  border-radius: 100% / 10%;
+  transform: translateY(-210px);
+  transition: 0.8s ease-in-out;
 }
-#chk:checked ~ .newuser label{ /*ny bruker teskt etterpå*/
-    transform: scale(1);	
+.newuser label {
+  transform: scale(0.9); /*ny bruker teskt først*/
 }
-#chk:checked ~ .login label{ /*logg inn teskt*/
-    transform: scale(.6);
+
+#chk:checked ~ .newuser {
+  /*hvor høyt ny bruker kommer opp*/
+  transform: translateY(-520px);
+}
+#chk:checked ~ .newuser label {
+  /*ny bruker teskt etterpå*/
+  transform: scale(1);
+}
+#chk:checked ~ .login label {
+  /*logg inn teskt*/
+  transform: scale(0.6);
 }

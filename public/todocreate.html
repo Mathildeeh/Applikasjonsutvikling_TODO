@@ -15,28 +15,7 @@
     <div id= "create">
         <input type="date" id="date">
        <button id="btnCreate" onclick="location.href='todolist.html'">Legg til</button>
-    </div>
-
-    <div class="openBtn">
-        <button class="openButton" onclick="openForm()"><strong>Rediger</strong></button>
-      </div>
-      <div class="loginPopup">
-        <div class="formPopup" id="popupForm">
-          <form action="/action_page.php" class="formContainer">
-            <label for="tittel">
-              <strong>Tittel</strong>
-            </label>
-            <input type="text" id="tittel" placeholder="Tittel" name="tittel" required>
-            <label for="psw">
-              <strong>Beskrivelse</strong>
-            </label>
-            <input type="beskrivelse" id="beskrivelse" placeholder="Beskrivelse" name="beskrivelse" required>
-            <button type="submit" class="btn">Lagre</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Lukk</button>
-          </form>
-        </div>
-      </div>
-    
+    </div>    
 
     <!------------- JavaScript --------------->
     <script>
@@ -47,13 +26,6 @@
         let txtResult = document.getElementById('txtResult');
         let title = document.getElementById('title');
 
-    function openForm() {
-        document.getElementById("popupForm").style.display = "block";
-      }
-    function closeForm() {
-        document.getElementById("popupForm").style.display = "none";
-      }
-
         btnCreate.addEventListener('click', async function(evt) {
             
             let dato = document.getElementById("date").value;
@@ -62,7 +34,8 @@
 
             let updata = {
                 heading: inpHeading.value,
-                description: inpDescription.value
+                description: inpDescription.value,
+                date: dato
             }
 
             let token = localStorage.getItem("token");

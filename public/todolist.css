@@ -1,118 +1,116 @@
 * {
-    font-family: 'jost', sans-serif;
-    background-color: #c9f1c7;
+  font-family: "jost", sans-serif;
+  background-color: #c9f1c7;
 }
 
 .header {
-    background-color: #79b179;
-    padding: 20px 25px;
-    color: white;
-    text-align: center;
+  background-color: #79b179;
+  padding: 20px 25px;
+  color: white;
+  text-align: center;
 }
 
 div {
-    border-bottom: solid 1px white;
+  border-bottom: solid 1px white;
 }
 
 body {
-    margin: 0px;
+  margin: 0px;
 }
 
 .checkmark {
-    width: 15px;
-    height: 20px;
+  width: 15px;
+  height: 20px;
 }
 
 #title {
-    
-    background-color: #79b179;
+  background-color: #79b179;
 }
 
 .divMenu {
-    color: white;
-    text-align: right;
-    
+  color: white;
+  text-align: right;
 }
 
 h2 {
-    padding-left: 10px;
-    padding-left: 10px;
+  padding-left: 10px;
+  padding-left: 10px;
 }
 
 p {
-    padding-left: 10px;
-    padding-left: 10px;
+  padding-left: 10px;
+  padding-left: 10px;
 }
 
 a:hover {
-    color: #c9f1c7;
+  color: #c9f1c7;
 }
 
-a:active{
-    color: white;
+a:active {
+  color: white;
 }
 
 button {
-    width: 15%;
-    height: 30px;
-    color: #c9f1c7;
-    background: #79b179;
-    font-size: 13px;
-    font-weight: bold;
-    outline: none;
-    border: none;
-    transition: .2s ease-in;
-    cursor: pointer;
-    margin: 5px;
+  width: 15%;
+  height: 30px;
+  color: #c9f1c7;
+  background: #79b179;
+  font-size: 13px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+  margin: 5px;
 }
 
-#btnLogout{
-    width: 15%;
-    height: 30px;
-    color: #79b179;
-    background: #c9f1c7;
-    font-size: 13px;
-    font-weight: bold;
-    outline: none;
-    border: none;
-    transition: .2s ease-in;
-    cursor: pointer;
-    margin: 5px;
+#btnLogout {
+  width: 15%;
+  height: 30px;
+  color: #79b179;
+  background: #c9f1c7;
+  font-size: 13px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+  margin: 5px;
 }
 
-#btnDelUser{
-    width: 15%;
-    height: 30px;
-    color: #79b179;
-    background: #c9f1c7;
-    font-size: 13px;
-    font-weight: bold;
-    outline: none;
-    border: none;
-    transition: .2s ease-in;
-    cursor: pointer;
-    margin: 5px;
+#btnDelUser {
+  width: 15%;
+  height: 30px;
+  color: #79b179;
+  background: #c9f1c7;
+  font-size: 13px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+  margin: 5px;
 }
 
-#btnToDoCreate{
-    width: 20%;
-    height: 30px;
-    color: #79b179;
-    background: #c9f1c7;
-    font-size: 13px;
-    font-weight: bold;
-    outline: none;
-    border: none;
-    transition: .2s ease-in;
-    cursor: pointer;
-    margin: 5px;
+#btnToDoCreate {
+  width: 20%;
+  height: 30px;
+  color: #79b179;
+  background: #c9f1c7;
+  font-size: 13px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+  margin: 5px;
 }
 
 button:hover {
-    background-color: lightgray;
+  background-color: lightgray;
 }
 
 button:active {
-    background-color: #c9f1c7;
-    color: white;
+  background-color: #c9f1c7;
+  color: white;
 }
