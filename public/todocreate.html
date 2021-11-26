@@ -9,13 +9,16 @@
 <body>
 
     <!----------- HTML-elements -------------->
-    <h1 id="overskrift">Legg til gjøremål</h1><br>
-    <input id="inpHeading" type="text" placeholder="Tittel"/><br><br>
-    <textarea id="inpDescription" cols="80" rows="10" placeholder="Beskrivelse"></textarea><br>
-    <div id= "create">
-        <input type="date" id="date">
-       <button id="btnCreate" onclick="location.href='todolist.html'">Legg til</button>
-    </div>    
+    <div class="master">  			
+        <div class="edit">
+            <h1 id="overskrift">Legg til gjøremål</h1><br>
+            <input id="inpHeading" type="text" placeholder="Overskrift"/><br><br>
+            <textarea id="inpDescription" cols="80" rows="10" placeholder="Beskrivelse"></textarea><br><br>
+            <input type="date" id="date">
+            <button id="btnCreate">Legg til</button>
+            
+        </div>
+    </div>
 
     <!------------- JavaScript --------------->
     <script>
@@ -58,7 +61,7 @@
                 }
 
                 //txtResult.innerHTML = data.msg;
-              
+                location.href='todolist.html';
             }
             catch(error){
                 console.log(error);

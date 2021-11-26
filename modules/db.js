@@ -32,9 +32,7 @@ dbMethods.deleteToDoTask = function(id, userid) {
 }
 
 dbMethods.editToDoTask = function(heading, date, description, id) {
-
-    console.log(date, heading, description, id);
-
+    //console.log(date, heading, description, id);
     let sql = "UPDATE todo SET date = $1, heading = $2, description = $3 WHERE id = $4 RETURNING *";
     let values = [date, heading, description, id];
     return pool.query(sql, values); 
