@@ -2,6 +2,7 @@ const express = require('express');
 const db = require('./db.js');
 const authUtils = require("./auth_utils.js");
 const router = express.Router();
+const protect = require('./auth');
 
 //endpoints ----------------------------------
 
@@ -115,6 +116,31 @@ router.post("/users/login", async function (req, res, next) {
 router.delete("/users", async function(req, res, next) {
     res.status(200).send("Hello from DELETE - /users").end();
 });
+
+//edit a user--------------------------
+router.put("/users/edit", protect, async function(req, res, next) {	
+
+    let updata = req.body;
+    let userid = res.locals.userid;    
+
+    let newHashedPassword = authUtils.createHash(updata.password);
+
+    try {
+        let data = await db.editUser(updata.username, newHashedPassword.value, newHashedPassword.salt, userid);
+
+        if (data.rows.length > 0) {
+            res.status(200).json({msg: "Konto ble endret"}).end();
+        }
+        else {
+            throw "Konto ble ikke endret";
+        }
+    }
+    catch(err){
+        console.log(err)
+        next(err);
+    }
+});
+
 
 //--------------------------------------
 module.exports = router;

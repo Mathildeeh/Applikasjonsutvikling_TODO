@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-family: "Jost", sans-serif;
+}
+
+body {
+  background: linear-gradient(90deg, #79b179, #c9f1c7);
+}
+
+#btnCreate {
+  width: 20%;
+  height: 40px;
+  justify-content: center;
+  display: block;
+  color: #79b179;
+  background: #c9f1c7;
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding-bottom: 10px;
+}
+
+#overskrift {
+  color: white;
+}
+
+#inpHeading {
+  width: 25%;
+  height: 25px;
+  background: #efeff7;
+  border: none;
+  outline: none;
+}
+
+#inpDescription {
+  background: #efeff7;
+  border: none;
+  outline: none;
+}
+
+#create {
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+#date {
+  margin-right: 50px;
+}
+
+#btnChange {
+  width: 40%;
+  height: 40px;
+  margin: 10px auto;
+  justify-content: center;
+  display: block;
+  color: #79b179;
+  background: #c9f1c7;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 20px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+#btnChange:hover {
+  background: black;
+}

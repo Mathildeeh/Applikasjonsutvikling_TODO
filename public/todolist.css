@@ -106,6 +106,20 @@ button {
   margin: 5px;
 }
 
+#btnAccount {
+  width: 15%;
+  height: 30px;
+  color: #79b179;
+  background: #c9f1c7;
+  font-size: 13px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+  margin: 5px;
+}
+
 button:hover {
   background-color: lightgray;
 }

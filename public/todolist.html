@@ -14,6 +14,7 @@
         <button id="btnToDoCreate">Lag gjøremål</button>
         <button id="btnDelUser">Slett buker</button>
         <button id="btnLogout">Logg ut</button>
+        <button id="btnAccount">Konto</button>
     </div> 
 
     <div id="container">
@@ -26,6 +27,7 @@
         let btnLogout = document.getElementById('btnLogout');
         let btnDelUser = document.getElementById('btnDelUser');
         let btnToDoCreate = document.getElementById('btnToDoCreate');
+        let btnAccount = document.getElementById('btnAccount');
         let container = document.getElementById('container');
 
         async function listToDo() {
@@ -148,6 +150,11 @@
         btnToDoCreate.addEventListener('click', function(evt){
             location.href = 'todocreate.html';
         });
+
+        btnAccount.addEventListener('click', function(evt){
+            location.href = 'useredit.html';
+        });
+
         
 
     </script>
