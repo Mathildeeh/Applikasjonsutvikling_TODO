@@ -9,16 +9,25 @@
 <body>
 
     <!----------- HTML-elements -------------->
-    <div class="header">
-        <h1 id="title">To Do List</h1>
+     <div class="header">
+        <h1 id="title">MINE GJØREMÅL</h1><hr>
         <button id="btnLogout">Logg ut</button>
         <button id="btnDelUser">Slett buker</button>
         <button id="btnToDoCreate">Lag gjøremål</button>
     </div> 
-
-    <div id="container">
+   <!-- <div class="navbar">
+        <a href="index.html">Logg ut</a>
+        <a href="index.html">Slett bruker</a>
+        <a href="index.html">Nytt gjøremål</a>
         
-    </div>
+        <div></div>
+        <div></div>
+        <div></div>
+    
+    </div> -->
+
+
+    <div class="footer"></div>
 
     <!------------- JavaScript --------------->
     <script>
@@ -55,7 +64,7 @@
                     
                     let html = "<h2>" + value.heading + "</h2>";
                     html += "<p>" + date.toLocaleDateString() + "</p>";
-                    html += "<p>" + value.description + "</p><br>";
+                    html += "<p>" + value.description + "</p><hr>";
 
                     let div = document.createElement("div");
                     div.innerHTML = html;
@@ -142,8 +151,48 @@
     </script>
 
     <!---------------- CSS ------------------->
-    <style>        
+    <style>
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
 
+        .navbar a{
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+
+        }
+        
+        .navbar a:hover{
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar div {
+            float: right;
+            width: 35px;
+            height: 5px;
+            background-color: black;
+            margin: 6px 0;
+            
+        }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: #333;
+        }
+
+
+        
+        
+
+
+        
     </style>
 
 </body>

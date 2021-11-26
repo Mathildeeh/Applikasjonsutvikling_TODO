@@ -78,7 +78,6 @@
         
         inpPassword.addEventListener("keyup", function(event){
                 if (event.keyCode === 13) {
-                    
                     event.preventDefault();
                     document.getElementById("btnLogin").click();
                 }
@@ -118,6 +117,13 @@
                 txtResult2.innerHTML = "Noe gikk galt - sjekk console vinduet";
             }
         });
+
+        inpPassword.addEventListener("keyup", function(event){
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    document.getElementById("btnSignin").click();
+                }
+            });
 
         //------------------------------
         function createCredentialString(username, password) {

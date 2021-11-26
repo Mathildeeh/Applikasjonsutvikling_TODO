@@ -67,6 +67,7 @@ input{
     padding: 10px;
     border: none;
     outline: none;
+    
 }
 #btnLogin{
     width: 40%;
@@ -83,6 +84,7 @@ input{
     border: none;
     transition: .2s ease-in;
     cursor: pointer;
+    border-radius: 5px;
 }
 #btnLogin:hover{
     background: black;

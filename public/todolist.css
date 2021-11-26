@@ -64,6 +64,7 @@ button {
     transition: .2s ease-in;
     cursor: pointer;
     margin: 5px;
+    border-radius: 5px;
 }
 
 #btnLogout{
