@@ -39,8 +39,8 @@
         let btnLogin = document.getElementById('btnLogin');
         let txtResult = document.getElementById('txtResult');
         
-        let inpUsername2 = document.getElementById('inpUsername2');
-        let inpPassword2 = document.getElementById('inpPassword2');
+        let regUsername = document.getElementById('inpUsername2');
+        let regPassword = document.getElementById('inpPassword2');
         let btnSignin = document.getElementById('btnSignin');
         let txtResult2 = document.getElementById('txtResult2');
 
@@ -74,6 +74,13 @@
             }
         });
 
+        inpPassword.addEventListener("keyup", function(event){
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    document.getElementById("btnLogin").click();
+                }
+            });
+
         //------------------------------
         function createCredentialString(username, password) {
             let combinedStr = username + ":" + password;
@@ -85,7 +92,7 @@
         btnSignin.addEventListener('click', async function(evt) {
             
             let url = "/users";
-            let credString = createCredentialString(inpUsername2.value, inpPassword2.value);
+            let credString = createCredentialString(regUsername.value, regPassword.value);
 
             let cfg = {
                 method: "POST",
@@ -108,6 +115,13 @@
                 txtResult2.innerHTML = "Noe gikk galt - sjekk console vinduet";
             }
         });
+
+        regPassword.addEventListener("keyup", function(event){
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    document.getElementById("btnSignin").click();
+                }
+            });
 
         //------------------------------
         function createCredentialString(username, password) {

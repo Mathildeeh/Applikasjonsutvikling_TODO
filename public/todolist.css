@@ -62,6 +62,7 @@ button {
   transition: 0.2s ease-in;
   cursor: pointer;
   margin: 5px;
+  border-radius: 5px;
 }
 
 #btnLogout {
@@ -76,6 +77,7 @@ button {
   transition: 0.2s ease-in;
   cursor: pointer;
   margin: 5px;
+  border-radius: 5px;
 }
 
 #btnDelUser {
@@ -90,6 +92,7 @@ button {
   transition: 0.2s ease-in;
   cursor: pointer;
   margin: 5px;
+  border-radius: 5px;
 }
 
 #btnToDoCreate {
@@ -104,6 +107,7 @@ button {
   transition: 0.2s ease-in;
   cursor: pointer;
   margin: 5px;
+  border-radius: 5px;
 }
 
 button:hover {

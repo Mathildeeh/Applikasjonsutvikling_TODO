@@ -11,7 +11,8 @@
     <!----------- HTML-elements -------------->
     <div class="header">
         <h1 id="title">To Do List</h1>
-        <button id="btnToDoCreate">Lag gjøremål</button>
+        <button id="btnToDoCreate">Nytt gjøremål</button>
+        <button id="btnNewListCreate">Ny liste</button>
         <button id="btnDelUser">Slett buker</button>
         <button id="btnLogout">Logg ut</button>
     </div> 
@@ -27,6 +28,7 @@
         let btnDelUser = document.getElementById('btnDelUser');
         let btnToDoCreate = document.getElementById('btnToDoCreate');
         let container = document.getElementById('container');
+        let btnNewListCreate = document.getElementById('btnNewListCreate');
 
         async function listToDo() {
 
