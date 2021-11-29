@@ -10,11 +10,13 @@
 
     <!----------- HTML-elements -------------->
     <div class="header">
-        <h1 id="title">To Do List</h1>
-        <button id="btnToDoCreate">Lag gjøremål</button>
+        <h1 id="title">Mine gjøremål</h1><hr><br>
+        <button id="btnToDoCreate">Nytt gjøremål</button>
+        <button id="btnNewListCreate">Ny liste</button>
         <button id="btnDelUser">Slett buker</button>
         <button id="btnLogout">Logg ut</button>
-    </div> 
+        <br>
+    </div>
 
     <div id="container">
         
@@ -27,10 +29,12 @@
         let btnDelUser = document.getElementById('btnDelUser');
         let btnToDoCreate = document.getElementById('btnToDoCreate');
         let container = document.getElementById('container');
+        let btnNewListCreate = document.getElementById('btnNewListCreate');
 
         async function listToDo() {
 
-            let url = "/todo";
+            let listID = localStorage.getItem("listid");
+            let url = "/todo/" + listID;
 
             let token = localStorage.getItem("token");
 
@@ -39,15 +43,17 @@
                 headers: {"authorization": token}
             };
 
+            
+
             try {
                 let response = await fetch(url, cfg);
                 let data = await response.json();
 
                 if (response.status != 200) {
-                throw data.error;
-            }
+                    throw data.error;
+                }
 
-            container.innerHTML = "";
+                container.innerHTML = "";
             
                 for (let value of data){
 
@@ -138,6 +144,7 @@
         listToDo();
     
         btnLogout.addEventListener('click', function(evt){
+            localStorage.setItem("token", 'logout');
             location.href = 'index.html';
         });
 
@@ -147,6 +154,10 @@
 
         btnToDoCreate.addEventListener('click', function(evt){
             location.href = 'todocreate.html';
+        });
+
+        btnNewListCreate.addEventListener('click', function(evt){
+            location.href = 'todolistcreate.html';
         });
         
 

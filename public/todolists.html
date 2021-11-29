@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="todolist.css"> 
+    <title>todolist</title>
+</head>
+<body>
+
+    <!----------- HTML-elements -------------->
+    <div class="header">
+        <h1 id="title">Mine gjøremål</h1><hr><br>
+        <button id="btnNewListCreate">Ny liste</button>
+        <button id="btnDelUser">Slett buker</button>
+        <button id="btnLogout">Logg ut</button>
+        <br>
+    </div> 
+
+    <div id="container">
+        
+    </div>
+
+    <!------------- JavaScript --------------->
+    <script>
+
+        let btnLogout = document.getElementById('btnLogout');
+        let btnDelUser = document.getElementById('btnDelUser');
+        let container = document.getElementById('container');
+        let btnNewListCreate = document.getElementById('btnNewListCreate');
+
+        async function listLists() {
+
+            let url = "/todolists";
+
+            console.log("slkjfa-ldks");
+
+            let token = localStorage.getItem("token");
+
+            let cfg = {
+                method: "GET",
+                headers: {"authorization": token}
+            };
+
+            try {
+                let response = await fetch(url, cfg);
+                let data = await response.json();
+
+                if (response.status != 200) {
+                    throw data.error;
+                }
+
+                container.innerHTML = "";
+            
+                for (let value of data){
+                    
+                    let html = "<h2>" + value.listname + "</h2>";
+                    
+                    let div = document.createElement("div");
+                    div.innerHTML = html;
+                    container.appendChild(div);    
+                    
+                    let delbtn = document.createElement("button");
+                    delbtn.innerText ="Slett";
+                    
+                    let editbtn = document.createElement("button");
+                    editbtn.innerText ="Rediger";
+                    
+                    editbtn.addEventListener('click', function(evt){
+
+                        let listeinfo = {
+                            listname: value.listname,
+                            id: value.id
+                        };
+
+                       let listeinfoJson = JSON.stringify(listeinfo);
+                        localStorage.setItem("listeinfo", listeinfoJson);                        
+                        //location.href = 'todoedit.html'; <------ NYTT HTML-DOKUMENT            
+                    });
+
+                    delbtn.addEventListener('click', function(evt){
+                        deleteToDoList(value.id);
+                    });
+                    
+
+                    div.appendChild(delbtn, div.lastElementChild);
+                    div.appendChild(editbtn, div.lastElementChild);
+                }
+            }
+            catch (error){
+            console.log(error);
+            }
+        }
+
+        async function deleteToDoList(listID){
+
+            let url = "/todolists";
+            let token = localStorage.getItem("token");
+
+            let updata = {
+                id: listID
+            }
+
+            let cfg = {
+                method: "DELETE",
+                headers: {
+                    "content-type":"application/json",
+                    "authorization": token
+                },
+                body: JSON.stringify(updata)
+            }
+
+            try {
+                let response = await fetch(url, cfg);
+                let data = await response.json();
+
+                if (response.status != 200) {
+                    throw data.error;
+                }
+
+                listLists();
+            }
+            catch(error){
+                console.log(error);
+            }
+
+        }
+
+        listLists();
+    
+        btnLogout.addEventListener('click', function(evt){
+            location.href = 'index.html';
+        });
+
+        btnDelUser.addEventListener('click', function(evt){
+            location.href = 'index.html';
+        });
+
+        btnToDoCreate.addEventListener('click', function(evt){
+            location.href = 'todocreate.html';
+        });
+        
+
+    </script>
+
+    <!---------------- CSS ------------------->
+    <style>        
+
+    </style>
+
+</body>
+
+</html>

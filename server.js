@@ -5,6 +5,7 @@ server.set("port", PORT);
 
 const todotasks = require("./modules/todotasks.js");
 const users = require("./modules/users.js");
+const todolists = require("./modules/todolists.js");
 
 // middleware ---------------------------
 server.use(express.static("public"));
@@ -12,6 +13,7 @@ server.use(express.json());
 
 server.use(todotasks);
 server.use(users);
+server.use(todolists);
 
 //general error handling ---------------
 server.use(function (err, req, res, next){
