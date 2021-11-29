@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>todoedit</title>
+    <link rel="stylesheet" href="todoedit.css">
+</head>
+<body>
+
+    <!----------- HTML-elements -------------->
+    
+    <div class="master">  			
+        <div class="edit">
+            <h1 id="overskrift">Rediger gjøremålet</h1><br>
+            <input id="inpHeading" type="text" placeholder="Tittel"/><br><br>
+            <textarea id="inpDescription" cols="80" rows="10" placeholder="Beskrivelse"></textarea><br><br>
+            <input type="date" id="date">
+            <button id="btnChange">Lagre</button>
+        </div>
+    </div>
+    
+    <!------------- JavaScript --------------->
+    <script>
+
+        let inpHeading = document.getElementById('inpHeading');
+        let inpDescription = document.getElementById('inpDescription');
+        let btnChange = document.getElementById('btnChange');
+        let txtResult = document.getElementById('txtResult');
+        let title = document.getElementById('title');
+        let inpDate = document.getElementById("date");
+
+
+        let listeinfoJson = localStorage.getItem("listeinfo");
+        let listeinfo = JSON.parse(listeinfoJson);
+
+        inpHeading.value = listeinfo.heading;
+        inpDescription.value = listeinfo.descr;
+        inpDate.value = listeinfo.date;
+
+        btnChange.addEventListener('click', async function(evt) {
+            
+            let dato = inpDate.value;
+
+            let url = "/todo";            
+
+            let updata = {
+                heading: inpHeading.value,
+                description: inpDescription.value,
+                date: inpDate.value,
+                id: listeinfo.id
+            }
+
+            //console.log(updata)
+
+            let token = localStorage.getItem("token");
+
+            let cfg = {
+                method: "PUT",
+                headers: {
+                    "content-type":"application/json",
+                    "authorization":token
+                },
+                    body: JSON.stringify(updata)
+            }
+
+            try {
+                let response = await fetch(url, cfg);
+                let data = await response.json();
+
+                if (response.status != 200) {
+                    throw data.error;
+                }
+
+                location.href = 'todolist.html';
+              
+            }
+            catch(error){
+                console.log(error);
+                txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

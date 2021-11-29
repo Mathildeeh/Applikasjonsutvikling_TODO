@@ -5,76 +5,8 @@
   font-family: "Jost", sans-serif;
 }
 
-
-#btnCreate {
+#btnChange {
   width: 12%;
-=======
-body{
-background: linear-gradient(90deg, #79b179, #c9f1c7);
-}
-
-#btnCreate{
-width: 20%;
-height: 40px;
-justify-content: center;
-display: block; 
-color: #79b179;
-background: #c9f1c7;
-font-size: 17px;
-font-weight: bold;
-margin-top: 10px;
-outline: none;
-border: none;
-cursor: pointer;
-padding-bottom: 10px;
-}
-
-#btnCreate:hover {
-  background-color: lightgray;
-}
-
-#overskrift{
-color: white;
-}
-
-#inpHeading{
-width: 25%;
-height: 25px;
-background: #efeff7;
-border: none;
-outline: none;
-}
-
-#inpDescription{
-background: #efeff7;
-border: none;
-outline: none;
-
-}
-
-#create{
-display: flex;
-grid-template-columns: 1fr 1fr;
-align-items: center;
-justify-items: center;
-}
-
-#date {
-margin-right: 50px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.openBtn {
-  display: flex;
-  justify-content: left;
-}
-
-.openButton {
-  width: 20%;
-
   height: 40px;
   color: #79b179;
   background: #c9f1c7;
@@ -88,7 +20,7 @@ margin-right: 50px;
   border-radius: 5px;
   padding-bottom: 7px;
 }
-#btnCreate:hover {
+#btnChange:hover {
   background: lightgray;
 }
 
@@ -96,6 +28,12 @@ margin-right: 50px;
   color: white;
   font-size: 50px;
   padding-left: 0px;
+}
+
+#tekst {
+  color: white;
+  font-size: 20px;
+  font-family: "Jost", sans-serif;
 }
 
 #inpHeading {

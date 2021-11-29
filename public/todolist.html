@@ -11,9 +11,9 @@
     <!----------- HTML-elements -------------->
     <div class="header">
         <h1 id="title">To Do List</h1>
-        <button id="btnLogout">Logg ut</button>
-        <button id="btnDelUser">Slett buker</button>
         <button id="btnToDoCreate">Lag gjøremål</button>
+        <button id="btnDelUser">Slett buker</button>
+        <button id="btnLogout">Logg ut</button>
     </div> 
 
     <div id="container">
@@ -72,7 +72,18 @@
                     checkbox.class = "checkmark";
                     
                     editbtn.addEventListener('click', function(evt){
-                        // code
+
+
+                        let listeinfo = {
+                            heading: value.heading,
+                            date: value.date,
+                            descr: value.description,
+                            id: value.id
+                        };
+
+                       let listeinfoJson = JSON.stringify(listeinfo);
+                        localStorage.setItem("listeinfo", listeinfoJson);                        
+                        location.href = 'todoedit.html';                    
                     });
 
                     delbtn.addEventListener('click', function(evt){
