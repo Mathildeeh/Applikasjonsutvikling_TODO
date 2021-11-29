@@ -42,8 +42,11 @@ dbMethods.deleteToDoTask = function(id, userid) {
 
 dbMethods.editToDoTask = function(heading, date, description, id) {
 
+
    //console.log(date, heading, description, id);
 
+
+  
     let sql = "UPDATE todo SET date = $1, heading = $2, description = $3 WHERE id = $4 RETURNING *";
     let values = [date, heading, description, id];
     return pool.query(sql, values); 
@@ -71,9 +74,15 @@ dbMethods.createUser = function(username, password, salt) {
 
 //---------------------------------------------
 dbMethods.deleteUser = function(id) {  
-    let sql = "DELETE FROM users WHERE id = $1 RETURNING *";
+    let sql = "DELETE FROM users WHERE id = $1 returning *";
     let values = [id];
     return pool.query(sql, values); //return the promise
+}
+
+dbMethods.editUser = function(username, password) {
+    let sql = "EDIT user (username, password) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning *";
+    let values = [username, password];
+    return pool.query(sql, values); 
 }
 
 
