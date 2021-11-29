@@ -10,19 +10,18 @@
 
     <!----------- HTML-elements -------------->
     <h1 id="overskrift">Legg til ny liste</h1><br>
-    <input id="listname" type="text" placeholder="Navn på ny liste"/><br>
+    <input id="inpListname" type="text" placeholder="Navn på ny liste"/><br>
     
     <div id= "create">
-       <button id="btnCreate">Legg til</button>
+       <button id="btnCreate" onclick="location.href='todolist.html'">Legg til</button>
     </div>    
 
     <!------------- JavaScript --------------->
     <script>
 
-        let listname = document.getElementById('listname');
+        let inpListname = document.getElementById('inpListname');
         let btnCreate = document.getElementById('btnCreate');
-      
-
+    
         btnCreate.addEventListener('click', async function(evt) {
            
             let url = "/todolists";
@@ -30,8 +29,6 @@
             let updata = {
                 listname: listname.value
             }
-
-            console.log(updata);
 
             let token = localStorage.getItem("token");
 
@@ -52,13 +49,12 @@
                     throw data.error;
                 }
 
-                window.location.href='todolist.html';
                 //txtResult.innerHTML = data.msg;
               
             }
             catch(error){
                 console.log(error);
-                //txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
+                txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
             }
         });
 

@@ -33,7 +33,8 @@
 
         async function listToDo() {
 
-            let url = "/todo";
+            let listID = localStorage.getItem("listid");
+            let url = "/todo/" + listID;
 
             let token = localStorage.getItem("token");
 
@@ -42,15 +43,17 @@
                 headers: {"authorization": token}
             };
 
+            
+
             try {
                 let response = await fetch(url, cfg);
                 let data = await response.json();
 
                 if (response.status != 200) {
-                throw data.error;
-            }
+                    throw data.error;
+                }
 
-            container.innerHTML = "";
+                container.innerHTML = "";
             
                 for (let value of data){
 
@@ -141,6 +144,7 @@
         listToDo();
     
         btnLogout.addEventListener('click', function(evt){
+            localStorage.setItem("token", 'logout');
             location.href = 'index.html';
         });
 

@@ -4,13 +4,15 @@ const router = express.Router();
 const protect = require('./auth');
 
 // endpoints ----------------------------
-router.get("/todo", protect, async function(req, res, next) {
-
-    //console.log(res.locals.username);
-   // console.log(res.locals.userid);
+router.get("/todo/:listid", protect, async function(req, res, next) {
+    
+    /* console.log(res.locals.username);
+    console.log(res.locals.userid); */
+    
 	
     try {
-        let data = await db.getAllToDoTasks();
+        let data = await db.getAllToDoTasks(req.params.listid, res.locals.userid);
+        //console.log(data);
         res.status(200).json(data.rows).end();
     }
     catch (err) {
@@ -25,7 +27,7 @@ router.post("/todo", protect, async function(req, res, next) {
     let userid = res.locals.userid;    
 
     try {
-        let data = await db.createToDoTask(updata.heading, updata.date, updata.description, userid);
+        let data = await db.createToDoTask(updata.heading, updata.date, updata.description, userid, updata.listid);
 
         if (data.rows.length > 0) {
             res.status(200).json({msg: "Nytt gjøremål ble opprettet"}).end();
