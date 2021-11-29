@@ -2,6 +2,7 @@ const express = require('express');
 const db = require('./db.js');
 const authUtils = require("./auth_utils.js");
 const router = express.Router();
+const protect = require('./auth');
 
 //endpoints ----------------------------------
 
@@ -110,10 +111,24 @@ router.post("/users/login", async function (req, res, next) {
     }
 });
 
-
 //delete a user--------------------------
-router.delete("/users", async function(req, res, next) {
-    res.status(200).send("Hello from DELETE - /users").end();
+router.delete("/users/delete", protect, async function(req, res, next) {
+
+    let userId = res.locals.userid;
+
+    try {
+        let data = await db.deleteUser(userId);
+        
+        if (data.rows.length > 0) {
+            res.status(200).json({msg: "The user was deleted succefully"}).end();
+        }
+        else {
+            throw "The user couldn't be deleted";
+        }
+    
+    } catch(err) {
+        next(err);
+    }
 });
 
 //--------------------------------------
