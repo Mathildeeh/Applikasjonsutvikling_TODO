@@ -16,6 +16,11 @@ dbMethods.getAllToDoTasks = function() {
 	return pool.query(sql); 
 }
 
+dbMethods.getAllToDoLists = function() {
+    let sql = "SELECT * FROM todolists";	
+	return pool.query(sql); 
+}
+
 // ------------------------------------
 
 dbMethods.createToDoTask = function(heading, date, description, userid) {  

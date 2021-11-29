@@ -36,6 +36,7 @@ body {
   background: #efeff7;
   border: none;
   outline: none;
+  margin-left: 10px;
 }
 
 #inpDescription {
