@@ -10,11 +10,13 @@
 
     <!----------- HTML-elements -------------->
     <div class="header">
-        <h1 id="title">To Do List</h1>
-        <button id="btnToDoCreate">Lag gjøremål</button>
+        <h1 id="title">Mine gjøremål</h1><hr class="linje"><br>
+        <button id="btnToDoCreate">Nytt gjøremål</button>
+        <button id="btnNewListCreate">Ny liste</button>
         <button id="btnDelUser">Slett buker</button>
         <button id="btnLogout">Logg ut</button>
-    </div> 
+        <br>
+    </div>
 
     <div id="container">
         
@@ -27,6 +29,7 @@
         let btnDelUser = document.getElementById('btnDelUser');
         let btnToDoCreate = document.getElementById('btnToDoCreate');
         let container = document.getElementById('container');
+        let btnNewListCreate = document.getElementById('btnNewListCreate');
 
         async function listToDo() {
 
@@ -66,10 +69,6 @@
                     
                     let editbtn = document.createElement("button");
                     editbtn.innerText ="Rediger";
-
-                    let checkbox = document.createElement("input");
-                    checkbox.type = "checkbox";
-                    checkbox.class = "checkmark";
                     
                     editbtn.addEventListener('click', function(evt){
 
@@ -93,7 +92,6 @@
 
                     div.appendChild(delbtn, div.lastElementChild);
                     div.appendChild(editbtn, div.lastElementChild);
-                    div.appendChild(checkbox, div.lastElementChild);
                 }
             }
             catch (error){
@@ -147,6 +145,10 @@
 
         btnToDoCreate.addEventListener('click', function(evt){
             location.href = 'todocreate.html';
+        });
+
+        btnNewListCreate.addEventListener('click', function(evt){
+            location.href = 'todolistcreate.html';
         });
         
 
