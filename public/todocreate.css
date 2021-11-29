@@ -42,7 +42,7 @@ background: #efeff7;
 border: none;
 outline: none;
 font-size: 18px;
-
+border-radius: 5px;
 }
 
 #inpDescription{
@@ -51,6 +51,7 @@ background: #efeff7;
 border: none;
 outline: none;
 justify-self: center;
+border-radius: 5px;
 } 
 
 #create{
@@ -63,6 +64,7 @@ justify-items: center;
 #date {
 justify-self: center;
 font-size: 18px;
+border-radius: 5px;
 }
 
 body {
@@ -82,6 +84,7 @@ body {
   background: #79b179;
   overflow: hidden;
   box-shadow: 5px 20px 50px rgb(41, 41, 41);
+  border-radius: 5px;
 }
 
 input {
@@ -92,4 +95,5 @@ input {
   padding: 10px;
   border: none;
   outline: none;
+  border-radius: 5px;
 }
