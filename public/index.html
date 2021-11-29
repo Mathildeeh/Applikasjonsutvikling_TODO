@@ -39,8 +39,8 @@
         let btnLogin = document.getElementById('btnLogin');
         let txtResult = document.getElementById('txtResult');
         
-        let inpUsername2 = document.getElementById('inpUsername2');
-        let inpPassword2 = document.getElementById('inpPassword2');
+        let regUsername = document.getElementById('inpUsername2');
+        let regPassword = document.getElementById('inpPassword2');
         let btnSignin = document.getElementById('btnSignin');
         let txtResult2 = document.getElementById('txtResult2');
 
@@ -67,7 +67,7 @@
 
                 //txtResult.innerHTML = data.msg;
                 localStorage.setItem("token", data.token);
-				location.href = 'todolist.html';
+				location.href = 'testlister.html';
             }
             catch(error){
                 console.log(error);
@@ -76,6 +76,13 @@
         
         });
         
+        inpPassword.addEventListener("keyup", function(event){
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    document.getElementById("btnLogin").click();
+                }
+            });
+
         inpPassword.addEventListener("keyup", function(event){
                 if (event.keyCode === 13) {
                     event.preventDefault();
@@ -94,7 +101,7 @@
         btnSignin.addEventListener('click', async function(evt) {
             
             let url = "/users";
-            let credString = createCredentialString(inpUsername2.value, inpPassword2.value);
+            let credString = createCredentialString(regUsername.value, regPassword.value);
 
             let cfg = {
                 method: "POST",
@@ -110,7 +117,7 @@
                 }
 
                 //txtResult2.innerHTML = data.msg;
-                window.location.href = 'todolist.html';
+                window.location.href = 'testlister.html';
             }
             catch(error){
                 console.log(error);
@@ -118,7 +125,7 @@
             }
         });
 
-        inpPassword.addEventListener("keyup", function(event){
+        regPassword.addEventListener("keyup", function(event){
                 if (event.keyCode === 13) {
                     event.preventDefault();
                     document.getElementById("btnSignin").click();

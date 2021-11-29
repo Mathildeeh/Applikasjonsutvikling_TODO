@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Document</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="div1">div 1</div>
+      <div class="div2">div 2</div>
+      <div class="div3">div 3</div>
+      <div class="div4">div 4</div>
+      <div class="div5">div 5</div>
+    </div>
+
+    <style>
+      * {
+        margin: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+        font-size: 20pt;
+      }
+
+      #container > div {
+        border: 1px solid #000;
+        text-align: center;
+        overflow-y: auto;
+      }
+
+      @media (orientation: landscape) {
+        #container {
+          height: 100vh;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 80px 1fr 1fr 80px;
+          grid-template-areas:
+            "div1 div1"
+            "div2 div3"
+            "div2 div4"
+            "div5 div5";
+        }
+      }
+
+      .div1 {
+        grid-area: div1;
+        background-color: rgb(245, 231, 184);
+      }
+      .div2 {
+        grid-area: div2;
+        background-color: rgb(236, 193, 182);
+      }
+      .div3 {
+        grid-area: div3;
+
+        background-color: rgb(231, 137, 240);
+      }
+      .div4 {
+        grid-area: div4;
+        background-color: rgb(223, 132, 159);
+      }
+
+      .div5 {
+        grid-area: div5;
+        background-color: rgb(231, 194, 146);
+      }
+
+      @media (orientation: portrait) {
+        #container {
+          height: 100vh;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 80px 1fr 1fr 80px;
+          grid-template-areas:
+            "div1 div1"
+            "div2 div2"
+            "div3 div4"
+            "div5 div5";
+        }
+      }
+    </style>
+  </body>
+</html>

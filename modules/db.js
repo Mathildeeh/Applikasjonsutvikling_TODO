@@ -11,15 +11,26 @@ const pool = new pg.Pool({
 let dbMethods = {}; //create empty object
 
 // ------------------------------------
-dbMethods.getAllToDoTasks = function() {
-    let sql = "SELECT * FROM todo";	
-	return pool.query(sql); 
+dbMethods.getAllToDoTasks = function(listid, userid) {
+    /* console.log(listid);
+    console.log(userid); */
+    let sql = "SELECT * FROM todo WHERE listid = $1 AND userid = $2";	
+	let values = [listid, userid];
+    return pool.query(sql, values); 
+}
+
+dbMethods.getAllToDoLists = function(userid) {
+    let sql = "SELECT * FROM todolists WHERE userid = $1";	
+    let values = [userid];
+	return pool.query(sql, values); 
 }
 
 // ------------------------------------
-dbMethods.createToDoTask = function(heading, description, userid, date) {  
-    let sql = "INSERT INTO todo (id, date, heading, description, userid) VALUES(DEFAULT, $1, $2, $3, $4) returning *";
-	let values = [heading, description, userid, date];	
+
+
+dbMethods.createToDoTask = function(heading, date, description, userid, listid) {  
+    let sql = "INSERT INTO todo (id, date, heading, description, userid, listid) VALUES(DEFAULT, $4, $1, $2, $3, $5) returning *";
+	let values = [heading, description, userid, date, listid];	
     return pool.query(sql, values); 
 }
 
@@ -30,9 +41,13 @@ dbMethods.deleteToDoTask = function(id, userid) {
     return pool.query(sql, values); //return the promise
 }
 
-dbMethods.editToDoTask = function(id, userid) {
-    let sql = "UPDATE todo (id, date, heading, description, userid) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning *";
-    let values = [heading, description, userid];
+
+dbMethods.editToDoTask = function(heading, date, description, id) {
+
+   //console.log(date, heading, description, id);
+
+    let sql = "UPDATE todo SET date = $1, heading = $2, description = $3 WHERE id = $4 RETURNING *";
+    let values = [date, heading, description, id];
     return pool.query(sql, values); 
 }
 
@@ -58,10 +73,48 @@ dbMethods.createUser = function(username, password, salt) {
 
 //---------------------------------------------
 dbMethods.deleteUser = function(id) {  
-    let sql = "DELETE FROM users WHERE id = $1 RETURNING *";
+    let sql = "DELETE FROM users WHERE id = $1 returning *";
     let values = [id];
     return pool.query(sql, values); //return the promise
 }
+
+dbMethods.editUser = function(username, password) {
+    let sql = "EDIT user (username, password) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning *";
+    let values = [username, password];
+    return pool.query(sql, values); 
+}
+
+
+
+
+
+// CREATETODOLIST!!!!!!!!!!!!!!!!!!!!!
+// ------------------------------------
+
+dbMethods.createToDoList = function(listname, userid) {  
+   /*  console.log(listname);
+    console.log(userid); */
+    let sql = "INSERT INTO todolists (id, listname, userid) VALUES(DEFAULT, $1, $2) returning *";
+	let values = [listname, userid];	
+    return pool.query(sql, values); 
+}
+
+// ------------------------------------
+dbMethods.deleteToDoList = function(id, userid) {  
+    let sql = "DELETE FROM todolists WHERE id = $1 AND userid = $2 RETURNING *";
+	let values = [id, userid];
+    return pool.query(sql, values); //return the promise
+}
+
+dbMethods.editToDoList = function(listname, id) {
+
+    //console.log(listname, id);
+
+    let sql = "UPDATE todolists SET listname = $1 WHERE id = $2 RETURNING *";
+    let values = [listname, id];
+    return pool.query(sql, values); 
+}
+
 
 // export todoMethods -------------------------
 module.exports = dbMethods;

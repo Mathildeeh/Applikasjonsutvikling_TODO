@@ -63,6 +63,7 @@
     let dato = document.getElementById("date").value;
     
     let url = "/todo";
+    
 
     let updata = {
       heading: inpHeading.value,
@@ -97,9 +98,49 @@
     }
   });
 
-        
+      
+        btnCreate.addEventListener('click', async function(evt) {
+            
+            let dato = document.getElementById("date").value;
+           
+            let url = "/todo";
 
-</script>
+            let updata = {
+                heading: inpHeading.value,
+                description: inpDescription.value,
+                date: dato,
+                listid: localStorage.getItem("listid")
+            }
+
+            let token = localStorage.getItem("token");
+
+            let cfg = {
+                method: "POST",
+                headers: {
+                    "content-type":"application/json",
+                    "authorization":token
+                },
+                body: JSON.stringify(updata)
+            }
+
+            try {
+                let response = await fetch(url, cfg);
+                let data = await response.json();
+
+                if (response.status != 200) {
+                    throw data.error;
+                }
+
+                //txtResult.innerHTML = data.msg;
+                location.href='todolist.html';
+            }
+            catch(error){
+                console.log(error);
+                txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
+            }
+        });
+
+    </script>
 
 </body>
 

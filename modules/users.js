@@ -2,6 +2,7 @@ const express = require('express');
 const db = require('./db.js');
 const authUtils = require("./auth_utils.js");
 const router = express.Router();
+const protect = require('./auth');
 
 //endpoints ----------------------------------
 
@@ -88,12 +89,12 @@ router.post("/users/login", async function (req, res, next) {
             let userData = data.rows[0];
 
             let test = authUtils.verifyPassword(cred.password, userData.password, userData.salt);
-            console.log(test);
+            //console.log(test);
 
             if (test != true) {
                 res.status(403).json({error: "the user dosn't exist"}).end();
             }
-            console.log(userData);
+            //console.log(userData);
             let tok = authUtils.createToken(userData.username, userData.id);
 
             res.status(200).json ({
@@ -110,10 +111,24 @@ router.post("/users/login", async function (req, res, next) {
     }
 });
 
-
 //delete a user--------------------------
-router.delete("/users", async function(req, res, next) {
-    res.status(200).send("Hello from DELETE - /users").end();
+router.delete("/users/delete", protect, async function(req, res, next) {
+
+    let userId = res.locals.userid;
+
+    try {
+        let data = await db.deleteUser(userId);
+        
+        if (data.rows.length > 0) {
+            res.status(200).json({msg: "The user was deleted succefully"}).end();
+        }
+        else {
+            throw "The user couldn't be deleted";
+        }
+    
+    } catch(err) {
+        next(err);
+    }
 });
 
 //--------------------------------------

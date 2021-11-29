@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>todolistcreate</title>
+    <link rel="stylesheet" href="todocreate.css">
+</head>
+<body>
+
+    <!----------- HTML-elements -------------->
+    <h1 id="overskrift">Legg til ny liste</h1><br>
+    <input id="inpListname" type="text" placeholder="Navn på ny liste"/><br>
+    
+    <div id= "create">
+       <button id="btnCreate" onclick="location.href='todolist.html'">Legg til</button>
+    </div>    
+
+    <!------------- JavaScript --------------->
+    <script>
+
+        let inpListname = document.getElementById('inpListname');
+        let btnCreate = document.getElementById('btnCreate');
+    
+        btnCreate.addEventListener('click', async function(evt) {
+           
+            let url = "/todolists";
+
+            let updata = {
+                listname: listname.value
+            }
+
+            let token = localStorage.getItem("token");
+
+            let cfg = {
+                method: "POST",
+                headers: {
+                    "content-type":"application/json",
+                    "authorization":token
+                },
+                body: JSON.stringify(updata)
+            }
+
+            try {
+                let response = await fetch(url, cfg);
+                let data = await response.json();
+
+                if (response.status != 200) {
+                    throw data.error;
+                }
+
+                //txtResult.innerHTML = data.msg;
+              
+            }
+            catch(error){
+                console.log(error);
+                txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

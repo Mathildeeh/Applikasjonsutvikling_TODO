@@ -9,16 +9,16 @@
 <body>
 
     <!----------- HTML-elements -------------->
-     <div class="header">
-        <h1 id="title">MINE GJØREMÅL</h1><hr>
-        <button id="btnLogout">Logg ut</button>
+    <div class="header">
+        <h1 id="title">Mine gjøremål</h1><hr><br>
+        <button id="btnToDoCreate">Nytt gjøremål</button>
+        <button id="btnNewListCreate">Ny liste</button>
         <button id="btnDelUser">Slett buker</button>
-        <button id="btnToDoCreate">Lag gjøremål</button>
-    </div> 
-   <!-- <div class="navbar">
-        <a href="index.html">Logg ut</a>
-        <a href="index.html">Slett bruker</a>
-        <a href="index.html">Nytt gjøremål</a>
+        <button id="btnLogout">Logg ut</button>
+        <br>
+    </div>
+
+    <div id="container">
         
         <div></div>
         <div></div>
@@ -36,10 +36,12 @@
         let btnDelUser = document.getElementById('btnDelUser');
         let btnToDoCreate = document.getElementById('btnToDoCreate');
         let container = document.getElementById('container');
+        let btnNewListCreate = document.getElementById('btnNewListCreate');
 
         async function listToDo() {
 
-            let url = "/todo";
+            let listID = localStorage.getItem("listid");
+            let url = "/todo/" + listID;
 
             let token = localStorage.getItem("token");
 
@@ -48,15 +50,17 @@
                 headers: {"authorization": token}
             };
 
+            
+
             try {
                 let response = await fetch(url, cfg);
                 let data = await response.json();
 
                 if (response.status != 200) {
-                throw data.error;
-            }
+                    throw data.error;
+                }
 
-            container.innerHTML = "";
+                container.innerHTML = "";
             
                 for (let value of data){
 
@@ -81,7 +85,18 @@
                     checkbox.class = "checkmark";
                     
                     editbtn.addEventListener('click', function(evt){
-                        // code
+
+
+                        let listeinfo = {
+                            heading: value.heading,
+                            date: value.date,
+                            descr: value.description,
+                            id: value.id
+                        };
+
+                       let listeinfoJson = JSON.stringify(listeinfo);
+                        localStorage.setItem("listeinfo", listeinfoJson);                        
+                        location.href = 'todoedit.html';                    
                     });
 
                     delbtn.addEventListener('click', function(evt){
@@ -136,15 +151,20 @@
         listToDo();
     
         btnLogout.addEventListener('click', function(evt){
+            localStorage.setItem("token", 'logout');
             location.href = 'index.html';
         });
 
         btnDelUser.addEventListener('click', function(evt){
-            location.href = 'index.html';
+            location.href = 'userdelete.html';
         });
 
         btnToDoCreate.addEventListener('click', function(evt){
             location.href = 'todocreate.html';
+        });
+
+        btnNewListCreate.addEventListener('click', function(evt){
+            location.href = 'todolistcreate.html';
         });
         
 
