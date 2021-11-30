@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <link rel="stylesheet" href="todolist.css"> 
-    <title>todolist</title>
+    <link rel="stylesheet" href="todolists.css"> 
+    <title>todolists</title>
 </head>
 <body>
 
     <!----------- HTML-elements -------------->
-    <div class="header">
-        <h1 id="title">Mine gjøremål</h1><hr><br>
+    <div id="myDIV" class="header">
+        <h1 id="title">Mine lister</h1>
+        <p>Ny liste:</p>
+        <input type="text" id="titelInput" placeholder="Tittel . . .">
+        <span onclick="newElement()" class="btnAdd">Legg til</span>
+        <br><br><br><hr>
         <button id="btnNewListCreate">Ny liste</button>
-        <button id="btnDelUser">Slett buker</button>
+        <button id="btnDelUser">Slett bruker</button>
         <button id="btnLogout">Logg ut</button>
         <br>
     </div> 
@@ -134,6 +138,8 @@
         btnToDoCreate.addEventListener('click', function(evt){
             location.href = 'todocreate.html';
         });
+
+
         
 
     </script>

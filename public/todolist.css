@@ -1,6 +1,7 @@
 * {
   font-family: "jost", sans-serif;
   background-color: #c9f1c7;
+  box-sizing: border-box;
 }
 
 .header {
@@ -16,11 +17,6 @@ div {
 
 body {
   margin: 0px;
-}
-
-.checkmark {
-  width: 15px;
-  height: 20px;
 }
 
 #title {
@@ -86,9 +82,7 @@ button:active {
     transition: 0.2s ease-in;
     cursor: pointer;
     margin: 5px;
-    border-radius: 5px;
-    
-      
+    border-radius: 5px; 
 }
 
 .header button:hover {

@@ -1,0 +1,77 @@
+* {
+  font-family: "jost", sans-serif;
+  background-color: #c9f1c7;
+  box-sizing: border-box;
+}
+
+.header {
+  background-color: #79b179;
+  padding: 20px 25px;
+  color: white;
+}
+
+body {
+  margin: 0px;
+  text-align: center;
+}
+
+#title {
+  background-color: #79b179;
+
+}
+
+p {
+  background-color: #79b179;
+  text-align: left;
+  font-size: 16px;
+}
+
+.header button {
+  width: 20%;
+  height: 30px;
+  color: #79b179;
+  background: #c9f1c7;
+  font-size: 13px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 5px;
+}
+.header button:hover {
+  background-color: lightgray;
+}
+
+#titelInput {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 70%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+  background: #efeff7;
+  outline: none;
+  border: none;
+}
+
+.btnAdd {
+  padding: 10px;
+  width: 20%;
+  background: #c9f1c7;
+  color: #79b179;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+.btnAdd:hover {
+  background-color: lightgray;
+}
