@@ -78,13 +78,12 @@ dbMethods.deleteUser = function(id) {
     return pool.query(sql, values); //return the promise
 }
 
-dbMethods.editUser = function(username, password) {
-    let sql = "EDIT user (username, password) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning *";
-    let values = [username, password];
+dbMethods.editUser = function(username, password, salt, userID ) {
+    //console.log(date, heading, description, id);
+    let sql = "UPDATE users SET username = $1, password = $2, salt = $3 WHERE id = $4 RETURNING *";
+    let values = [username, password, salt, userID];
     return pool.query(sql, values); 
 }
-
-
 
 
 

@@ -13,10 +13,14 @@
         <h1 id="title">Mine gjøremål</h1><hr><br>
         <button id="btnToDoCreate">Nytt gjøremål</button>
         <button id="btnLists">Mine lister</button>
-        <button id="btnDelUser">Slett buker</button>
-        <button id="btnLogout">Logg ut</button>
-        <br>
-    </div>
+        <button class="dropdown"> Min bruker <i class="arrow down"></i>
+            <div class="dropdown-content">
+                <a id="btnEditUser">Rediger bruker</a>
+                <a id="btnDelUser">Slett bruker</a>
+                <a id="btnLogout">Logg ut</a>
+            </div>
+    </div>  
+</div> 
 
     <div id="container"></div>
 
@@ -25,6 +29,7 @@
 
         let btnLogout = document.getElementById('btnLogout');
         let btnDelUser = document.getElementById('btnDelUser');
+        let btnEditUser = document.getElementById('btnEditUser');
         let btnToDoCreate = document.getElementById('btnToDoCreate');
         let container = document.getElementById('container');
         let btnNewListCreate = document.getElementById('btnNewListCreate');
@@ -42,7 +47,6 @@
                 headers: {"authorization": token}
             };
 
-            
 
             try {
                 let response = await fetch(url, cfg);
@@ -60,7 +64,7 @@
                     
                     let html = "<h2>" + value.heading + "</h2>";
                     html += "<p>" + date.toLocaleDateString() + "</p>";
-                    html += "<p>" + value.description + "</p><hr>";
+                    html += "<p>" + value.description + "</p>";
 
                     let div = document.createElement("div");
                     div.innerHTML = html;
@@ -153,6 +157,10 @@
             location.href = 'userdelete.html';
         });
 
+        btnEditUser.addEventListener('click', function(evt){
+            location.href = 'useredit.html';
+        });
+
         btnToDoCreate.addEventListener('click', function(evt){
             location.href = 'todocreate.html';
         });
@@ -201,12 +209,6 @@
             background: #333;
         }
 
-
-        
-        
-
-
-        
     </style>
 
 </body>

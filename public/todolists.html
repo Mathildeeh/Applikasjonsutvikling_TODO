@@ -15,18 +15,26 @@
         <button id="btnCreate">Legg til</button>
         <!-- <button id="btnDelUser">Slett buker</button>
         <button id="btnLogout">Logg ut</button> -->
+        <button class="dropdown"> Min bruker <i class="arrow down"></i>
+            <div class="dropdown-content">
+                <a id="btnEditUser">Rediger bruker</a>
+                <a id="btnDelUser">Slett bruker</a>
+                <a id="btnLogout">Logg ut</a>
+            </div>
+    </div>  
         <br>
     </div> 
     <div id="container"></div>
 
     <!------------- JavaScript --------------->
     <script>
-
+        let btnLogout = document.getElementById('btnLogout');
+        let btnDelUser = document.getElementById('btnDelUser');
+        let btnEditUser = document.getElementById('btnEditUser');
         let container = document.getElementById('container');
         let token = localStorage.getItem("token");
         let listname = document.getElementById('listname');
         let btnCreate = document.getElementById('btnCreate');
-      
 
         btnCreate.addEventListener('click', async function(evt) {
            
@@ -110,6 +118,19 @@
             }
 
         }
+
+        btnLogout.addEventListener('click', function(evt){
+            localStorage.setItem("token", 'logout');
+            location.href = 'index.html';
+        });
+
+        btnDelUser.addEventListener('click', function(evt){
+            location.href = 'userdelete.html';
+        });
+
+        btnEditUser.addEventListener('click', function(evt){
+            location.href = 'useredit.html';
+        });
 
 
       
