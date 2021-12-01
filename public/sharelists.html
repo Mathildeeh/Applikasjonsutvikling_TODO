@@ -23,7 +23,9 @@
         const container = document.getElementById('container');
         let token = localStorage.getItem("token");
         let btnPrivate = document.getElementById('btnPrivate');
-        
+        const listname = document.getElementById('listname');
+
+
         loaddata();
 
         async function loaddata(params) {        
@@ -58,6 +60,7 @@
                         console.log(value.id);
                         let myList = value.id;
                         localStorage.setItem("listid", myList);
+                        localStorage.setItem("listname", value.listname);
                         location.href = "sharetasks.html";
                     });
                 }
@@ -70,6 +73,7 @@
                         console.log(value.id);
                         let myList = value.id;
                         localStorage.setItem("listid", myList);
+                        localStorage.setItem("listname", value.listname);
                         location.href = "sharetasks.html";
                     });
                 }  

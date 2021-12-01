@@ -10,7 +10,7 @@
 
     <!----------- HTML-elements -------------->
     <div class="header">
-        <h1 id="title">Delte gjøremål</h1><hr><br>
+        <h1 id="title"> <span id="currentList">Delte gjøremål</span></h1><hr><br>
         <br>
         <button id="btnShare">Delte lister</button>
         <button id="btnPrivate">Mine lister</button>
@@ -21,11 +21,12 @@
     <script>
 
         let container = document.getElementById('container');
+        let title = document.getElementById('title');
        
         listToDo();
 
         async function listToDo() {
-
+            let listname = localStorage.getItem("listname");
             let listID = localStorage.getItem("listid");
             let url = "/todo/" + listID;
 
@@ -45,6 +46,7 @@
                 }
 
                 container.innerHTML = "";
+                currentList.innerHTML = listname;
             
                 for (let value of data){
 
