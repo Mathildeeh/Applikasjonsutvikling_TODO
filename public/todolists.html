@@ -11,8 +11,12 @@
     <!----------- HTML-elements -------------->
     <div class="header">
         <h1 id="title">Mine lister</h1><hr><br>
-        <input type="text" name="" id="listname" placeholder="Navn på ny liste">
+        <input id="listname">
+        <input type="checkbox" id="isShared"><label>Shared</label>
         <button id="btnCreate">Legg til</button>
+        <button id="btnShared">Delte lister</button>
+        
+       
         <!-- <button id="btnDelUser">Slett buker</button>
         <button id="btnLogout">Logg ut</button> -->
         <br>
@@ -21,18 +25,21 @@
 
     <!------------- JavaScript --------------->
     <script>
-
-        let container = document.getElementById('container');
+        const container = document.getElementById('container');
         let token = localStorage.getItem("token");
-        let listname = document.getElementById('listname');
+        const listname = document.getElementById('listname');
         let btnCreate = document.getElementById('btnCreate');
-      
-
+        let btnShared = document.getElementById('btnShared');
+        //let btnShare = document.getElementById('btnCreate');
+        const checkbox = document.getElementById('isShared');
+        let public = 0;
+        
         btnCreate.addEventListener('click', async function(evt) {
            
             let url = "/todolists";
 
             let updata = {
+                share: public,
                 listname: listname.value
             }
 
@@ -67,8 +74,18 @@
             }
         });
 
-        loaddata();
+        //
+        checkbox.addEventListener('click', async function(evt) {
+           
+            if (!checkbox.checked) {
+               public = 0; 
+           } else {
+                public = 1;
+           }
+       });
 
+        loaddata();
+        
         async function loaddata(params) {        
 
             let url = "/todolists";
@@ -81,7 +98,7 @@
             try {
                 let response = await fetch(url, cfg);
                 let data = await response.json();
-
+                console.log(data)
                 //console.log(data);
 
                 if (response.status != 200) {
@@ -89,19 +106,34 @@
                 }
                 
                 container.innerHTML = "";
-
-                for (let value of data){
                 
-                    let div = document.createElement("div");
-                    div.innerHTML = value.listname;
-                    container.appendChild(div); 
+                for (let value of data){
+                    if(value.share === 1){
+                        //kode som skjer når share er true
+                        let div = document.createElement("div");
+                        div.innerHTML = value.listname;
+                        container.appendChild(div); 
 
-                    div.addEventListener('click', function (evt) {
-                        console.log(value.id);
-                        let myList = value.id;
-                        localStorage.setItem("listid", myList);
-                        location.href = "todolist.html";
-                    });
+                        div.addEventListener('click', function (evt) {
+                            console.log(value.id);
+                            let myList = value.id;
+                            localStorage.setItem("listid", myList);
+                            location.href = "todolist.html";
+                        });
+                    }
+                    else{
+                        let div = document.createElement("div");
+                        div.innerHTML = value.listname;
+                        container.appendChild(div); 
+
+                        div.addEventListener('click', function (evt) {
+                            console.log(value.id);
+                            let myList = value.id;
+                            localStorage.setItem("listid", myList);
+                            location.href = "todolist.html";
+                        });
+                    }
+                    
                 }
             }
 
@@ -111,8 +143,10 @@
 
         }
 
+        btnShared.addEventListener('click', async function(evt) {
 
-      
+           location.href = "sharelists.html"
+        });
 
     </script>
 
@@ -134,6 +168,7 @@ cursor: pointer;
 #container>div:hover {
 background-color: #79b179;
 }
+
     </style>
 
 </body>

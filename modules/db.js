@@ -19,11 +19,7 @@ dbMethods.getAllToDoTasks = function(listid, userid) {
     return pool.query(sql, values); 
 }
 
-dbMethods.getAllToDoLists = function(userid) {
-    let sql = "SELECT * FROM todolists WHERE userid = $1";	
-    let values = [userid];
-	return pool.query(sql, values); 
-}
+
 
 // ------------------------------------
 
@@ -89,13 +85,17 @@ dbMethods.editUser = function(username, password) {
 
 
 // CREATETODOLIST!!!!!!!!!!!!!!!!!!!!!
-// ------------------------------------
+// -----------------------------------
+dbMethods.getAllToDoLists = function(userid) {
+    let sql = "SELECT * FROM todolists WHERE userid = $1";	
+    let values = [userid];
+	return pool.query(sql, values); 
+}
 
-dbMethods.createToDoList = function(listname, userid) {  
-   /*  console.log(listname);
-    console.log(userid); */
-    let sql = "INSERT INTO todolists (id, listname, userid) VALUES(DEFAULT, $1, $2) returning *";
-	let values = [listname, userid];	
+dbMethods.createToDoList = function(listname, userid, share) {  
+    let sql = "INSERT INTO todolists (id, listname, userid, share) VALUES(DEFAULT, $1, $2, $3) returning *";
+	let values = [listname, userid, share];	
+    console.log("in db")
     return pool.query(sql, values); 
 }
 
@@ -113,6 +113,11 @@ dbMethods.editToDoList = function(listname, id) {
     let sql = "UPDATE todolists SET listname = $1 WHERE id = $2 RETURNING *";
     let values = [listname, id];
     return pool.query(sql, values); 
+}
+
+dbMethods.getSharedToDoLists = function() { //først id = id-en på itemet, sharing = variabel, enten 0(false) eller 1(true)
+    let sql = "SELECT * FROM todolists WHERE share = 1";
+    return pool.query(sql)
 }
 
 

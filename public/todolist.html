@@ -13,7 +13,7 @@
         <h1 id="title">Mine gjøremål</h1><hr><br>
         <button id="btnToDoCreate">Nytt gjøremål</button>
         <button id="btnLists">Mine lister</button>
-        <button id="btnDelUser">Slett buker</button>
+        <button id="btnDelUser">Slett bruker</button>
         <button id="btnLogout">Logg ut</button>
         <br>
     </div>
@@ -71,8 +71,6 @@
                     
                     let editbtn = document.createElement("button");
                     editbtn.innerText ="Rediger";
-
-                    
                     
                     editbtn.addEventListener('click', function(evt){
 
@@ -92,7 +90,6 @@
                     delbtn.addEventListener('click', function(evt){
                         deleteToDoTask(value.id);
                     });
-                    
 
                     div.appendChild(delbtn, div.lastElementChild);
                     div.appendChild(editbtn, div.lastElementChild);
@@ -201,12 +198,9 @@
             background: #333;
         }
 
-
-        
-        
-
-
-        
+        * {
+  box-sizing: border-box;
+}     
     </style>
 
 </body>

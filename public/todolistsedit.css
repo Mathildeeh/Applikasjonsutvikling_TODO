@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding-left: 13px;
+  padding-top: 10px;
+  font-family: "Jost", sans-serif;
+}
+
+#btnEditname {
+  padding: 10px;
+  height: 40px;
+  width: 150px;
+  background: #c9f1c7;
+  color: #79b179;
+  float: left;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+
+#btnEditname:hover {
+  background-color: lightgray;
+}
+
+#overskrift {
+  color: white;
+  font-size: 50px;
+  padding-left: 0px;
+}
+
+#inpListname {
+  font-size: 18px;
+  width: 50%;
+  height: 25px;
+  background: #efeff7;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
+#create {
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+#date {
+  justify-self: center;
+  font-size: 18px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Jost", sans-serif;
+  background: linear-gradient(to bottom, #79b179, #c9f1c7, #79b179);
+}
+
+.master {
+  width: 520px;
+  height: 230px;
+  background: #79b179;
+  overflow: hidden;
+  box-shadow: 5px 20px 50px rgb(41, 41, 41);
+}
+
+input {
+  height: 25px;
+  background: #efeff7;
+  justify-content: center;
+  display: flex;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
