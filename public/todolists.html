@@ -130,6 +130,22 @@
                     name.innerHTML = value.listname + antall; 
                     div.appendChild(name);
                     container.appendChild(div);
+
+                    let btnEditList = document.createElement("buttonEdit");
+                        btnEditList.innerText ="Rediger";
+                        div.appendChild(btnEditList);
+
+                        btnEditList.addEventListener('click', function(evt){
+
+                            let listeinfo = {
+                                listname: listname.value,
+                                id: value.id
+                            };
+
+                            let listeinfoJson = JSON.stringify(listeinfo);
+                            localStorage.setItem("listeinfo", listeinfoJson);                        
+                            location.href = 'todolistsedit.html';             
+                        });
                     
                     let btnDelList = document.createElement("button");
                     btnDelList.innerText ="X";
@@ -154,6 +170,23 @@
                         name.innerHTML = value.listname + antall; 
                         div.appendChild(name);
                         container.appendChild(div);
+
+                        let btnEditList = document.createElement("buttonEdit");
+                        btnEditList.innerText ="Rediger";
+                        div.appendChild(btnEditList);
+                        btnEditList.classList.add('btnEditList');
+
+                        btnEditList.addEventListener('click', function(evt){
+
+                            let listeinfo = {
+                                listname: listname.value,
+                                id: value.id
+                            };
+
+                            let listeinfoJson = JSON.stringify(listeinfo);
+                            localStorage.setItem("listeinfo", listeinfoJson);                        
+                            location.href = 'todolistsedit.html';             
+                        });
                         
                         let btnDelList = document.createElement("button");
                         btnDelList.innerText ="X";
