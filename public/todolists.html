@@ -3,44 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <link rel="stylesheet" href="todolist.css"> 
-    <title>todolist</title>
+    <link rel="stylesheet" href="todolists.css"> 
+    <title>todolists</title>
 </head>
 <body>
 
     <!----------- HTML-elements -------------->
     <div class="header">
-        <h1 id="title">Mine gjøremål</h1><hr><br>
-        <button id="btnNewListCreate">Ny liste</button>
-        <button id="btnDelUser">Slett buker</button>
-        <button id="btnLogout">Logg ut</button>
+        <h1 id="title">Mine lister</h1><hr><br>
+        <input type="text" id="listname" placeholder="Navn på ny liste . . .">
+        <input type="checkbox" id="isShared"><label>Shared</label>
+        <button id="btnCreate">Legg til</button>
+        <button id="btnShared">Delte lister</button>
+        <!-- <button id="btnDelUser">Slett bruker</button>
+        <button id="btnLogout">Logg ut</button> -->
+        <button class="dropdown"> Min bruker <i class="arrow down"></i>
+            <div class="dropdown-content">
+                <a id="btnEditUser">Rediger bruker</a>
+                <a id="btnDelUser">Slett bruker</a>
+                <a id="btnLogout">Logg ut</a>
+            </div>
+        </div>  
         <br>
     </div> 
-
-    <div id="container">
-        
-    </div>
-
+    <div id="container"></div>
+   
     <!------------- JavaScript --------------->
     <script>
 
+        const container = document.getElementById('container');
+        let token = localStorage.getItem("token");
+        const listname = document.getElementById('listname');
+        let btnCreate = document.getElementById('btnCreate');
+        let btnDelList = document.getElementById('btnDelList');
+        
         let btnLogout = document.getElementById('btnLogout');
         let btnDelUser = document.getElementById('btnDelUser');
-        let container = document.getElementById('container');
-        let btnNewListCreate = document.getElementById('btnNewListCreate');
+        let btnEditUser = document.getElementById('btnEditUser');
 
-        async function listLists() {
+        let btnShared = document.getElementById('btnShared');
+        //let btnShare = document.getElementById('btnCreate');
+        const checkbox = document.getElementById('isShared');
+        let public = 0;
 
+        btnCreate.addEventListener('click', async function(evt) {
+           
             let url = "/todolists";
 
-            console.log("slkjfa-ldks");
+            let updata = {
+                share: public,
+                listname: listname.value
+            }
+
+            console.log(updata);
 
             let token = localStorage.getItem("token");
 
             let cfg = {
-                method: "GET",
-                headers: {"authorization": token}
-            };
+                method: "POST",
+                headers: {
+                    "content-type":"application/json",
+                    "authorization":token
+                },
+                body: JSON.stringify(updata)
+            }
 
             try {
                 let response = await fetch(url, cfg);
@@ -50,55 +76,119 @@
                     throw data.error;
                 }
 
-                container.innerHTML = "";
+                loaddata();
+                //txtResult.innerHTML = data.msg;
+              
+            }
+            catch(error){
+                console.log(error);
+                //txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
+            }
+        });
             
+            checkbox.addEventListener('click', async function(evt) {
+           
+           if (!checkbox.checked) {
+              public = 0; 
+          } else {
+               public = 1;
+          }
+        });
+        
+
+        loaddata();
+
+        async function loaddata(params) {        
+
+            let url = "/todolists";
+            
+            let cfg = {
+                method: "GET",
+                headers: {"authorization": token}
+            };
+
+            try {
+                let response = await fetch(url, cfg);
+                let data = await response.json();
+
+                //console.log(data);
+
+                if (response.status != 200) {
+                    throw data.error;
+                }
+                
+                container.innerHTML = "";
+
                 for (let value of data){
-                    
-                    let html = "<h2>" + value.listname + "</h2>";
-                    
+                    if(value.share === 1){
+                        //kode som skjer når share er true
+
+                    let antall = "  (30)";
+
                     let div = document.createElement("div");
-                    div.innerHTML = html;
-                    container.appendChild(div);    
+                    const name = document.createElement("h3");
+                    name.innerHTML = value.listname + antall; 
+                    div.appendChild(name);
+                    container.appendChild(div);
                     
-                    let delbtn = document.createElement("button");
-                    delbtn.innerText ="Slett";
-                    
-                    let editbtn = document.createElement("button");
-                    editbtn.innerText ="Rediger";
-                    
-                    editbtn.addEventListener('click', function(evt){
+                    let btnDelList = document.createElement("button");
+                    btnDelList.innerText ="X";
+                    div.appendChild(btnDelList, div.lastElementChild);
 
-                        let listeinfo = {
-                            listname: value.listname,
-                            id: value.id
-                        };
-
-                       let listeinfoJson = JSON.stringify(listeinfo);
-                        localStorage.setItem("listeinfo", listeinfoJson);                        
-                        //location.href = 'todoedit.html'; <------ NYTT HTML-DOKUMENT            
-                    });
-
-                    delbtn.addEventListener('click', function(evt){
+                    btnDelList.addEventListener('click', function(evt){
                         deleteToDoList(value.id);
                     });
-                    
 
-                    div.appendChild(delbtn, div.lastElementChild);
-                    div.appendChild(editbtn, div.lastElementChild);
+                    name.addEventListener('click', function (evt) {
+                        console.log(value.id);
+                        let myList = value.id;
+                        localStorage.setItem("listid", myList);
+                        localStorage.setItem("listname", value.listname);
+                        location.href = "todolist.html";
+                    });
+                    }else{
+                        let antall = "  (30)";
+
+                        let div = document.createElement("div");
+                        const name = document.createElement("h3");
+                        name.innerHTML = value.listname + antall; 
+                        div.appendChild(name);
+                        container.appendChild(div);
+                        
+                        let btnDelList = document.createElement("button");
+                        btnDelList.innerText ="X";
+                        div.appendChild(btnDelList, div.lastElementChild);
+
+                        btnDelList.addEventListener('click', function(evt){
+                            deleteToDoList(value.id);
+                        });
+
+                        name.addEventListener('click', function (evt) {
+                            console.log(value.id);
+                            let myList = value.id;
+                            localStorage.setItem("listid", myList);
+                            localStorage.setItem("listname", value.listname);
+                            location.href = "todolist.html";
+                        });
+                    }
+                
                 }
-            }
-            catch (error){
-            console.log(error);
-            }
-        }
 
-        async function deleteToDoList(listID){
+            }
+
+                catch(error){
+                    console.log(error);
+                }
+
+            }
+
+        async function deleteToDoList(todolistsID){
 
             let url = "/todolists";
             let token = localStorage.getItem("token");
 
             let updata = {
-                id: listID
+                id: todolistsID
             }
 
             let cfg = {
@@ -118,33 +208,34 @@
                     throw data.error;
                 }
 
-                listLists();
+                loaddata();
             }
             catch(error){
                 console.log(error);
             }
-
         }
 
-        listLists();
-    
         btnLogout.addEventListener('click', function(evt){
+            localStorage.setItem("token", 'logout');
             location.href = 'index.html';
         });
 
         btnDelUser.addEventListener('click', function(evt){
-            location.href = 'index.html';
+            location.href = 'userdelete.html';
         });
 
-        btnToDoCreate.addEventListener('click', function(evt){
-            location.href = 'todocreate.html';
+        btnEditUser.addEventListener('click', function(evt){
+            location.href = 'useredit.html';
         });
-        
+
+        btnShared.addEventListener('click', async function(evt) {
+            location.href = "sharelists.html"
+        });
 
     </script>
 
     <!---------------- CSS ------------------->
-    <style>        
+    <style>      
 
     </style>
 

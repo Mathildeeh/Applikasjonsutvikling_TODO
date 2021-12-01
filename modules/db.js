@@ -19,13 +19,8 @@ dbMethods.getAllToDoTasks = function(listid, userid) {
     return pool.query(sql, values); 
 }
 
-dbMethods.getAllToDoLists = function(userid) {
-    let sql = "SELECT * FROM todolists WHERE userid = $1";	
-    let values = [userid];
-	return pool.query(sql, values); 
-}
-
 // ------------------------------------
+
 
 dbMethods.createToDoTask = function(heading, date, description, userid, listid) {  
     let sql = "INSERT INTO todo (id, date, heading, description, userid, listid) VALUES(DEFAULT, $4, $1, $2, $3, $5) returning *";
@@ -40,13 +35,11 @@ dbMethods.deleteToDoTask = function(id, userid) {
     return pool.query(sql, values); //return the promise
 }
 
-dbMethods.editToDoTask = function(heading, date, description, id) {
 
+dbMethods.editToDoTask = function(heading, date, description, id) {
 
    //console.log(date, heading, description, id);
 
-
-  
     let sql = "UPDATE todo SET date = $1, heading = $2, description = $3 WHERE id = $4 RETURNING *";
     let values = [date, heading, description, id];
     return pool.query(sql, values); 
@@ -91,12 +84,17 @@ dbMethods.editUser = function(username, password) {
 
 // CREATETODOLIST!!!!!!!!!!!!!!!!!!!!!
 // ------------------------------------
+dbMethods.getAllToDoLists = function(userid) {
+    let sql = "SELECT * FROM todolists WHERE userid = $1";	
+    let values = [userid];
+	return pool.query(sql, values); 
+}
 
-dbMethods.createToDoList = function(listname, userid) {  
+dbMethods.createToDoList = function(listname, userid, share) {  
    /*  console.log(listname);
     console.log(userid); */
-    let sql = "INSERT INTO todolists (id, listname, userid) VALUES(DEFAULT, $1, $2) returning *";
-	let values = [listname, userid];	
+    let sql = "INSERT INTO todolists (id, listname, userid, share) VALUES(DEFAULT, $1, $2, $3) returning *";
+	let values = [listname, userid, share];	
     return pool.query(sql, values); 
 }
 
@@ -114,6 +112,11 @@ dbMethods.editToDoList = function(listname, id) {
     let sql = "UPDATE todolists SET listname = $1 WHERE id = $2 RETURNING *";
     let values = [listname, id];
     return pool.query(sql, values); 
+}
+
+dbMethods.getSharedToDoLists = function() { //først id = id-en på itemet, sharing = variabel, enten 0(false) eller 1(true)
+    let sql = "SELECT * FROM todolists WHERE share = 1";
+    return pool.query(sql)
 }
 
 

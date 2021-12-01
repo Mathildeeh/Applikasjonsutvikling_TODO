@@ -10,29 +10,36 @@
 
     <!----------- HTML-elements -------------->
     <div class="header">
-        <h1 id="title">Mine gjøremål</h1><hr><br>
+        <h1 id="title"> <span id="currentList">Mine lister</span></h1><hr><br>
         <button id="btnToDoCreate">Nytt gjøremål</button>
-        <button id="btnNewListCreate">Ny liste</button>
-        <button id="btnDelUser">Slett buker</button>
-        <button id="btnLogout">Logg ut</button>
-        <br>
-    </div>
+        <button id="btnLists">Mine lister</button>
+        <button class="dropdown"> Min bruker <i class="arrow down"></i>
+            <div class="dropdown-content">
+                <a id="btnEditUser">Rediger bruker</a>
+                <a id="btnDelUser">Slett bruker</a>
+                <a id="btnLogout">Logg ut</a>
+            </div>
+        </div>  
+    </div> 
 
-    <div id="container">
-        
-    </div>
+    <div id="container"></div>
 
     <!------------- JavaScript --------------->
     <script>
 
         let btnLogout = document.getElementById('btnLogout');
         let btnDelUser = document.getElementById('btnDelUser');
+        let btnEditUser = document.getElementById('btnEditUser');
         let btnToDoCreate = document.getElementById('btnToDoCreate');
         let container = document.getElementById('container');
         let btnNewListCreate = document.getElementById('btnNewListCreate');
+        let btnLists = document.getElementById('btnLists');
+        let title = document.getElementById('title');
+        
+        
 
         async function listToDo() {
-
+            let listname = localStorage.getItem("listname");
             let listID = localStorage.getItem("listid");
             let url = "/todo/" + listID;
 
@@ -54,14 +61,17 @@
                 }
 
                 container.innerHTML = "";
-            
+                currentList.innerHTML = listname; ///hoiii
+                console.log(data);
                 for (let value of data){
 
                     let date = new Date(value.date);
+                    let listname = document.getElementById('listname');
+                    //currentList.innerHTML = listname;
                     
                     let html = "<h2>" + value.heading + "</h2>";
                     html += "<p>" + date.toLocaleDateString() + "</p>";
-                    html += "<p>" + value.description + "</p><br>";
+                    html += "<p>" + value.description + "</p>";
 
                     let div = document.createElement("div");
                     div.innerHTML = html;
@@ -72,13 +82,8 @@
                     
                     let editbtn = document.createElement("button");
                     editbtn.innerText ="Rediger";
-
-                    let checkbox = document.createElement("input");
-                    checkbox.type = "checkbox";
-                    checkbox.class = "checkmark";
                     
                     editbtn.addEventListener('click', function(evt){
-
 
                         let listeinfo = {
                             heading: value.heading,
@@ -99,7 +104,7 @@
 
                     div.appendChild(delbtn, div.lastElementChild);
                     div.appendChild(editbtn, div.lastElementChild);
-                    div.appendChild(checkbox, div.lastElementChild);
+
                 }
             }
             catch (error){
@@ -142,6 +147,10 @@
         }
 
         listToDo();
+
+        btnLists.addEventListener('click', function(evt){
+            location.href = 'todolists.html';
+        });
     
         btnLogout.addEventListener('click', function(evt){
             localStorage.setItem("token", 'logout');
@@ -150,6 +159,10 @@
 
         btnDelUser.addEventListener('click', function(evt){
             location.href = 'userdelete.html';
+        });
+
+        btnEditUser.addEventListener('click', function(evt){
+            location.href = 'useredit.html';
         });
 
         btnToDoCreate.addEventListener('click', function(evt){
@@ -164,8 +177,48 @@
     </script>
 
     <!---------------- CSS ------------------->
-    <style>        
+    <style>
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
 
+        .navbar a{
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+
+        }
+        
+        .navbar a:hover{
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar div {
+            float: right;
+            width: 35px;
+            height: 5px;
+            background-color: black;
+            margin: 6px 0;
+            
+        }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: #333;
+        }
+
+
+        
+        
+
+
+        
     </style>
 
 </body>

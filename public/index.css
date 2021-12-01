@@ -1,6 +1,14 @@
 #txtResult {
   color: #fff;
-  font-size: 15px;
+  font-size: 17px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+}
+
+#txtResult2 {
+  color: black;
+  font-size: 17px;
   text-align: center;
   justify-content: center;
   display: flex;
@@ -36,7 +44,7 @@ body {
 }
 
 #logintitle {
-  color: #fff;
+  color: white;
   font-size: 40px;
   justify-content: center;
   display: flex;
@@ -58,24 +66,25 @@ body {
 }
 
 input {
-  width: 60%;
+  width: 200px;
   height: 20px;
-  background: #efeff7;
+  background: #eeeded;
   justify-content: center;
   display: flex;
   margin: 20px auto;
   padding: 10px;
   border: none;
   outline: none;
+  border-radius: 5px;
 }
 
 #btnLogin {
-  width: 40%;
+  width: 100px;
   height: 40px;
   margin: 10px auto;
   justify-content: center;
   display: block;
-  color: #79b179;
+  color: black;
   background: #c9f1c7;
   font-size: 15px;
   font-weight: bold;
@@ -86,17 +95,18 @@ input {
   cursor: pointer;
   border-radius: 5px;
 }
+
 #btnLogin:hover {
-  background: black;
+  background: lightgray;
 }
 
 #btnSignin {
-  width: 40%;
+  width: 120px;
   height: 40px;
   margin: 10px auto;
   justify-content: center;
   display: block;
-  color: #c9f1c7;
+  color: white;
   background: #79b179;
   font-size: 15px;
   font-weight: bold;
@@ -107,30 +117,28 @@ input {
   cursor: pointer;
   border-radius: 5px;
 }
+
 #btnSignin:hover {
-  background: black;
+  background: lightgray;
 }
 
 .newuser {
   height: 600px;
   background: #c9f1c7;
-  border-radius: 100% / 10%;
+  border-radius: 100px / 30px;
   transform: translateY(-210px);
   transition: 0.8s ease-in-out;
 }
 .newuser label {
-  transform: scale(0.9); /*ny bruker teskt først*/
+  transform: scale(0.9);
 }
 
 #chk:checked ~ .newuser {
-  /*hvor høyt ny bruker kommer opp*/
   transform: translateY(-520px);
 }
 #chk:checked ~ .newuser label {
-  /*ny bruker teskt etterpå*/
   transform: scale(1);
 }
 #chk:checked ~ .login label {
-  /*logg inn teskt*/
   transform: scale(0.6);
 }

@@ -23,9 +23,10 @@ router.post("/todolists", protect, async function(req, res, next) {
 
     let updata = req.body;
     let userid = res.locals.userid;
+    const share = updata.share;
 
     try {
-        let data = await db.createToDoList(updata.listname, userid);
+        let data = await db.createToDoList(updata.listname, userid,share);
 
         if (data.rows.length > 0) {
             res.status(200).json({msg: "Ny liste ble opprettet"}).end();

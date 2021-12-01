@@ -44,6 +44,7 @@
         let btnSignin = document.getElementById('btnSignin');
         let txtResult2 = document.getElementById('txtResult2');
 
+        
 
         //LOGG INN------------------------------
         btnLogin.addEventListener('click', async function(evt) {
@@ -66,13 +67,21 @@
 
                 //txtResult.innerHTML = data.msg;
                 localStorage.setItem("token", data.token);
-				location.href = 'testlister.html';
+				location.href = 'todolists.html';
             }
             catch(error){
                 console.log(error);
                 txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
-            }
+            }        
+        
         });
+        
+        inpPassword.addEventListener("keyup", function(event){
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    document.getElementById("btnLogin").click();
+                }
+            });
 
         inpPassword.addEventListener("keyup", function(event){
                 if (event.keyCode === 13) {
@@ -108,7 +117,7 @@
                 }
 
                 //txtResult2.innerHTML = data.msg;
-                window.location.href = 'testlister.html';
+                window.location.href = 'todolists.html';
             }
             catch(error){
                 console.log(error);
