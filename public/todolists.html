@@ -3,36 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <link rel="stylesheet" href="todolist.css"> 
-    <title>todolist</title>
+    <link rel="stylesheet" href="todolists.css"> 
+    <title>todolists</title>
 </head>
 <body>
 
     <!----------- HTML-elements -------------->
     <div class="header">
         <h1 id="title">Mine lister</h1><hr><br>
-        <input type="text" name="" id="listname" placeholder="Navn på ny liste">
+        <input type="text" id="listname" placeholder="Navn på ny liste . . .">
+        <input type="checkbox" id="isShared"><label>Shared</label>
         <button id="btnCreate">Legg til</button>
-        <!-- <button id="btnDelUser">Slett buker</button>
+        <button id="btnShared">Delte lister</button>
+        <!-- <button id="btnDelUser">Slett bruker</button>
         <button id="btnLogout">Logg ut</button> -->
+        <button class="dropdown"> Min bruker <i class="arrow down"></i>
+            <div class="dropdown-content">
+                <a id="btnEditUser">Rediger bruker</a>
+                <a id="btnDelUser">Slett bruker</a>
+                <a id="btnLogout">Logg ut</a>
+            </div>
+        </div>  
         <br>
     </div> 
     <div id="container"></div>
-
+   
     <!------------- JavaScript --------------->
     <script>
 
-        let container = document.getElementById('container');
+        const container = document.getElementById('container');
         let token = localStorage.getItem("token");
-        let listname = document.getElementById('listname');
+        const listname = document.getElementById('listname');
         let btnCreate = document.getElementById('btnCreate');
-      
+        let btnDelList = document.getElementById('btnDelList');
+        
+        let btnLogout = document.getElementById('btnLogout');
+        let btnDelUser = document.getElementById('btnDelUser');
+        let btnEditUser = document.getElementById('btnEditUser');
+
+        let btnShared = document.getElementById('btnShared');
+        //let btnShare = document.getElementById('btnCreate');
+        const checkbox = document.getElementById('isShared');
+        let public = 0;
 
         btnCreate.addEventListener('click', async function(evt) {
            
             let url = "/todolists";
 
             let updata = {
+                share: public,
                 listname: listname.value
             }
 
@@ -66,6 +85,16 @@
                 //txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
             }
         });
+            
+            checkbox.addEventListener('click', async function(evt) {
+           
+           if (!checkbox.checked) {
+              public = 0; 
+          } else {
+               public = 1;
+          }
+        });
+        
 
         loaddata();
 
@@ -91,49 +120,123 @@
                 container.innerHTML = "";
 
                 for (let value of data){
-                
-                    let div = document.createElement("div");
-                    div.innerHTML = value.listname;
-                    container.appendChild(div); 
+                    if(value.share === 1){
+                        //kode som skjer når share er true
 
-                    div.addEventListener('click', function (evt) {
+                    let antall = "  (30)";
+
+                    let div = document.createElement("div");
+                    const name = document.createElement("h3");
+                    name.innerHTML = value.listname + antall; 
+                    div.appendChild(name);
+                    container.appendChild(div);
+                    
+                    let btnDelList = document.createElement("button");
+                    btnDelList.innerText ="X";
+                    div.appendChild(btnDelList, div.lastElementChild);
+
+                    btnDelList.addEventListener('click', function(evt){
+                        deleteToDoList(value.id);
+                    });
+
+                    name.addEventListener('click', function (evt) {
                         console.log(value.id);
                         let myList = value.id;
                         localStorage.setItem("listid", myList);
+                        localStorage.setItem("listname", value.listname);
                         location.href = "todolist.html";
                     });
+                    }else{
+                        let antall = "  (30)";
+
+                        let div = document.createElement("div");
+                        const name = document.createElement("h3");
+                        name.innerHTML = value.listname + antall; 
+                        div.appendChild(name);
+                        container.appendChild(div);
+                        
+                        let btnDelList = document.createElement("button");
+                        btnDelList.innerText ="X";
+                        div.appendChild(btnDelList, div.lastElementChild);
+
+                        btnDelList.addEventListener('click', function(evt){
+                            deleteToDoList(value.id);
+                        });
+
+                        name.addEventListener('click', function (evt) {
+                            console.log(value.id);
+                            let myList = value.id;
+                            localStorage.setItem("listid", myList);
+                            localStorage.setItem("listname", value.listname);
+                            location.href = "todolist.html";
+                        });
+                    }
+                
                 }
+
             }
 
+                catch(error){
+                    console.log(error);
+                }
+
+            }
+
+        async function deleteToDoList(todolistsID){
+
+            let url = "/todolists";
+            let token = localStorage.getItem("token");
+
+            let updata = {
+                id: todolistsID
+            }
+
+            let cfg = {
+                method: "DELETE",
+                headers: {
+                    "content-type":"application/json",
+                    "authorization": token
+                },
+                body: JSON.stringify(updata)
+            }
+
+            try {
+                let response = await fetch(url, cfg);
+                let data = await response.json();
+
+                if (response.status != 200) {
+                    throw data.error;
+                }
+
+                loaddata();
+            }
             catch(error){
                 console.log(error);
             }
-
         }
 
+        btnLogout.addEventListener('click', function(evt){
+            localStorage.setItem("token", 'logout');
+            location.href = 'index.html';
+        });
 
-      
+        btnDelUser.addEventListener('click', function(evt){
+            location.href = 'userdelete.html';
+        });
+
+        btnEditUser.addEventListener('click', function(evt){
+            location.href = 'useredit.html';
+        });
+
+        btnShared.addEventListener('click', async function(evt) {
+            location.href = "sharelists.html"
+        });
 
     </script>
 
     <!---------------- CSS ------------------->
-    <style>        
-#container>div {
+    <style>      
 
-display: grid;
-align-items: center;
-justify-items: left;
-padding-left: 4px;
-
-border-bottom: 1px solid black;
-height: 40px;
-color: black;
-cursor: pointer;
-}
-
-#container>div:hover {
-background-color: #79b179;
-}
     </style>
 
 </body>
