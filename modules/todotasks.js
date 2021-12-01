@@ -45,7 +45,7 @@ router.post("/todo", protect, async function(req, res, next) {
 router.put("/todo", protect, async function(req, res, next) {	
 
     let updata = req.body;
-    let userid = res.locals.userid;    
+    /* let userid = res.locals.userid; */    
 
     try {
         let data = await db.editToDoTask(updata.heading, updata.date, updata.description, updata.id);
