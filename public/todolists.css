@@ -1,0 +1,87 @@
+#container > div {
+  display: grid;
+  align-items: center;
+  justify-items: left;
+  padding-left: 4px;
+  border-bottom: 1px solid grey;
+  height: 40px;
+  color: black;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#container > div:hover {
+  background-color: #79b179;
+}
+
+* {
+  font-family: "jost", sans-serif;
+  background-color: #c9f1c7;
+}
+
+.header {
+  background-color: #79b179;
+  padding: 40px 25px;
+  color: white;
+  text-align: center;
+}
+
+body {
+  margin: 0px;
+}
+
+#title {
+  background-color: #79b179;
+  font-size: 40px;
+}
+
+#listname {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 500px;
+  padding: 10px;
+  font-size: 16px;
+  background: #eeeded;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  height: 20px;
+}
+
+#btnCreate {
+  padding: 10px;
+  height: 40px;
+  width: 130px;
+  background: #c9f1c7;
+  color: black;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+
+#btnCreate:hover {
+  background-color: lightgray;
+}
+
+button {
+  width: 50px;
+  height: 40px;
+  color: black;
+  background: red;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  justify-self: center;
+  position: absolute;
+}
+
+button:hover {
+  background-color: lightgray;
+}

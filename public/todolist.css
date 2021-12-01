@@ -5,7 +5,7 @@
 
 .header {
   background-color: #79b179;
-  padding: 20px 25px;
+  padding: 40px 25px;
   color: white;
   text-align: center;
 }
@@ -18,15 +18,9 @@ body {
   margin: 0px;
 }
 
-.checkmark {
-  width: 15px;
-  height: 20px;
-}
-
 #title {
-
   background-color: #79b179;
-
+  font-size: 40px;
 }
 
 .divMenu {
@@ -34,30 +28,25 @@ body {
   text-align: right;
 }
 
-h2 {
-  padding-left: 10px;
+h1 {
   padding-left: 10px;
 }
 
 p {
   padding-left: 10px;
+  font-size: 17px;
+}
+
+span {
   padding-left: 10px;
 }
 
-a:hover {
-  color: #c9f1c7;
-}
-
-a:active {
-  color: white;
-}
-
-button {
-  width: 15%;
-  height: 30px;
-  color: #c9f1c7;
-  background: #79b179;
-  font-size: 13px;
+.header button {
+  width: 200px;
+  height: 40px;
+  color: black;
+  background: #c9f1c7;
+  font-size: 20px;
   font-weight: bold;
   outline: none;
   border: none;
@@ -67,59 +56,25 @@ button {
   border-radius: 5px;
 }
 
-#btnToDoCreate:hover {
-    background-color: lightgray;
-}
-
-#btnDelUser:hover {
-    background-color: lightgray;
-}
-
-#btnLogout:hover {
-    background-color: lightgray;
-}
-
-#btnToDoCreate:active {
-    background-color: #c9f1c7;
-    color: white;
-}
-
-#btnDelUser:active {
-    background-color: #c9f1c7;
-    color: white;
-}
-
-#btnLogout:active {
-    background-color: #c9f1c7;
-    color: white;
-}
-
-button:hover {
+.header button:hover {
   background-color: lightgray;
 }
 
-button:active {
-  background-color: #c9f1c7;
-  color: white;
+button {
+  width: 200px;
+  height: 40px;
+  color: #c9f1c7;
+  background: #79b179;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 5px;
 }
 
-.header button {
-    width: 20%;
-    height: 30px;
-    color: #79b179;
-    background: #c9f1c7;
-    font-size: 13px;
-    font-weight: bold;
-    outline: none;
-    border: none;
-    transition: 0.2s ease-in;
-    cursor: pointer;
-    margin: 5px;
-    border-radius: 5px;
-    
-      
-}
-
-.header button:hover {
-    background-color: lightgray;
+button:hover {
+  background-color: gray;
 }

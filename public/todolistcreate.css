@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding-left: 12px;
+    padding-top: 10px;
+    font-family: "Jost", sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(90deg, #79b179, #c9f1c7);
+  }
+  
+  #btnCreate {
+    width: 110px;
+    height: 40px;
+    justify-content: center;
+    text-align: center;
+    color: #79b179;
+    background: #c9f1c7;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding-bottom: 7px;
+    border-radius: 5px;
+  }
+  
+  #btnCreate:hover {
+    background-color: lightgray;
+  }
+  
+  #overskrift {
+    color: white;
+    font-size: 50px;
+    padding-left: 0px;
+  }
+  
+  #inpHeading {
+    width: 400px;
+    height: 25px;
+    background: #efeff7;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    border-radius: 5px;
+  }
+  
+  #inpDescription {
+    font-size: 18px;
+    background: #efeff7;
+    border: none;
+    outline: none;
+    justify-self: center;
+    border-radius: 5px;
+  }
+  
+  #create {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+  }
+  
+  #date {
+    justify-self: center;
+    font-size: 18px;
+    border-radius: 5px;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: "Jost", sans-serif;
+    background: linear-gradient(to bottom, #79b179, #c9f1c7, #79b179);
+  }
+  
+  .master {
+    width: 820px;
+    height: 520px;
+    background: #79b179;
+    overflow: hidden;
+    box-shadow: 5px 20px 50px rgb(41, 41, 41);
+    border-radius: 5px;
+  }
+  
+  input {
+    height: 25px;
+    background: #efeff7;
+    justify-content: center;
+    display: flex;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+  }
+  

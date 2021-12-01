@@ -13,7 +13,7 @@
         <h1 id="title">Mine gjøremål</h1><hr><br>
         <button id="btnToDoCreate">Nytt gjøremål</button>
         <button id="btnLists">Mine lister</button>
-        <button id="btnDelUser">Slett buker</button>
+        <button id="btnDelUser">Slett bruker</button>
         <button id="btnLogout">Logg ut</button>
         <br>
     </div>
@@ -58,9 +58,10 @@
 
                     let date = new Date(value.date);
                     
-                    let html = "<h2>" + value.heading + "</h2>";
-                    html += "<p>" + date.toLocaleDateString() + "</p>";
+                    let html = "<h1>" + value.heading + "</h1>";
                     html += "<p>" + value.description + "</p>";
+                    html += "<p>" + date.toLocaleDateString() + "</p>";
+                    
 
                     let div = document.createElement("div");
                     div.innerHTML = html;
@@ -72,8 +73,6 @@
                     let editbtn = document.createElement("button");
                     editbtn.innerText ="Rediger";
 
-                    
-                    
                     editbtn.addEventListener('click', function(evt){
 
 
@@ -84,7 +83,7 @@
                             id: value.id
                         };
 
-                       let listeinfoJson = JSON.stringify(listeinfo);
+                        let listeinfoJson = JSON.stringify(listeinfo);
                         localStorage.setItem("listeinfo", listeinfoJson);                        
                         location.href = 'todoedit.html';                    
                     });
@@ -192,21 +191,14 @@
             height: 5px;
             background-color: black;
             margin: 6px 0;
-            
         }
 
-        .footer {
+        .footer {
             padding: 20px;
             text-align: center;
             background: #333;
         }
 
-
-        
-        
-
-
-        
     </style>
 
 </body>

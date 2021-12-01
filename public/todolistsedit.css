@@ -1,28 +1,29 @@
 * {
   margin: 0;
-  padding-left: 12px;
+  padding-left: 13px;
   padding-top: 10px;
   font-family: "Jost", sans-serif;
 }
 
-#btnChange {
-  width: 110px;
+#btnEditname {
+  padding: 10px;
   height: 40px;
-  color: black;
+  width: 150px;
   background: #c9f1c7;
-  justify-content: center;
+  color: #79b179;
+  float: left;
+  text-align: center;
   font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
   font-weight: bold;
-  margin-top: 15px;
   outline: none;
   border: none;
-  cursor: pointer;
   border-radius: 5px;
-  padding-bottom: 7px;
 }
 
-#btnChange:hover {
-  background: grey;
+#btnEditname:hover {
+  background-color: lightgray;
 }
 
 #overskrift {
@@ -31,19 +32,10 @@
   padding-left: 0px;
 }
 
-#inpHeading {
+#inpListname {
   font-size: 18px;
-  width: 400px;
+  width: 50%;
   height: 25px;
-  background: #efeff7;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-}
-
-#inpDescription {
-  font-size: 18px;
-  justify-self: center;
   background: #efeff7;
   border: none;
   outline: none;
@@ -60,7 +52,6 @@
 #date {
   justify-self: center;
   font-size: 18px;
-  border-radius: 5px;
 }
 
 body {
@@ -75,8 +66,8 @@ body {
 }
 
 .master {
-  width: 820px;
-  height: 520px;
+  width: 520px;
+  height: 230px;
   background: #79b179;
   overflow: hidden;
   box-shadow: 5px 20px 50px rgb(41, 41, 41);
