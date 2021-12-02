@@ -17,6 +17,7 @@
             <textarea id="inpDescription" cols="80" rows="10" placeholder="Beskrivelse"></textarea><br><br>
             <input type="date" id="date">
             <button id="btnChange">Lagre</button>
+            <button id="btnBack">Tilbake</button>
         </div>
     </div>
     
@@ -25,6 +26,7 @@
 
         let inpHeading = document.getElementById('inpHeading');
         let inpDescription = document.getElementById('inpDescription');
+        let btnBack = document.getElementById('btnBack');
         let btnChange = document.getElementById('btnChange');
         let txtResult = document.getElementById('txtResult');
         let title = document.getElementById('title');
@@ -79,6 +81,10 @@
                 console.log(error);
                 txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
             }
+        });
+
+        btnBack.addEventListener('click', function(evt) {
+            history.back();
         });
 
     </script>

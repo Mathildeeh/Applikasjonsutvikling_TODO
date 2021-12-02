@@ -1,15 +1,14 @@
-#container>div {
+#container > div{
+    padding-left: 10px;
     display: grid;
-    align-items: center;
-    justify-items: left;
-    padding-left: 4px;
-
-    border-bottom: 1px solid black;
-    height: 40px;
+    grid-template-columns: 1fr 100px 40px;
+    border-bottom: 1px solid grey;
     color: black;
     cursor: pointer;
-}
-
-#container>div:hover {
+    align-items: center;
+    
+  }
+  
+  #container > div:hover{
     background-color: #79b179;
-}
+  }
