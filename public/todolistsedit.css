@@ -1,107 +1,107 @@
-*  :not(.checkandshared){
-    margin: 0;
-    padding-left: 13px;
-    padding-top: 10px;
-    font-family: "Jost", sans-serif;
-  }
-  
-  #btnEditname {
-    padding: 10px;
-    height: 40px;
-    width: 150px;
-    background: #c9f1c7;
-    color: #79b179;
-    float: left;
-    text-align: center;
-    font-size: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-    font-weight: bold;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-  }
-  
-  #btnEditname:hover {
-    background-color: lightgray;
-  }
+* :not(.checkandshared) {
+  margin: 0;
+  padding-left: 13px;
+  padding-top: 10px;
+  font-family: "Jost", sans-serif;
+}
 
-  #btnBack {
-    padding: 10px;
-    height: 40px;
-    width: 150px;
-    background: #c9f1c7;
-    color: #79b179;
-    float: left;
-    text-align: center;
-    font-size: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-    font-weight: bold;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    margin-left: 10px;
-  }
-  
-  #btnBack:hover {
-    background: lightgray;
-  }
-  
-  #overskrift {
-    color: white;
-    font-size: 50px;
-    padding-left: 0px;
-  }
-  
-  #inpListname {
-    font-size: 18px;
-    width: 50%;
-    height: 25px;
-    background: #efeff7;
-    border: none;
-    outline: none;
-    padding: 10px;
-    border-radius: 5px;
-    align-self: center;
-    justify-content: center;
-  }
+#btnEditname {
+  padding: 10px;
+  height: 40px;
+  width: 150px;
+  background: #c9f1c7;
+  color: #79b179;
+  float: left;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
 
-  #date {
-    justify-self: center;
-    font-size: 18px;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: "Jost", sans-serif;
-    background: linear-gradient(to bottom, #79b179, #c9f1c7, #79b179);
-  }
-  
-  .master {
-    width: 520px;
-    height: 260px;
-    background: #79b179;
-    overflow: hidden;
-    box-shadow: 5px 20px 50px rgb(41, 41, 41);
-  }
+#btnEditname:hover {
+  background-color: lightgray;
+}
 
-  .checkedandshared > div {
-    display: grid;
-    justify-content: left;
-    margin: none;
-    padding: none;
-  }
+#btnBack {
+  padding: 10px;
+  height: 40px;
+  width: 150px;
+  background: #c9f1c7;
+  color: #79b179;
+  float: left;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+}
 
-  #sharedText {
-    text-align: center;
-    justify-self: center;
-    padding: none;
-    margin:none;
-    color: white;
-  }
+#btnBack:hover {
+  background: lightgray;
+}
+
+#overskrift {
+  color: white;
+  font-size: 50px;
+  padding-left: 0px;
+}
+
+#inpListname {
+  font-size: 18px;
+  width: 50%;
+  height: 25px;
+  background: #efeff7;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 5px;
+  align-self: center;
+  justify-content: center;
+}
+
+#date {
+  justify-self: center;
+  font-size: 18px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Jost", sans-serif;
+  background: linear-gradient(to bottom, #79b179, #c9f1c7, #79b179);
+}
+
+.master {
+  width: 520px;
+  height: 260px;
+  background: #79b179;
+  overflow: hidden;
+  box-shadow: 5px 20px 50px rgb(41, 41, 41);
+}
+
+.checkedandshared > div {
+  display: grid;
+  justify-content: left;
+  margin: none;
+  padding: none;
+}
+
+#sharedText {
+  text-align: center;
+  justify-self: center;
+  padding: none;
+  margin: none;
+  color: white;
+}

@@ -1,61 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BRUKERLISTE</title>
-</head>
-<body>
+  </head>
 
-    <!----------- HTML-elements -------------->
-    
-    <div id="container"></div>    
-        
-    <!------------- JavaScript --------------->
+  <body>
+    <div id="container"></div>
+
     <script>
+      let container = document.getElementById("container");
 
-        let container = document.getElementById('container');
+      async function listUsers() {
+        let url = "/users";
 
-        //-----------------------------------------------
-        async function listUsers() {
+        try {
+          let response = await fetch(url);
+          let data = await response.json();
 
-            let url = "/users";            
+          if (response.status != 200) {
+            throw data.error;
+          }
 
-            try {
-                let response = await fetch(url);
-                let data = await response.json();
-                
-                if (response.status != 200) {
-                    throw data.error;
-                }
+          container.innerHTML = "";
 
-                container.innerHTML = ""; //delete previous content
-                
-                for (let value of data) {                   
+          for (let value of data) {
+            let html = "<h2>Username: " + value.username + "</h2>";
+            html += "<p>User ID: " + value.id + "</p><hr>";
 
-                    let html = "<h2>Username: " + value.username + "</h2>";
-                    html += "<p>User ID: " + value.id + "</p><hr>";                   
-
-                    let div = document.createElement("div");
-                    div.innerHTML = html;
-                    container.appendChild(div);                    
-                }
-            }
-            catch(error) {
-                console.log(error);
-            }
+            let div = document.createElement("div");
+            div.innerHTML = html;
+            container.appendChild(div);
+          }
+        } catch (error) {
+          console.log(error);
         }
-        
-        // start ----------------------------------------
-        listUsers();
+      }
 
+      listUsers();
+      
     </script>
-
-    <!---------------- CSS ------------------->
-    <style>        
-
-    </style>
-
-</body>
-
+  </body>
 </html>
