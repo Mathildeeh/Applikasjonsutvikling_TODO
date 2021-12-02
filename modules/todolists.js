@@ -23,10 +23,9 @@ router.post("/todolists", protect, async function(req, res, next) {
 
     let updata = req.body;
     let userid = res.locals.userid;
-    const share = updata.share;
 
     try {
-        let data = await db.createToDoList(updata.listname, userid,share);
+        let data = await db.createToDoList(updata.listname, userid, updata.share);
 
         if (data.rows.length > 0) {
             res.status(200).json({msg: "Ny liste ble opprettet"}).end();
@@ -47,7 +46,7 @@ router.put("/todolists", protect, async function(req, res, next) {
     let userid = res.locals.userid;    
 
     try {
-        let data = await db.editToDoList(updata.listname, updata.id);
+        let data = await db.editToDoList(updata.listname, updata.share, updata.id);
 
         if (data.rows.length > 0) {
             res.status(200).json({msg: "Listenavnet ble endret"}).end();

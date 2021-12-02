@@ -105,12 +105,12 @@ dbMethods.deleteToDoList = function(id, userid) {
     return pool.query(sql, values); //return the promise
 }
 
-dbMethods.editToDoList = function(listname, id) {
+dbMethods.editToDoList = function(listname, share, id) {
 
     //console.log(listname, id);
 
-    let sql = "UPDATE todolists SET listname = $1 WHERE id = $2 RETURNING *";
-    let values = [listname, id];
+    let sql = "UPDATE todolists SET listname = $1, share = $2 WHERE id = $3 RETURNING *";
+    let values = [listname, share, id];
     return pool.query(sql, values); 
 }
 
