@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <link rel="stylesheet" type="text/css" href="todolists.css"> 
-    <title>todolists</title>
+
+    <link rel="stylesheet" href="todolists.css"> 
+    <title>MINE LISTER</title>
+
 </head>
 <body>
 
@@ -12,20 +14,23 @@
     <div class="header">
         <h1 id="title">Mine lister</h1><hr><br>
         <input type="text" id="listname" placeholder="Navn på ny liste . . .">
-        <input type="checkbox" id="isShared"><label>Delt</label>
+
+        <input type="checkbox" id="isShared"><label>Del liste</label>
+
+
         <button id="btnCreate">Legg til</button>
         <button id="btnShared">Delte lister</button>
-        <!-- <button id="btnDelUser">Slett bruker</button>
-        <button id="btnLogout">Logg ut</button> -->
-        <button class="dropdown"> Min bruker <i class="arrow down"></i>
+        <button class="dropdown"> Min bruker   <i class="arrow down"></i>
             <div class="dropdown-content">
                 <a id="btnEditUser">Rediger bruker</a>
                 <a id="btnDelUser">Slett bruker</a>
                 <a id="btnLogout">Logg ut</a>
             </div>
+
         </div>  
     </div> 
     <br><br>
+
     <div id="container"></div>
    
     <!------------- JavaScript --------------->
@@ -42,7 +47,6 @@
         let btnEditUser = document.getElementById('btnEditUser');
 
         let btnShared = document.getElementById('btnShared');
-        //let btnShare = document.getElementById('btnCreate');
         const checkbox = document.getElementById('isShared');
         let public = 0;
 
@@ -86,13 +90,13 @@
             }
         });
             
-            checkbox.addEventListener('click', async function(evt) {
-           
-           if (!checkbox.checked) {
-              public = 0; 
-          } else {
-               public = 1;
-          }
+        checkbox.addEventListener('click', async function(evt) {
+        
+            if (!checkbox.checked) {
+                public = 0; 
+            } else {
+                public = 1;
+            }
         });
         
         loaddata();
@@ -123,6 +127,7 @@
                         //kode som skjer når share er true
 
 
+
                     let div = document.createElement("div");
                     const name = document.createElement("h3");
                     name.innerHTML = value.listname; 
@@ -134,14 +139,18 @@
                         div.appendChild(btnEditList);
                         btnEditList.classList.add('btnEditList');
 
+
                         btnEditList.addEventListener('click', function(evt){
 
                             let listeinfo = {
+
                                 listname: value.listname,
+
                                 id: value.id
                             };
 
                             let listeinfoJson = JSON.stringify(listeinfo);
+
                             console.log("listeinfo");
                             localStorage.setItem("listeinfo", listeinfoJson);                        
                             location.href = 'todolistsedit.html';             
@@ -152,17 +161,15 @@
                     div.appendChild(btnDelList, div.lastElementChild);
                     btnDelList.classList.add('btnDelList');
 
-                    btnDelList.addEventListener('click', function(evt){
-                        deleteToDoList(value.id);
+
+                        name.addEventListener('click', function (evt) {
+                            console.log(value.id);
+                            let myList = value.id;
+                            localStorage.setItem("listid", myList);
+                            localStorage.setItem("listname", value.listname);
+                            location.href = "todolist.html";
                     });
 
-                    name.addEventListener('click', function (evt) {
-                        console.log(value.id);
-                        let myList = value.id;
-                        localStorage.setItem("listid", myList);
-                        localStorage.setItem("listname", value.listname);
-                        location.href = "todolist.html";
-                    });
                     }else{
 
                         let div = document.createElement("div");
@@ -172,9 +179,11 @@
                         container.appendChild(div);
 
                         let btnEditList = document.createElement("button");
+
                         btnEditList.innerText ="Rediger";
                         div.appendChild(btnEditList);
                         btnEditList.classList.add('btnEditList');
+
 
                         btnEditList.addEventListener('click', function(evt){
 
@@ -189,9 +198,11 @@
                         });
                         
                         let btnDelList = document.createElement("button");
+
                         btnDelList.innerText ="X";
                         div.appendChild(btnDelList, div.lastElementChild);
                         btnDelList.classList.add('btnDelList');
+
 
                         btnDelList.addEventListener('click', function(evt){
                             deleteToDoList(value.id);

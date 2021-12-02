@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <link rel="stylesheet" href="sharetasks.css"> 
-    <title>todolist</title>
+
+    <link rel="stylesheet" href="todolist.css"> 
+    <title>DELTE GJØREMÅL</title>
+
 </head>
 <body>
 
@@ -52,7 +54,7 @@
                     
                     let html = "<h2>" + value.heading + "</h2>";
                     html += "<p>" + date.toLocaleDateString() + "</p>";
-                    html += "<p>" + value.description + "</p><hr>";
+                    html += "<p>" + value.description + "</p>";
 
                     let div = document.createElement("div");
                     div.innerHTML = html;

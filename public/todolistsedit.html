@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>todolistsedit</title>
+
+    <title>REDIGER LISTENAVN</title>
+
     <link rel="stylesheet" href="todolistsedit.css">
 </head>
 <body>
@@ -36,6 +38,7 @@
 
         btnEditname.addEventListener('click', async function(evt) {
 
+
             let public;
 
             if (checkbox.checked) {
@@ -45,12 +48,15 @@
           }
 
 
+
             let url = "/todolists";            
 
             let updata = {
                 listname: inpListname.value,
+
                 id: listeinfo.id,
                 share: public
+
             }
 
             let token = localStorage.getItem("token");

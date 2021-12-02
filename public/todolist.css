@@ -24,13 +24,10 @@ body {
 #title {
   font-size: 40px;
   background-color: #79b179;
-
 }
 
 #currentList {
-
   background-color: #79b179;
-
 }
 
 .divMenu {
@@ -40,7 +37,6 @@ body {
 
 h2 {
   padding-left: 10px;
-  
 }
 
 p {
@@ -53,18 +49,56 @@ a:hover {
   color: #c9f1c7;
 }
 
-.header button {
-  width: 200px;
-  height: 40px;
-  color: black;
+#btnToDoCreate {
+  padding: 10px;
+  height: 35px;
+  width: 150px;
   background: #c9f1c7;
-  font-size: 20px;
+  color: #79b179;
+  text-align: center;
+  font-size: 15px;
+  cursor: pointer;
   font-weight: bold;
   outline: none;
   border: none;
-  transition: 0.2s ease-in;
+  border-radius: 5px;
+}
+
+#btnToDoCreate:hover {
+  background-color: lightgray;
+}
+
+#btnLists {
+  padding: 10px;
+  height: 35px;
+  width: 150px;
+  background: #c9f1c7;
+  color: #79b179;
+  text-align: center;
+  font-size: 15px;
   cursor: pointer;
-  margin: 5px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+
+#btnLists:hover {
+  background-color: lightgray;
+}
+
+.header button {
+  padding: 10px;
+  height: 35px;
+  width: 150px;
+  background: #c9f1c7;
+  color: #79b179;
+  text-align: center;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+  border: none;
   border-radius: 5px;
 }
 
@@ -73,15 +107,14 @@ a:hover {
 }
 
 button {
-  width: 200px;
-  height: 40px;
+  width: 100px;
+  height: 30px;
   color: #c9f1c7;
   background: #79b179;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   outline: none;
   border: none;
-  transition: 0.2s ease-in;
   cursor: pointer;
   margin: 5px;
   border-radius: 5px;
@@ -91,39 +124,21 @@ button:hover {
   background-color: lightgray;
 }
 
-.header button {
-  width: 20%;
-  height: 30px;
-  color: #79b179;
-  background: #c9f1c7;
-  font-size: 13px;
-  font-weight: bold;
-  outline: none;
-  border: none;
-  transition: 0.2s ease-in;
-  cursor: pointer;
-  margin: 5px;
-  border-radius: 5px;
-}
-
-.header button:hover {
-  background-color: lightgray;
-}
-
 .dropdown {
-  color: #79b179;
+  transition: 0.2s ease-in;
+  display: inline-block;
+  padding: 10px;
+  height: 35px;
+  width: 150px;
   background: #c9f1c7;
-  font-size: 13px;
+  color: red;
+  text-align: center;
+  font-size: 15px;
+  cursor: pointer;
   font-weight: bold;
   outline: none;
   border: none;
-  transition: 0.2s ease-in;
-  cursor: pointer;
-  margin: 5px;
   border-radius: 5px;
-  display: inline-block;
-  width: 15%;
-  height: 30px;
 }
 
 .dropdown-content {
@@ -131,11 +146,11 @@ button:hover {
   position: absolute;
   background-color: #c9f1c7;
   border-radius: 5px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   margin-top: 8px;
 }
 
-.dropdown-content a{
+.dropdown-content a {
   color: #79b179;
   font-size: 13px;
   font-weight: bold;
@@ -143,7 +158,6 @@ button:hover {
   text-decoration: none;
   display: block;
 }
-
 
 .dropdown-content a:hover {
   background-color: lightgray;
@@ -170,6 +184,28 @@ button:hover {
   -webkit-transform: rotate(45deg);
 }
 
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover {
+  background-color: lightgray;
+}
+
+.arrow {
+  border: solid #79b179;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  background-color: transparent;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
 .listnameDiv {
   display: flex;
-}
+

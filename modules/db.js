@@ -20,8 +20,6 @@ dbMethods.getAllToDoTasks = function(listid, userid) {
 }
 
 // ------------------------------------
-
-
 dbMethods.createToDoTask = function(heading, date, description, userid, listid) {  
     let sql = "INSERT INTO todo (id, date, heading, description, userid, listid) VALUES(DEFAULT, $4, $1, $2, $3, $5) returning *";
 	let values = [heading, description, userid, date, listid];	
@@ -83,10 +81,6 @@ dbMethods.editUser = function(username, password, salt, userID) {
     return pool.query(sql, values); 
 }
 
-
-
-
-
 // CREATETODOLIST!!!!!!!!!!!!!!!!!!!!!
 // ------------------------------------
 dbMethods.getAllToDoLists = function(userid) {
@@ -127,7 +121,6 @@ dbMethods.getSharedToDoLists = function() { //først id = id-en på itemet, shar
     let sql = "SELECT * FROM todolists WHERE share = 1";
     return pool.query(sql)
 }
-
 
 // export todoMethods -------------------------
 module.exports = dbMethods;
