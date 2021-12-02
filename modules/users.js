@@ -40,7 +40,17 @@ router.get("/users", async function(req, res, next) {
     } 
     */
 });
-
+router.get("/username", async function(req, res, next) {
+    userid = req.headers.userid;
+    try {
+        let data = await db.getUsername(userid);
+        res.status(200).json(data.rows).end();
+    
+    }catch(err) {
+        next(err);
+    }
+    
+});
 //create a new user----------------------
 router.post("/users", async function(req, res, next) {
 
