@@ -1,20 +1,52 @@
 #container > div{
-  padding-left: 4px;
+  padding-left: 10px;
   display: grid;
-  grid-template-columns: 1fr 80px 40px;
+  grid-template-columns: 1fr 100px 40px;
   border-bottom: 1px solid grey;
   color: black;
   cursor: pointer;
+  align-items: center;
   
 }
 
+#container > div:hover{
+  background-color: #79b179;
+}
+
+
 .btnEditList {
-  border: 1px;
   align-items: center;
   justify-self: center;
-  margin-top: 20px;
   padding: none;
+  border: none;
+  font-size: 20px;
+  color: black;
+  background-color: #c9f1c7;
+  height: 60px;
 }
+
+.btnEditList:hover{
+  background-color: #79b179;
+}
+
+
+.btnDelList {
+  width: 50px;
+  height: 60px;
+  color: black;
+  background-color: #c9f1c7;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  justify-self: right;
+  position: absolute;
+} 
+
+.btnDelList:hover{
+  background-color: #79b179;
+}
+
 
 #container > h3{
     padding-left: 40px;
@@ -26,13 +58,9 @@
     height: 40px;
 }
 
-#container :hover {
-    background-color: #79b179;
-}
-
 * {
   font-family: "jost", sans-serif;
-  background-color: #c9f1c7;
+  
 }
 
 .header {
@@ -44,6 +72,7 @@
 
 body {
   margin: 0px;
+  background-color: #c9f1c7;
 }
 
 #title {
@@ -86,34 +115,9 @@ body {
   background-color: lightgray;
 }
 
-#container > button {
-  width: 50px;
-  height: 40px;
-  color: black;
-  font-size: 20px;
-  justify-self: center;
-  position: absolute;
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
 
-/* button {
-  width: 50px;
-  height: 40px;
-  color: black;
-  
-  font-size: 20px;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  justify-self: right;
-  position: absolute;
-} */
 
-button:hover {
-  background-color: lightgray;
-}
+
 
 .dropdown {
   color: #79b179;

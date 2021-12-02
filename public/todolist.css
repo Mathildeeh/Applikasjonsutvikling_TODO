@@ -3,6 +3,9 @@
   background-color: #c9f1c7;
 }
 
+
+
+
 .header {
   background-color: #79b179;
   padding: 40px 25px;
@@ -42,7 +45,8 @@ h2 {
 
 p {
   padding-left: 10px;
-  font-size: 17px;
+  font-size: 10pt;
+  align-self: center;
 }
 
 a:hover {
@@ -164,4 +168,8 @@ button:hover {
 .down {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+}
+
+.listnameDiv {
+  display: flex;
 }
