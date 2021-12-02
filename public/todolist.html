@@ -8,7 +8,6 @@
 </head>
 <body>
 
-    <!----------- HTML-elements -------------->
     <div class="header">
         <h1 id="title"> <span id="currentList">Mine lister</span></h1><hr><br>
         <button id="btnToDoCreate">Nytt gjøremål</button>
@@ -23,7 +22,6 @@
 
     <div id="container"></div>
 
-    <!------------- JavaScript --------------->
     <script>
 
         let btnLogout = document.getElementById('btnLogout');
@@ -34,13 +32,10 @@
         let btnNewListCreate = document.getElementById('btnNewListCreate');
         let btnLists = document.getElementById('btnLists');
         let title = document.getElementById('title');
-        
-        
 
         async function listToDo() {
             let listname = localStorage.getItem("listname");
             let listID = localStorage.getItem("listid");
-            let username = localStorage.getItem("username");
             let userid = localStorage.getItem("userid");
             let url = "/todo/" + listID;
             
@@ -51,25 +46,21 @@
                 headers: {"authorization": token}
             };
 
-            
-
             try {
                 let response = await fetch(url, cfg);
                 let data = await response.json();
-                console.log(data);
+
                 if (response.status != 200) {
                     throw data.error;
                 }
 
                 container.innerHTML = "";
-                currentList.innerHTML = listname; ///hoiii
-                console.log(data);
+                currentList.innerHTML = listname;
+                
                 for (let value of data){
 
                     let date = new Date(value.date);
                     let listname = document.getElementById('listname');
-                    let username = document.getElementById('username');
-                    //currentList.innerHTML = listname;
                     
                     let html = "<h2>" + value.heading + "</h2>";
                     html += "<p>" + value.description + "</p>";
@@ -103,7 +94,6 @@
                         deleteToDoTask(value.id);
                     });
                     
-
                     div.appendChild(delbtn);
                     div.appendChild(editbtn);
 
@@ -146,9 +136,7 @@
                 console.log(error);
             }
 
-        }
-
-        listToDo();
+        } listToDo();
 
         btnLists.addEventListener('click', function(evt){
             location.href = 'todolists.html';
@@ -170,58 +158,9 @@
         btnToDoCreate.addEventListener('click', function(evt){
             location.href = 'todocreate.html';
         });
-
-        btnNewListCreate.addEventListener('click', function(evt){
-            location.href = 'todolistcreate.html';
-        });
         
 
     </script>
-
-    <!---------------- CSS ------------------->
-    <style>
-        .navbar {
-            overflow: hidden;
-            background-color: #333;
-        }
-
-        .navbar a{
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-
-        }
-        
-        .navbar a:hover{
-            background-color: #ddd;
-            color: black;
-        }
-
-        .navbar div {
-            float: right;
-            width: 35px;
-            height: 5px;
-            background-color: black;
-            margin: 6px 0;
-            
-        }
-
-        .footer {
-            padding: 20px;
-            text-align: center;
-            background: #333;
-        }
-
-
-        
-        
-
-
-        
-    </style>
 
 </body>
 

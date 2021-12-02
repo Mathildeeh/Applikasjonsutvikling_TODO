@@ -1,4 +1,4 @@
-* {
+*  :not(.checkandshared){
     margin: 0;
     padding-left: 13px;
     padding-top: 10px;
@@ -25,6 +25,28 @@
   #btnEditname:hover {
     background-color: lightgray;
   }
+
+  #btnBack {
+    padding: 10px;
+    height: 40px;
+    width: 150px;
+    background: #c9f1c7;
+    color: #79b179;
+    float: left;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+  
+  #btnBack:hover {
+    background: lightgray;
+  }
   
   #overskrift {
     color: white;
@@ -39,16 +61,12 @@
     background: #efeff7;
     border: none;
     outline: none;
+    padding: 10px;
     border-radius: 5px;
+    align-self: center;
+    justify-content: center;
   }
-  
-  #create {
-    display: flex;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    justify-items: center;
-  }
-  
+
   #date {
     justify-self: center;
     font-size: 18px;
@@ -67,19 +85,23 @@
   
   .master {
     width: 520px;
-    height: 230px;
+    height: 260px;
     background: #79b179;
     overflow: hidden;
     box-shadow: 5px 20px 50px rgb(41, 41, 41);
   }
-  
-  input {
-    height: 25px;
-    background: #efeff7;
-    justify-content: center;
-    display: flex;
-    padding: 10px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
+
+  .checkedandshared > div {
+    display: grid;
+    justify-content: left;
+    margin: none;
+    padding: none;
+  }
+
+  #sharedText {
+    text-align: center;
+    justify-self: center;
+    padding: none;
+    margin:none;
+    color: white;
   }

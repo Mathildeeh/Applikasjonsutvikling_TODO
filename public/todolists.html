@@ -14,10 +14,7 @@
     <div class="header">
         <h1 id="title">Mine lister</h1><hr><br>
         <input type="text" id="listname" placeholder="Navn på ny liste . . .">
-
         <input type="checkbox" id="isShared"><label>Del liste</label>
-
-
         <button id="btnCreate">Legg til</button>
         <button id="btnShared">Delte lister</button>
         <button class="dropdown"> Min bruker   <i class="arrow down"></i>
@@ -26,10 +23,8 @@
                 <a id="btnDelUser">Slett bruker</a>
                 <a id="btnLogout">Logg ut</a>
             </div>
-
         </div>  
-    </div> 
-    <br><br>
+    </div><br><br>
 
     <div id="container"></div>
    
@@ -58,9 +53,7 @@
                 share: public,
                 listname: listname.value
             }
-
-            console.log(updata);
-
+            
             let token = localStorage.getItem("token");
 
             let cfg = {
@@ -127,7 +120,6 @@
                         //kode som skjer når share er true
 
 
-
                     let div = document.createElement("div");
                     const name = document.createElement("h3");
                     name.innerHTML = value.listname; 
@@ -158,7 +150,7 @@
                     
                     let btnDelList = document.createElement("button");
                     btnDelList.innerText ="X";
-                    div.appendChild(btnDelList, div.lastElementChild);
+                    div.appendChild(btnDelList);
                     btnDelList.classList.add('btnDelList');
 
 
@@ -188,7 +180,7 @@
                         btnEditList.addEventListener('click', function(evt){
 
                             let listeinfo = {
-                                listname: listname.value,
+                                listname: value.listname,
                                 id: value.id
                             };
 
@@ -199,7 +191,7 @@
                         
                         let btnDelList = document.createElement("button");
 
-                        btnDelList.innerText ="X";
+                        btnDelList.innerText ="✕";
                         div.appendChild(btnDelList, div.lastElementChild);
                         btnDelList.classList.add('btnDelList');
 
@@ -221,11 +213,11 @@
 
             }
 
-                catch(error){
-                    console.log(error);
-                }
-
+            catch(error){
+                console.log(error);
             }
+
+        }
 
         async function deleteToDoList(todolistsID){
 

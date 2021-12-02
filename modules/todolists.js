@@ -5,9 +5,6 @@ const protect = require('./auth');
 
 // endpoints ----------------------------
 router.get("/todolists", protect, async function(req, res, next) {
-
-   /*  console.log(res.locals.username);
-    console.log(res.locals.userid);     */
     
     try {
         let data = await db.getAllToDoLists(res.locals.userid);

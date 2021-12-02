@@ -16,7 +16,7 @@
             <input id="inpUsername" type="text" placeholder="Brukernavn" />
             <input id="inpPassword" type="password" placeholder="Passord" /><br>
             <button id="btnChange">Endre</button>
-            <button id="btnChange2">Gå tilbake</button>
+            <button id="btnBack">Gå tilbake</button>
             <h3 id="txtResult"></h3>
         </div>
     </div>
@@ -27,7 +27,7 @@
         let inpUsername = document.getElementById('inpUsername');
         let inpPassword = document.getElementById('inpPassword');
         let btnChange = document.getElementById('btnChange');
-        let btnChange2 = document.getElementById('btnChange2');
+        let btnBack = document.getElementById('btnBack');
         let txtResult = document.getElementById('txtResult');
         let title = document.getElementById('title');
     
@@ -70,15 +70,15 @@
             }
         });
 
-            //------------------------------
-            function createCredentialString(username, password) {
+        //------------------------------
+        function createCredentialString(username, password) {
             let combinedStr = username + ":" + password;
             let b64Str = btoa(combinedStr);
             return "basic " + b64Str;
         }
 
-        btnChange2.addEventListener('click', function(evt) {
-            location.href = 'todolist.html';
+        btnBack.addEventListener('click', function(evt) {
+            history.back();
         });
 
 

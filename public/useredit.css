@@ -60,7 +60,7 @@ input {
   background: lightgray;
 }
 
-#btnChange2 {
+#btnBack {
   width: 130px;
   height: 40px;
   color: #79b179;
@@ -76,7 +76,7 @@ input {
   padding: 10px;
 }
 
-#btnChange2:hover {
+#btnBack:hover {
   background: lightgray;
 }
 
