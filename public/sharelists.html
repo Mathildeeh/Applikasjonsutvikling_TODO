@@ -36,7 +36,6 @@
         try {
           let response = await fetch(url, cfg);
           let data = await response.json();
-          console.log(data);
 
           if (response.status != 200) {
             throw data.error;
@@ -64,7 +63,6 @@
               container.appendChild(div);
 
               div.addEventListener("click", function (evt) {
-                console.log(value.id);
                 let myList = value.id;
                 localStorage.setItem("listid", myList);
                 location.href = "sharetasks.html";
