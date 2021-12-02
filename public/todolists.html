@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+
     <link rel="stylesheet" href="todolists.css"> 
     <title>MINE LISTER</title>
+
 </head>
 <body>
 
@@ -12,7 +14,10 @@
     <div class="header">
         <h1 id="title">Mine lister</h1><hr><br>
         <input type="text" id="listname" placeholder="Navn på ny liste . . .">
+
         <input type="checkbox" id="isShared"><label>Del liste</label>
+
+
         <button id="btnCreate">Legg til</button>
         <button id="btnShared">Delte lister</button>
         <button class="dropdown"> Min bruker   <i class="arrow down"></i>
@@ -21,9 +26,11 @@
                 <a id="btnDelUser">Slett bruker</a>
                 <a id="btnLogout">Logg ut</a>
             </div>
-    </div>  
-    <br>
-    
+
+        </div>  
+    </div> 
+    <br><br>
+
     <div id="container"></div>
    
     <!------------- JavaScript --------------->
@@ -97,7 +104,6 @@
         async function loaddata(params) {        
 
             let url = "/todolists";
-            
             let cfg = {
                 method: "GET",
                 headers: {"authorization": token}
@@ -106,6 +112,7 @@
             try {
                 let response = await fetch(url, cfg);
                 let data = await response.json();
+
 
                 //console.log(data);
 
@@ -119,35 +126,41 @@
                     if(value.share === 1){
                         //kode som skjer når share er true
 
-                        let div = document.createElement("div");
-                        const name = document.createElement("h3");
-                        name.innerHTML = value.listname; 
-                        div.appendChild(name);
-                        container.appendChild(div);
 
-                        let btnEditList = document.createElement("button");
-                            btnEditList.innerText ="Rediger";
-                            div.appendChild(btnEditList);
+
+                    let div = document.createElement("div");
+                    const name = document.createElement("h3");
+                    name.innerHTML = value.listname; 
+                    div.appendChild(name);
+                    container.appendChild(div);
+
+                    let btnEditList = document.createElement("button");
+                        btnEditList.innerText ="Rediger";
+                        div.appendChild(btnEditList);
+                        btnEditList.classList.add('btnEditList');
+
 
                         btnEditList.addEventListener('click', function(evt){
 
                             let listeinfo = {
-                                listname: listname.value,
+
+                                listname: value.listname,
+
                                 id: value.id
                             };
 
                             let listeinfoJson = JSON.stringify(listeinfo);
+
+                            console.log("listeinfo");
                             localStorage.setItem("listeinfo", listeinfoJson);                        
                             location.href = 'todolistsedit.html';             
                         });
-
-                        let btnDelList = document.createElement("button");
-                            btnDelList.innerText ="Slett";
-                            div.appendChild(btnDelList);
                     
-                        btnDelList.addEventListener('click', function(evt){
-                            deleteToDoList(value.id);
-                        });
+                    let btnDelList = document.createElement("button");
+                    btnDelList.innerText ="X";
+                    div.appendChild(btnDelList, div.lastElementChild);
+                    btnDelList.classList.add('btnDelList');
+
 
                         name.addEventListener('click', function (evt) {
                             console.log(value.id);
@@ -166,9 +179,11 @@
                         container.appendChild(div);
 
                         let btnEditList = document.createElement("button");
-                            btnEditList.innerText ="Rediger";
-                            div.appendChild(btnEditList);
-                            btnEditList.classList.add('btnEditList');
+
+                        btnEditList.innerText ="Rediger";
+                        div.appendChild(btnEditList);
+                        btnEditList.classList.add('btnEditList');
+
 
                         btnEditList.addEventListener('click', function(evt){
 
@@ -183,15 +198,18 @@
                         });
                         
                         let btnDelList = document.createElement("button");
-                        btnDelList.innerText ="Slett";
-                        div.appendChild(btnDelList);
+
+                        btnDelList.innerText ="X";
+                        div.appendChild(btnDelList, div.lastElementChild);
+                        btnDelList.classList.add('btnDelList');
+
 
                         btnDelList.addEventListener('click', function(evt){
                             deleteToDoList(value.id);
                         });
 
                         name.addEventListener('click', function (evt) {
-                            console.log(value.id);
+                            // console.log(value.id);
                             let myList = value.id;
                             localStorage.setItem("listid", myList);
                             localStorage.setItem("listname", value.listname);

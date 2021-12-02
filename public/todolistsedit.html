@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+
     <title>REDIGER LISTENAVN</title>
+
     <link rel="stylesheet" href="todolistsedit.css">
 </head>
 <body>
@@ -13,7 +15,8 @@
     <div class="master">  			
         <div class="edit">
             <h1 id="overskrift">Rediger listenavnet</h1><br>
-            <input id="inpListname" type="text" placeholder="Tittel..."/><br>
+            <input id="inpListname" type="text" placeholder="Tittel..."/><br> 
+            <input type="checkbox" id="isShared"><label>Delt</label><br>
             <button id="btnEditname">Lagre</button>
         </div>
     </div>
@@ -25,22 +28,36 @@
         let btnEditname = document.getElementById('btnEditname');
         let txtResult = document.getElementById('txtResult');
         let overskrift = document.getElementById('overskrift');
+        const checkbox = document.getElementById('isShared');
 
         let listeinfoJson = localStorage.getItem("listeinfo");
         let listeinfo = JSON.parse(listeinfoJson);
+        console.log(listeinfo);
 
         inpListname.value = listeinfo.listname;
 
         btnEditname.addEventListener('click', async function(evt) {
 
+
+            let public;
+
+            if (checkbox.checked) {
+              public = 1; 
+          } else {
+               public = 0;
+          }
+
+
+
             let url = "/todolists";            
 
             let updata = {
                 listname: inpListname.value,
-                id: listeinfo.id
-            }
 
-            //console.log(updata)
+                id: listeinfo.id,
+                share: public
+
+            }
 
             let token = localStorage.getItem("token");
 
@@ -70,6 +87,12 @@
             }
         });
 
+        checkbox.addEventListener('click', async function(evt) {
+           
+       
+        });
+
+        
     </script>
 
 </body>

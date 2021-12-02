@@ -40,7 +40,17 @@ router.get("/users", async function(req, res, next) {
     } 
     */
 });
-
+router.get("/username", async function(req, res, next) {
+    userid = req.headers.userid;
+    try {
+        let data = await db.getUsername(userid);
+        res.status(200).json(data.rows).end();
+    
+    }catch(err) {
+        next(err);
+    }
+    
+});
 //create a new user----------------------
 router.post("/users", async function(req, res, next) {
 
@@ -127,6 +137,31 @@ router.delete("/users/delete", protect, async function(req, res, next) {
         }
     
     } catch(err) {
+        next(err);
+    }
+});
+
+
+//edit a user--------------------------
+router.put("/users/edit", protect, async function(req, res, next) {	
+
+    let updata = req.body;
+    let userid = res.locals.userid;    
+
+    let newHashedPassword = authUtils.createHash(updata.password);
+
+    try {
+        let data = await db.editUser(updata.username, newHashedPassword.value, newHashedPassword.salt, userid);
+
+        if (data.rows.length > 0) {
+            res.status(200).json({msg: "Konto ble endret"}).end();
+        }
+        else {
+            throw "Konto ble ikke endret";
+        }
+    }
+    catch(err){
+        console.log(err)
         next(err);
     }
 });

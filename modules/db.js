@@ -55,7 +55,12 @@ dbMethods.getUser = function(username) {
     let values = [username];
     return pool.query(sql, values); //return the promise
 }
-
+//---------------------------------------------
+dbMethods.getUsername = function(id) { 
+    let sql = "SELECT username FROM users WHERE id = $1";
+    let values = [id];
+    return pool.query(sql, values); //return the promise
+}
 //---------------------------------------------
 dbMethods.createUser = function(username, password, salt) {  
     let sql = "INSERT INTO users (id, username, password, salt) VALUES(DEFAULT, $1, $2, $3) returning *";
@@ -70,9 +75,9 @@ dbMethods.deleteUser = function(id) {
     return pool.query(sql, values); //return the promise
 }
 
-dbMethods.editUser = function(username, password) {
-    let sql = "EDIT user (username, password) VALUES(DEFAULT, DEFAULT, $1, $2, $3) returning *";
-    let values = [username, password];
+dbMethods.editUser = function(username, password, salt, userID) {
+    let sql = "UPDATE users SET username = $1, password = $2, salt = $3 WHERE id = $4 RETURNING *";
+    let values = [username, password, salt, userID];
     return pool.query(sql, values); 
 }
 
@@ -93,18 +98,22 @@ dbMethods.createToDoList = function(listname, userid, share) {
 }
 
 // ------------------------------------
-dbMethods.deleteToDoList = function(id, userid) {  
-    let sql = "DELETE FROM todolists WHERE id = $1 AND userid = $2 RETURNING *";
+dbMethods.deleteToDoList = async function(id, userid) {  
+    let sql1 = "DELETE FROM todo WHERE listid = $1 AND userid = $2 RETURNING *";
+    let sql2 = "DELETE FROM todolists WHERE id = $1 AND userid = $2 RETURNING *";
 	let values = [id, userid];
-    return pool.query(sql, values); //return the promise
+
+    let result = await pool.query(sql1, values);
+    console.log(result);
+    return pool.query(sql2, values); //return the promise
 }
 
-dbMethods.editToDoList = function(listname, id) {
+dbMethods.editToDoList = function(listname, share, id) {
 
     //console.log(listname, id);
 
-    let sql = "UPDATE todolists SET listname = $1 WHERE id = $2 RETURNING *";
-    let values = [listname, id];
+    let sql = "UPDATE todolists SET listname = $1, share = $2 WHERE id = $3 RETURNING *";
+    let values = [listname, share, id];
     return pool.query(sql, values); 
 }
 

@@ -40,8 +40,10 @@
         async function listToDo() {
             let listname = localStorage.getItem("listname");
             let listID = localStorage.getItem("listid");
+            let username = localStorage.getItem("username");
+            let userid = localStorage.getItem("userid");
             let url = "/todo/" + listID;
-
+            
             let token = localStorage.getItem("token");
 
             let cfg = {
@@ -54,7 +56,7 @@
             try {
                 let response = await fetch(url, cfg);
                 let data = await response.json();
-
+                console.log(data);
                 if (response.status != 200) {
                     throw data.error;
                 }
@@ -66,6 +68,7 @@
 
                     let date = new Date(value.date);
                     let listname = document.getElementById('listname');
+                    let username = document.getElementById('username');
                     //currentList.innerHTML = listname;
                     
                     let html = "<h2>" + value.heading + "</h2>";
@@ -101,8 +104,8 @@
                     });
                     
 
-                    div.appendChild(delbtn, div.lastElementChild);
-                    div.appendChild(editbtn, div.lastElementChild);
+                    div.appendChild(delbtn);
+                    div.appendChild(editbtn);
 
                 }
             }
