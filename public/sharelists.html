@@ -46,20 +46,10 @@
 
           for (let value of data) {
             if (value.share === 1) {
-              let userUrl = "/username";
-              let userCfg = {
-                method: "GET",
-                headers: {
-                  "authorization": token,
-                  userid: value.userid,
-                },
-              };
-              let usernameResponse = await fetch(userUrl, userCfg);
-              let usernameData = await usernameResponse.json();
               
               let div = document.createElement("div");
               div.classList.add("listnameDiv");
-              div.innerHTML = "<h3>" + value.listname + "</h3>" + "<p> &emsp; (Laget av " + usernameData[0].username + ")</p>";
+              div.innerHTML = "<h3>" + value.listname + "</h3>";
               container.appendChild(div);
 
               div.addEventListener("click", function (evt) {
