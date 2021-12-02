@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>todoedit</title>
+    <title>REDIGER LISTENAVN</title>
     <link rel="stylesheet" href="todolistsedit.css">
 </head>
 <body>
@@ -21,7 +21,7 @@
     <!------------- JavaScript --------------->
     <script>
 
-        let inpListname = document.getElementById('inpinpListnameHeading');
+        let inpListname = document.getElementById('inpListname');
         let btnEditname = document.getElementById('btnEditname');
         let txtResult = document.getElementById('txtResult');
         let overskrift = document.getElementById('overskrift');
@@ -29,16 +29,14 @@
         let listeinfoJson = localStorage.getItem("listeinfo");
         let listeinfo = JSON.parse(listeinfoJson);
 
-        inpListname.value = listeinfo.heading;
+        inpListname.value = listeinfo.listname;
 
         btnEditname.addEventListener('click', async function(evt) {
-            
-            let dato = inpDate.value;
 
             let url = "/todolists";            
 
             let updata = {
-                heading: inpListname.value,
+                listname: inpListname.value,
                 id: listeinfo.id
             }
 
@@ -58,7 +56,7 @@
             try {
                 let response = await fetch(url, cfg);
                 let data = await response.json();
-
+                console.log(data);
                 if (response.status != 200) {
                     throw data.error;
                 }

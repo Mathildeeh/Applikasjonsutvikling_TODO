@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>todocreate</title>
+    <title>LEGG TIL GJØREMÅL</title>
     <link rel="stylesheet" href="todocreate.css">
 </head>
 <body>
@@ -16,7 +16,6 @@
         <textarea id="inpDescription" cols="80" rows="10" placeholder="Beskrivelse"></textarea><br><br>
         <input type="date" id="date">
         <button id="btnCreate">Legg til</button>
-          
       </div>
     </div>   
 
@@ -28,6 +27,7 @@
         let btnCreate = document.getElementById('btnCreate');
         let txtResult = document.getElementById('txtResult');
         let title = document.getElementById('title');
+        let inpDate = document.getElementById("date");
 
         btnCreate.addEventListener('click', async function(evt) {
             

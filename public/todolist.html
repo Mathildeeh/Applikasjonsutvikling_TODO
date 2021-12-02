@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <link rel="stylesheet" href="todolist.css"> 
-    <title>todolist</title>
+    <title>MINE GJØREMÅL</title>
 </head>
 <body>
 
@@ -13,14 +13,13 @@
         <h1 id="title"> <span id="currentList">Mine lister</span></h1><hr><br>
         <button id="btnToDoCreate">Nytt gjøremål</button>
         <button id="btnLists">Mine lister</button>
-        <button class="dropdown"> Min bruker <i class="arrow down"></i>
+        <button class="dropdown"> Min bruker   <i class="arrow down"></i>
             <div class="dropdown-content">
                 <a id="btnEditUser">Rediger bruker</a>
                 <a id="btnDelUser">Slett bruker</a>
                 <a id="btnLogout">Logg ut</a>
             </div>
-        </div>  
-    </div> 
+    </div>  
 
     <div id="container"></div>
 
@@ -70,8 +69,8 @@
                     //currentList.innerHTML = listname;
                     
                     let html = "<h2>" + value.heading + "</h2>";
-                    html += "<p>" + date.toLocaleDateString() + "</p>";
                     html += "<p>" + value.description + "</p>";
+                    html += "<p>" + date.toLocaleDateString() + "</p>";
 
                     let div = document.createElement("div");
                     div.innerHTML = html;

@@ -1,5 +1,5 @@
 #txtResult {
-  color: #fff;
+  color: #c9f1c7;
   font-size: 17px;
   text-align: center;
   justify-content: center;
@@ -7,7 +7,7 @@
 }
 
 #txtResult2 {
-  color: black;
+  color: #79b179;
   font-size: 17px;
   text-align: center;
   justify-content: center;
@@ -84,7 +84,7 @@ input {
   margin: 10px auto;
   justify-content: center;
   display: block;
-  color: black;
+  color: #79b179;
   background: #c9f1c7;
   font-size: 15px;
   font-weight: bold;
@@ -106,7 +106,7 @@ input {
   margin: 10px auto;
   justify-content: center;
   display: block;
-  color: white;
+  color: #c9f1c7;
   background: #79b179;
   font-size: 15px;
   font-weight: bold;

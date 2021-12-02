@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
    <link rel="stylesheet" href="index.css">
-    <title>Logg inn/ Lag ny bruker</title>
+    <title>LOGG INN</title>
 </head>
 <body>
 
@@ -116,8 +116,7 @@
                     throw data.error;
                 }
 
-                //txtResult2.innerHTML = data.msg;
-                window.location.href = 'todolists.html';
+                txtResult2.innerHTML = "Brukeren ble opprettet - logg inn";
             }
             catch(error){
                 console.log(error);
