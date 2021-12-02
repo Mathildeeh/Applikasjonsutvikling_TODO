@@ -57,7 +57,12 @@ dbMethods.getUser = function(username) {
     let values = [username];
     return pool.query(sql, values); //return the promise
 }
-
+//---------------------------------------------
+dbMethods.getUsername = function(id) { 
+    let sql = "SELECT username FROM users WHERE id = $1";
+    let values = [id];
+    return pool.query(sql, values); //return the promise
+}
 //---------------------------------------------
 dbMethods.createUser = function(username, password, salt) {  
     let sql = "INSERT INTO users (id, username, password, salt) VALUES(DEFAULT, $1, $2, $3) returning *";
@@ -99,10 +104,14 @@ dbMethods.createToDoList = function(listname, userid, share) {
 }
 
 // ------------------------------------
-dbMethods.deleteToDoList = function(id, userid) {  
-    let sql = "DELETE FROM todolists WHERE id = $1 AND userid = $2 RETURNING *";
+dbMethods.deleteToDoList = async function(id, userid) {  
+    let sql1 = "DELETE FROM todo WHERE listid = $1 AND userid = $2 RETURNING *";
+    let sql2 = "DELETE FROM todolists WHERE id = $1 AND userid = $2 RETURNING *";
 	let values = [id, userid];
-    return pool.query(sql, values); //return the promise
+
+    let result = await pool.query(sql1, values);
+    console.log(result);
+    return pool.query(sql2, values); //return the promise
 }
 
 dbMethods.editToDoList = function(listname, id) {

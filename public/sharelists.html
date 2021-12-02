@@ -39,7 +39,7 @@
             
             let response = await fetch(url, cfg);
             let data = await response.json();
-            //console.log(data)
+            console.log(data)
 
             if (response.status != 200) {
                 throw data.error;
@@ -49,9 +49,23 @@
             
             for (let value of data){
                 if(value.share === 1){
+
                     //kode som skjer når share er true
+
+                    let userUrl = "/username";
+                        let userCfg = {
+                            method: "GET",
+                            headers: {
+                                "authorization": token,
+                                "userid":value.userid
+                            }
+                        };
+                        let usernameResponse = await fetch(userUrl,userCfg);
+                        let usernameData = await usernameResponse.json();
+
                     let div = document.createElement("div");
-                    div.innerHTML = value.listname;
+                    div.classList.add("listnameDiv");
+                    div.innerHTML ="<h3>" + value.listname + "</h3>" + "<p> &emsp; (Laget av " + usernameData[0].username + ")</p>";
                     container.appendChild(div); 
 
                     div.addEventListener('click', function (evt) {
@@ -92,7 +106,7 @@
     <!---------------- CSS ------------------->
     <style>  
           
-    #container>div {
+   /*  #container>div {
         display: grid;
         align-items: center;
         justify-items: left;
@@ -106,7 +120,7 @@
 
     #container>div:hover {
         background-color: #79b179;
-    }
+    } */
 
 </style>
 
