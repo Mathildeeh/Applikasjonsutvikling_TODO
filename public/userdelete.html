@@ -1,69 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <link rel="stylesheet" href="userdelete.css">  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="userdelete.css" />
     <title>SLETT BRUKER</title>
-</head>
-<body>
+  </head>
 
-    <!----------- HTML-elements -------------->
+  <body>
+
     <div class="master">
-        <h1 id="overskrift">Vil du slette brukeren din?</h1>
-        <button id="btnDelete">Ja</button>
-        <button id="btnNotDelete">Nei</button>
-        <h3 id="txtResult"></h3>
+      <h1 id="overskrift">Vil du slette brukeren din?</h1>
+      <button id="btnDelete">Ja</button>
+      <button id="btnNotDelete">Nei</button>
+      <h3 id="txtResult"></h3>
     </div>
 
-    <!------------- JavaScript --------------->
     <script>
 
-        let btnDelete = document.getElementById('btnDelete');
-        let btnNotDelete = document.getElementById('btnNotDelete');
-        let txtResult = document.getElementById('txtResult');
+      let btnDelete = document.getElementById("btnDelete");
+      let btnNotDelete = document.getElementById("btnNotDelete");
+      let txtResult = document.getElementById("txtResult");
 
-        //-------------------------------------
-        btnDelete.addEventListener('click', async function(evt) {
+      btnDelete.addEventListener("click", async function (evt) {
+        let url = "/users/delete";
 
-            let url = "/users/delete";
-            
-            let token = localStorage.getItem("token");
+        let token = localStorage.getItem("token");
 
-            let cfg = {
-                method: "DELETE",
-                headers: {"content-type":"application/json",
-                "authorization": token}
-                }
+        let cfg = {
+          method: "DELETE",
+          headers: { "content-type": "application/json", authorization: token },
+        };
 
-            try {
-                let response = await fetch(url, cfg);
-                let data = await response.json();
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
 
-                if (response.status != 200) {
-                    throw data.error;
-                }
+          if (response.status != 200) {
+            throw data.error;
+          }
 
-                //txtResult.innerHTML = data.msg;
-                location.href = 'index.html';
-            }
-            catch(error){
-                console.log(error);
-                txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
-            }
-        });
+          location.href = "index.html";
+        } catch (error) {
+          console.log(error);
+          txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
+        }
+      });
 
-        btnNotDelete.addEventListener('click', function(evt) {
-            location.href = 'todolist.html';
-        });
-        
+      btnNotDelete.addEventListener("click", function (evt) {
+        location.href = "todolist.html";
+      });
+      
     </script>
-
-    <!---------------- CSS ------------------->
-    <style>        
-
-    </style>
-
-</body>
-
+  </body>
 </html>

@@ -1,6 +1,5 @@
 * {
   font-family: "jost", sans-serif;
-  
 }
 
 .header {
@@ -14,12 +13,10 @@ div {
   border-bottom: solid 1px white;
 }
 
-
-
-#container > div:hover{
+#container > div:hover {
   background-color: #79b179;
+  cursor: pointer;
 }
-
 
 .btnEditList {
   align-items: center;
@@ -32,10 +29,9 @@ div {
   height: 60px;
 }
 
-.btnEditList:hover{
+.btnEditList:hover {
   background-color: #79b179;
 }
-
 
 .btnDelList {
   width: 50px;
@@ -48,23 +44,21 @@ div {
   cursor: pointer;
   justify-self: right;
   position: absolute;
-} 
+}
 
-.btnDelList:hover{
+.btnDelList:hover {
   background-color: #79b179;
 }
 
-
-#container > h3{
-    padding-left: 40px;
-    align-items: center;
-    justify-items: left;
-    color: black;
-    font-size: 25px;
-    font-weight: bold;
-    height: 40px;
+#container > h3 {
+  padding-left: 40px;
+  align-items: center;
+  justify-items: left;
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+  height: 40px;
 }
-
 
 body {
   margin: 0px;
@@ -185,7 +179,6 @@ button:hover {
   height: 35px;
   width: 150px;
   background: #c9f1c7;
-  color: red;
   text-align: center;
   font-size: 15px;
   cursor: pointer;
@@ -238,28 +231,6 @@ button:hover {
   -webkit-transform: rotate(45deg);
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover {
-  background-color: lightgray;
-}
-
-.arrow {
-  border: solid #79b179;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-  background-color: transparent;
-}
-
-.down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-}
-
 .listnameDiv {
   display: flex;
-
 }

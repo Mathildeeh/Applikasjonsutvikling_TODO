@@ -1,108 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>REDIGER LISTENAVN</title>
-
-    <link rel="stylesheet" href="todolistsedit.css">
-</head>
-<body>
-
-    <!----------- HTML-elements -------------->
-    
-    <div class="master">  			
-        <div class="edit">
-            <h1 id="overskrift">Rediger listenavnet</h1><br>
-            <input id="inpListname" type="text" placeholder="Tittel..."/><br><br>
-            <div class="checkandshared">
-                <input type="checkbox" id="isShared">
-                <label for="isShared" id="sharedText">Delt</label>
-            </div> <br>
-            <button id="btnEditname">Lagre</button>
-            <button id="btnBack">Tilbake</button>
+    <link rel="stylesheet" href="todolistsedit.css" />
+  </head>
+  
+  <body>
+    <div class="master">
+      <div class="edit">
+        <h1 id="overskrift">Rediger listenavnet</h1>
+        <br />
+        <input id="inpListname" type="text" placeholder="Tittel..."/>
+        <br />
+        <br />
+        <div class="checkandshared">
+          <input type="checkbox" id="isShared" />
+          <label for="isShared" id="sharedText">Delt</label>
         </div>
+        <br />
+        <button id="btnEditname">Lagre</button>
+        <button id="btnBack">Tilbake</button>
+      </div>
     </div>
-    
-    <!------------- JavaScript --------------->
+
     <script>
+      let inpListname = document.getElementById("inpListname");
+      let btnEditname = document.getElementById("btnEditname");
+      let btnBack = document.getElementById("btnBack");
+      let txtResult = document.getElementById("txtResult");
+      let overskrift = document.getElementById("overskrift");
+      const checkbox = document.getElementById("isShared");
 
-        let inpListname = document.getElementById('inpListname');
-        let btnEditname = document.getElementById('btnEditname');
-        let btnBack = document.getElementById('btnBack');
-        let txtResult = document.getElementById('txtResult');
-        let overskrift = document.getElementById('overskrift');
-        const checkbox = document.getElementById('isShared');
+      let listeinfoJson = localStorage.getItem("listeinfo");
+      let listeinfo = JSON.parse(listeinfoJson);
+      console.log(listeinfo);
 
-        let listeinfoJson = localStorage.getItem("listeinfo");
-        let listeinfo = JSON.parse(listeinfoJson);
-        console.log(listeinfo);
+      inpListname.value = listeinfo.listname;
 
-        inpListname.value = listeinfo.listname;
+      btnEditname.addEventListener("click", async function (evt) {
+        let public;
 
-        btnEditname.addEventListener('click', async function(evt) {
+        if (checkbox.checked) {
+          public = 1;
+        } else {
+          public = 0;
+        }
 
+        let url = "/todolists";
 
-            let public;
+        let updata = {
+          listname: inpListname.value,
 
-            if (checkbox.checked) {
-              public = 1; 
-          } else {
-               public = 0;
+          id: listeinfo.id,
+          share: public,
+        };
+
+        let token = localStorage.getItem("token");
+
+        let cfg = {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+            authorization: token,
+          },
+          body: JSON.stringify(updata),
+        };
+
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
+          console.log(data);
+          if (response.status != 200) {
+            throw data.error;
           }
 
+          location.href = "todolists.html";
+        } catch (error) {
+          console.log(error);
+          txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
+        }
+      });
 
+      checkbox.addEventListener("click", async function (evt) {});
 
-            let url = "/todolists";            
+      btnBack.addEventListener("click", function (evt) {
+        history.back();
+      });
 
-            let updata = {
-                listname: inpListname.value,
-
-                id: listeinfo.id,
-                share: public
-
-            }
-
-            let token = localStorage.getItem("token");
-
-            let cfg = {
-                method: "PUT",
-                headers: {
-                    "content-type":"application/json",
-                    "authorization":token
-                },
-                    body: JSON.stringify(updata)
-            }
-
-            try {
-                let response = await fetch(url, cfg);
-                let data = await response.json();
-                console.log(data);
-                if (response.status != 200) {
-                    throw data.error;
-                }
-
-                location.href = 'todolists.html';
-              
-            }
-            catch(error){
-                console.log(error);
-                txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
-            }
-        });
-
-        checkbox.addEventListener('click', async function(evt) {
-           
-        });
-
-        btnBack.addEventListener('click', function(evt) {
-            history.back();
-        });
-
-        
     </script>
-
-</body>
-
+  </body>
 </html>

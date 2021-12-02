@@ -1,89 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ENDRE BRUKER</title>
-    <link rel="stylesheet" href="useredit.css">
-</head>
-<body>
+    <link rel="stylesheet" href="useredit.css" />
+  </head>
 
-    <!----------- HTML-elements -------------->
-    
-    <div class="master">  			
-        <div class="edit">
-            <h1 id="overskrift">Konto</h1><br>
-            <input id="inpUsername" type="text" placeholder="Brukernavn" />
-            <input id="inpPassword" type="password" placeholder="Passord" /><br>
-            <button id="btnChange">Endre</button>
-            <button id="btnBack">Gå tilbake</button>
-            <h3 id="txtResult"></h3>
-        </div>
+  <body>
+    <div class="master">
+      <div class="edit">
+        <h1 id="overskrift">Konto</h1>
+        <br />
+        <input id="inpUsername" type="text" placeholder="Brukernavn" />
+        <input id="inpPassword" type="password" placeholder="Passord" /><br />
+        <button id="btnChange">Endre</button>
+        <button id="btnBack">Gå tilbake</button>
+        <h3 id="txtResult"></h3>
+      </div>
     </div>
-    
-    <!------------- JavaScript --------------->
+
     <script>
+      let inpUsername = document.getElementById("inpUsername");
+      let inpPassword = document.getElementById("inpPassword");
+      let btnChange = document.getElementById("btnChange");
+      let btnBack = document.getElementById("btnBack");
+      let txtResult = document.getElementById("txtResult");
+      let title = document.getElementById("title");
 
-        let inpUsername = document.getElementById('inpUsername');
-        let inpPassword = document.getElementById('inpPassword');
-        let btnChange = document.getElementById('btnChange');
-        let btnBack = document.getElementById('btnBack');
-        let txtResult = document.getElementById('txtResult');
-        let title = document.getElementById('title');
-    
-        btnChange.addEventListener('click', async function(evt) {
+      btnChange.addEventListener("click", async function (evt) {
+        let url = "/users/edit";
 
-            let url = "/users/edit";            
+        let credString = createCredentialString(
+          inpUsername.value,
+          inpPassword.value
+        );
 
-            let credString = createCredentialString(inpUsername.value, inpPassword.value);
+        let token = localStorage.getItem("token");
 
-            let token = localStorage.getItem("token");
+        let updata = {
+          username: inpUsername.value,
+          password: inpPassword.value,
+        };
 
-            let updata = {
-                username :inpUsername.value,
-                password:inpPassword.value
-            }
+        let cfg = {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+            authorization: token,
+          },
+          body: JSON.stringify(updata),
+        };
 
-            let cfg = {
-                method: "PUT",
-                headers: {
-                    "content-type":"application/json",
-                    "authorization":token
-                },
-                    body: JSON.stringify(updata)
-            }
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
 
-            try {
-                let response = await fetch(url, cfg);
-                let data = await response.json();
+          if (response.status != 200) {
+            throw data.error;
+          }
 
-                if (response.status != 200) {
-                    throw data.error;
-                }
-
-                txtResult.innerHTML = "Kontoen ble endret.";
-              
-            }
-            catch(error){
-                console.log(error);
-                txtResult.innerHTML = "Noe gikk galt.";
-            }
-        });
-
-        //------------------------------
-        function createCredentialString(username, password) {
-            let combinedStr = username + ":" + password;
-            let b64Str = btoa(combinedStr);
-            return "basic " + b64Str;
+          txtResult.innerHTML = "Kontoen ble endret.";
+        } catch (error) {
+          console.log(error);
+          txtResult.innerHTML = "Noe gikk galt.";
         }
+      });
 
-        btnBack.addEventListener('click', function(evt) {
-            history.back();
-        });
+      function createCredentialString(username, password) {
+        let combinedStr = username + ":" + password;
+        let b64Str = btoa(combinedStr);
+        return "basic " + b64Str;
+      }
 
-
+      btnBack.addEventListener("click", function (evt) {
+        history.back();
+      });
+      
     </script>
-
-</body>
-
+  </body>
 </html>

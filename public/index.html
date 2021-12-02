@@ -1,150 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-   <link rel="stylesheet" href="index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
     <title>LOGG INN</title>
-</head>
-<body>
+  </head>
 
-    <!----------- HTML-elements -------------->
+  <body>
 
-	<div class="master">  	
-		<input id="chk" type="checkbox" aria-hidden="true">
-		
-            <div class="login">
-					<label id="logintitle" for="chk" aria-hidden="true">Logg inn</label>
-					<input id="inpUsername" type="text" placeholder="Brukernavn">
-					<input id="inpPassword" type="password" placeholder="Passord">
-					<button id="btnLogin">Logg inn</button>
-                    <h3 id="txtResult"></h3><br>
-			</div>
+    <div class="master">
+      <input id="chk" type="checkbox" aria-hidden="true" />
 
-			<div class="newuser">
-					<label id="signinbox" for="chk" aria-hidden="true">Ny bruker</label>
-					<input id="inpUsername2" type="text" placeholder="Brukernavn">
-					<input id="inpPassword2" type="password" placeholder="Passord">
-					<button id="btnSignin">Lag ny bruker</button>
-                    <h3 id="txtResult2"></h3><br>
-			</div>
-	</div>
+      <div class="login">
+        <label id="logintitle" for="chk" aria-hidden="true">Logg inn</label>
+        <input id="inpUsername" type="text" placeholder="Brukernavn" />
+        <input id="inpPassword" type="password" placeholder="Passord" />
+        <button id="btnLogin">Logg inn</button>
+        <h3 id="txtResult"></h3>
+        <br />
+      </div>
 
-        
-    <!------------- JavaScript --------------->
+      <div class="newuser">
+        <label id="signinbox" for="chk" aria-hidden="true">Ny bruker</label>
+        <input id="inpUsername2" type="text" placeholder="Brukernavn" />
+        <input id="inpPassword2" type="password" placeholder="Passord" />
+        <button id="btnSignin">Lag ny bruker</button>
+        <h3 id="txtResult2"></h3>
+        <br />
+      </div>
+    </div>
+
     <script>
+      let inpUsername = document.getElementById("inpUsername");
+      let inpPassword = document.getElementById("inpPassword");
+      let btnLogin = document.getElementById("btnLogin");
+      let txtResult = document.getElementById("txtResult");
 
-        let inpUsername = document.getElementById('inpUsername');
-        let inpPassword = document.getElementById('inpPassword');
-        let btnLogin = document.getElementById('btnLogin');
-        let txtResult = document.getElementById('txtResult');
-        
-        let regUsername = document.getElementById('inpUsername2');
-        let regPassword = document.getElementById('inpPassword2');
-        let btnSignin = document.getElementById('btnSignin');
-        let txtResult2 = document.getElementById('txtResult2');
+      let regUsername = document.getElementById("inpUsername2");
+      let regPassword = document.getElementById("inpPassword2");
+      let btnSignin = document.getElementById("btnSignin");
+      let txtResult2 = document.getElementById("txtResult2");
 
-        
+      btnLogin.addEventListener("click", async function (evt) {
+        let url = "/users/login";
+        let credString = createCredentialString(
+          inpUsername.value,
+          inpPassword.value
+        );
 
-        //LOGG INN------------------------------
-        btnLogin.addEventListener('click', async function(evt) {
+        let cfg = {
+          method: "POST",
+          headers: { authorization: credString },
+        };
 
-            let url = "/users/login";
-            let credString = createCredentialString(inpUsername.value, inpPassword.value);
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
 
-            let cfg = {
-                method: "POST",
-                headers: {"authorization": credString}
-                }
+          if (response.status != 200) {
+            throw data.error;
+          }
 
-            try {
-                let response = await fetch(url, cfg);
-                let data = await response.json();
-
-                if (response.status != 200) {
-                    throw data.error;
-                }
-
-                //txtResult.innerHTML = data.msg;
-                localStorage.setItem("token", data.token);
-				location.href = 'todolists.html';
-            }
-            catch(error){
-                console.log(error);
-                txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
-            }        
-        
-        });
-        
-        inpPassword.addEventListener("keyup", function(event){
-                if (event.keyCode === 13) {
-                    event.preventDefault();
-                    document.getElementById("btnLogin").click();
-                }
-            });
-
-        inpPassword.addEventListener("keyup", function(event){
-                if (event.keyCode === 13) {
-                    event.preventDefault();
-                    document.getElementById("btnLogin").click();
-                }
-            });
-
-        //------------------------------
-        function createCredentialString(username, password) {
-            let combinedStr = username + ":" + password;
-            let b64Str = btoa(combinedStr);
-            return "basic " + b64Str;
+          localStorage.setItem("token", data.token);
+          location.href = "todolists.html";
+        } catch (error) {
+          console.log(error);
+          txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
         }
+      });
 
-        //NY BRUKER------------------------------
-        btnSignin.addEventListener('click', async function(evt) {
-            
-            let url = "/users";
-            let credString = createCredentialString(regUsername.value, regPassword.value);
+      inpPassword.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById("btnLogin").click();
+        }
+      });
 
-            let cfg = {
-                method: "POST",
-                headers: {"authorization": credString}
-                }
+      inpPassword.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById("btnLogin").click();
+        }
+      });
 
-            try {
-                let response = await fetch(url, cfg);
-                let data = await response.json();
-
-                if (response.status != 200) {
-                    throw data.error;
-                }
-
-                txtResult2.innerHTML = "Brukeren ble opprettet - logg inn";
-            }
-            catch(error){
-                console.log(error);
-                txtResult2.innerHTML = "Noe gikk galt - sjekk console vinduet";
-            }
-        });
-
-        regPassword.addEventListener("keyup", function(event){
-                if (event.keyCode === 13) {
-                    event.preventDefault();
-                    document.getElementById("btnSignin").click();
-                }
-            });
-
-        //------------------------------
-        function createCredentialString(username, password) {
+      function createCredentialString(username, password) {
         let combinedStr = username + ":" + password;
         let b64Str = btoa(combinedStr);
         return "basic " + b64Str;
+      }
+
+      btnSignin.addEventListener("click", async function (evt) {
+        let url = "/users";
+        let credString = createCredentialString(
+          regUsername.value,
+          regPassword.value
+        );
+
+        let cfg = {
+          method: "POST",
+          headers: { authorization: credString },
+        };
+
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
+
+          if (response.status != 200) {
+            throw data.error;
+          }
+
+          txtResult2.innerHTML = "Brukeren ble opprettet - logg inn";
+          
+        } catch (error) {
+          console.log(error);
+          txtResult2.innerHTML = "Noe gikk galt - sjekk console vinduet";
         }
-        
+      });
+
+      regPassword.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById("btnSignin").click();
+        }
+      });
+
+      function createCredentialString(username, password) {
+        let combinedStr = username + ":" + password;
+        let b64Str = btoa(combinedStr);
+        return "basic " + b64Str;
+      }
+
     </script>
-
-    <!---------------- CSS ------------------->
-    <style> 
-
-    </style>
-
-</body>
-
+  </body>
 </html>

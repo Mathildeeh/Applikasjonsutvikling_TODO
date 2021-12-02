@@ -1,5 +1,4 @@
-
-#container > div{
+#container > div {
   padding-left: 10px;
   display: grid;
   grid-template-columns: 1fr 100px 40px;
@@ -7,13 +6,11 @@
   color: black;
   cursor: pointer;
   align-items: center;
-  
 }
 
-#container > div:hover{
+#container > div:hover {
   background-color: #79b179;
 }
-
 
 .btnEditList {
   align-items: center;
@@ -26,10 +23,9 @@
   height: 60px;
 }
 
-.btnEditList:hover{
+.btnEditList:hover {
   background-color: #79b179;
 }
-
 
 .btnDelList {
   width: 50px;
@@ -42,27 +38,24 @@
   cursor: pointer;
   justify-self: right;
   position: absolute;
-} 
+}
 
-.btnDelList:hover{
+.btnDelList:hover {
   background-color: #79b179;
 }
 
-
-#container > h3{
-    padding-left: 40px;
-    align-items: center;
-    justify-items: left;
-    color: black;
-    font-size: 25px;
-    font-weight: bold;
-    height: 40px;
+#container > h3 {
+  padding-left: 40px;
+  align-items: center;
+  justify-items: left;
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+  height: 40px;
 }
-
 
 * {
   font-family: "jost", sans-serif;
-  
 }
 
 .header {
@@ -125,7 +118,6 @@ label {
   background-color: lightgray;
 }
 
-
 #btnShared {
   padding: 10px;
   height: 35px;
@@ -160,7 +152,6 @@ label {
 button:hover {
   background-color: lightgray;
 } */
-
 
 .dropdown {
   transition: 0.2s ease-in;

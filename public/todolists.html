@@ -10,7 +10,6 @@
 </head>
 <body>
 
-    <!----------- HTML-elements -------------->
     <div class="header">
         <h1 id="title">Mine lister</h1><hr><br>
         <input type="text" id="listname" placeholder="Navn på ny liste . . .">
@@ -23,12 +22,12 @@
                 <a id="btnDelUser">Slett bruker</a>
                 <a id="btnLogout">Logg ut</a>
             </div>
-        </div>  
-    </div><br><br>
+    </div>  
+    <br>
+    <br>
 
     <div id="container"></div>
    
-    <!------------- JavaScript --------------->
     <script>
 
         const container = document.getElementById('container');
@@ -74,12 +73,10 @@
                 }
 
                 loaddata();
-                //txtResult.innerHTML = data.msg;
               
             }
             catch(error){
                 console.log(error);
-                //txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
             }
         });
             
@@ -106,9 +103,6 @@
                 let response = await fetch(url, cfg);
                 let data = await response.json();
 
-
-                //console.log(data);
-
                 if (response.status != 200) {
                     throw data.error;
                 }
@@ -117,8 +111,6 @@
 
                 for (let value of data){
                     if(value.share === 1){
-                        //kode som skjer når share er true
-
 
                     let div = document.createElement("div");
                     const name = document.createElement("h3");
@@ -201,22 +193,18 @@
                         });
 
                         name.addEventListener('click', function (evt) {
-                            // console.log(value.id);
                             let myList = value.id;
                             localStorage.setItem("listid", myList);
                             localStorage.setItem("listname", value.listname);
                             location.href = "todolist.html";
                         });
                     }
-                
                 }
-
             }
 
             catch(error){
                 console.log(error);
             }
-
         }
 
         async function deleteToDoList(todolistsID){
@@ -270,12 +258,5 @@
         });
 
     </script>
-
-    <!---------------- CSS ------------------->
-    <style>      
-
-    </style>
-
 </body>
-
 </html>

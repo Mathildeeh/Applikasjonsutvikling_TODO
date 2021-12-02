@@ -1,94 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>REDIGER GJØREMÅL</title>
-    <link rel="stylesheet" href="todoedit.css">
-</head>
-<body>
+    <link rel="stylesheet" href="todoedit.css" />
+  </head>
 
-    <!----------- HTML-elements -------------->
-    
-    <div class="master">  			
-        <div class="edit">
-            <h1 id="overskrift">Rediger gjøremålet</h1><br>
-            <input id="inpHeading" type="text" placeholder="Tittel"/><br>
-            <textarea id="inpDescription" cols="80" rows="10" placeholder="Beskrivelse"></textarea><br><br>
-            <input type="date" id="date">
-            <button id="btnChange">Lagre</button>
-            <button id="btnBack">Tilbake</button>
-        </div>
+  <body>
+    <div class="master">
+      <div class="edit">
+        <h1 id="overskrift">Rediger gjøremålet</h1>
+        <br />
+        <input id="inpHeading" type="text" placeholder="Tittel" /><br />
+        <textarea id="inpDescription" cols="80" rows="10" placeholder="Beskrivelse"></textarea>
+        <br />
+        <br />
+        <input type="date" id="date" />
+        <button id="btnChange">Lagre</button>
+        <button id="btnBack">Tilbake</button>
+      </div>
     </div>
-    
-    <!------------- JavaScript --------------->
+
     <script>
+      let inpHeading = document.getElementById("inpHeading");
+      let inpDescription = document.getElementById("inpDescription");
+      let btnBack = document.getElementById("btnBack");
+      let btnChange = document.getElementById("btnChange");
+      let txtResult = document.getElementById("txtResult");
+      let title = document.getElementById("title");
+      let inpDate = document.getElementById("date");
 
-        let inpHeading = document.getElementById('inpHeading');
-        let inpDescription = document.getElementById('inpDescription');
-        let btnBack = document.getElementById('btnBack');
-        let btnChange = document.getElementById('btnChange');
-        let txtResult = document.getElementById('txtResult');
-        let title = document.getElementById('title');
-        let inpDate = document.getElementById("date");
+      let listeinfoJson = localStorage.getItem("listeinfo");
+      let listeinfo = JSON.parse(listeinfoJson);
 
+      inpHeading.value = listeinfo.heading;
+      inpDescription.value = listeinfo.descr;
+      inpDate.value = listeinfo.date;
 
-        let listeinfoJson = localStorage.getItem("listeinfo");
-        let listeinfo = JSON.parse(listeinfoJson);
+      btnChange.addEventListener("click", async function (evt) {
+        let dato = inpDate.value;
 
-        inpHeading.value = listeinfo.heading;
-        inpDescription.value = listeinfo.descr;
-        inpDate.value = listeinfo.date;
+        let url = "/todo";
 
-        btnChange.addEventListener('click', async function(evt) {
-            
-            let dato = inpDate.value;
+        let updata = {
+          heading: inpHeading.value,
+          description: inpDescription.value,
+          date: inpDate.value,
+          id: listeinfo.id,
+        };
 
-            let url = "/todo";            
+        let token = localStorage.getItem("token");
 
-            let updata = {
-                heading: inpHeading.value,
-                description: inpDescription.value,
-                date: inpDate.value,
-                id: listeinfo.id
-            }
+        let cfg = {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+            authorization: token,
+          },
+          body: JSON.stringify(updata),
+        };
 
-            //console.log(updata)
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
 
-            let token = localStorage.getItem("token");
+          if (response.status != 200) {
+            throw data.error;
+          }
 
-            let cfg = {
-                method: "PUT",
-                headers: {
-                    "content-type":"application/json",
-                    "authorization":token
-                },
-                    body: JSON.stringify(updata)
-            }
+          location.href = "todolist.html";
+        } catch (error) {
+          console.log(error);
+          txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
+        }
+      });
 
-            try {
-                let response = await fetch(url, cfg);
-                let data = await response.json();
-
-                if (response.status != 200) {
-                    throw data.error;
-                }
-
-                location.href = 'todolist.html';
-              
-            }
-            catch(error){
-                console.log(error);
-                txtResult.innerHTML = "Noe gikk galt - sjekk console vinduet";
-            }
-        });
-
-        btnBack.addEventListener('click', function(evt) {
-            history.back();
-        });
-
+      btnBack.addEventListener("click", function (evt) {
+        history.back();
+      });
+      
     </script>
-
-</body>
-
+  </body>
 </html>

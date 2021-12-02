@@ -8,7 +8,6 @@ const users = require("./modules/users.js");
 const todolists = require("./modules/todolists.js");
 const sharelists = require("./modules/sharelists.js")
 
-// middleware ---------------------------
 server.use(express.static("public"));
 server.use(express.json());
 
@@ -17,7 +16,6 @@ server.use(users);
 server.use(todolists);
 server.use(sharelists);
 
-//general error handling ---------------
 server.use(function (err, req, res, next){
     res.status(500).json({
         error: "Noe gikk galt på serveren",
@@ -25,9 +23,6 @@ server.use(function (err, req, res, next){
     }).end();
 });
 
-
-// start server ------------------------
 server.listen(server.get("port"), function () {
 	console.log("server running", server.get("port"));
 });
-
