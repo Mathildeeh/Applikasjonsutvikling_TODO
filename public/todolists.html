@@ -12,7 +12,7 @@
     <div class="header">
         <h1 id="title">Mine lister</h1><hr><br>
         <input type="text" id="listname" placeholder="Navn på ny liste . . .">
-        <input type="checkbox" id="isShared"><label>Shared</label>
+        <input type="checkbox" id="isShared"><label>Delt</label>
         <button id="btnCreate">Legg til</button>
         <button id="btnShared">Delte lister</button>
         <!-- <button id="btnDelUser">Slett bruker</button>
@@ -95,7 +95,6 @@
           }
         });
         
-
         loaddata();
 
         async function loaddata(params) {        
@@ -138,7 +137,7 @@
                         btnEditList.addEventListener('click', function(evt){
 
                             let listeinfo = {
-                                listname: listname.value,
+                                listname: value.listname,
                                 id: value.id
                             };
 
