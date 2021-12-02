@@ -51,7 +51,7 @@
 
         let cfg = {
           method: "POST",
-          headers: { authorization: credString },
+          headers: { "authorization": credString },
         };
 
         try {
@@ -99,7 +99,7 @@
 
         let cfg = {
           method: "POST",
-          headers: { authorization: credString },
+          headers: { "authorization": credString },
         };
 
         try {
@@ -111,7 +111,7 @@
           }
 
           txtResult2.innerHTML = "Brukeren ble opprettet - logg inn";
-          
+
         } catch (error) {
           console.log(error);
           txtResult2.innerHTML = "Noe gikk galt - sjekk console vinduet";

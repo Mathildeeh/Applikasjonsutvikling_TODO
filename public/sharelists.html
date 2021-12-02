@@ -30,7 +30,7 @@
 
         let cfg = {
           method: "GET",
-          headers: { authorization: token },
+          headers: { "authorization": token },
         };
 
         try {
@@ -50,13 +50,13 @@
               let userCfg = {
                 method: "GET",
                 headers: {
-                  authorization: token,
+                  "authorization": token,
                   userid: value.userid,
                 },
               };
               let usernameResponse = await fetch(userUrl, userCfg);
               let usernameData = await usernameResponse.json();
-
+              
               let div = document.createElement("div");
               div.classList.add("listnameDiv");
               div.innerHTML = "<h3>" + value.listname + "</h3>" + "<p> &emsp; (Laget av " + usernameData[0].username + ")</p>";

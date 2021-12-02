@@ -6,7 +6,7 @@
     <title>REDIGER LISTENAVN</title>
     <link rel="stylesheet" href="todolistsedit.css" />
   </head>
-  
+
   <body>
     <div class="master">
       <div class="edit">
@@ -52,7 +52,6 @@
 
         let updata = {
           listname: inpListname.value,
-
           id: listeinfo.id,
           share: public,
         };
@@ -63,7 +62,7 @@
           method: "PUT",
           headers: {
             "content-type": "application/json",
-            authorization: token,
+            "authorization": token,
           },
           body: JSON.stringify(updata),
         };

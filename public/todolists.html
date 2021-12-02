@@ -32,7 +32,7 @@
 
         const container = document.getElementById('container');
         let token = localStorage.getItem("token");
-        const listname = document.getElementById('listname');
+        let listname = document.getElementById('listname');
         let btnCreate = document.getElementById('btnCreate');
         let btnDelList = document.getElementById('btnDelList');
         
@@ -94,6 +94,7 @@
         async function loaddata(params) {        
 
             let url = "/todolists";
+
             let cfg = {
                 method: "GET",
                 headers: {"authorization": token}
@@ -123,31 +124,28 @@
                         div.appendChild(btnEditList);
                         btnEditList.classList.add('btnEditList');
 
-
                         btnEditList.addEventListener('click', function(evt){
 
                             let listeinfo = {
-
                                 listname: value.listname,
-
                                 id: value.id
                             };
 
                             let listeinfoJson = JSON.stringify(listeinfo);
-
-                            console.log("listeinfo");
                             localStorage.setItem("listeinfo", listeinfoJson);                        
                             location.href = 'todolistsedit.html';             
                         });
                     
-                    let btnDelList = document.createElement("button");
-                    btnDelList.innerText ="X";
-                    div.appendChild(btnDelList);
-                    btnDelList.classList.add('btnDelList');
+                        let btnDelList = document.createElement("button");
+                        btnDelList.innerText ="✕";
+                        div.appendChild(btnDelList, div.lastElementChild);
+                        btnDelList.classList.add('btnDelList');
 
+                        btnDelList.addEventListener('click', function(evt){
+                            deleteToDoList(value.id);
+                        });
 
                         name.addEventListener('click', function (evt) {
-                            console.log(value.id);
                             let myList = value.id;
                             localStorage.setItem("listid", myList);
                             localStorage.setItem("listname", value.listname);
@@ -163,11 +161,9 @@
                         container.appendChild(div);
 
                         let btnEditList = document.createElement("button");
-
                         btnEditList.innerText ="Rediger";
                         div.appendChild(btnEditList);
                         btnEditList.classList.add('btnEditList');
-
 
                         btnEditList.addEventListener('click', function(evt){
 
@@ -177,16 +173,15 @@
                             };
 
                             let listeinfoJson = JSON.stringify(listeinfo);
-                            localStorage.setItem("listeinfo", listeinfoJson);                        
+                            localStorage.setItem("listeinfo", listeinfoJson); 
+                            localStorage.setItem("listname", value.listname);                       
                             location.href = 'todolistsedit.html';             
                         });
                         
                         let btnDelList = document.createElement("button");
-
                         btnDelList.innerText ="✕";
                         div.appendChild(btnDelList, div.lastElementChild);
                         btnDelList.classList.add('btnDelList');
-
 
                         btnDelList.addEventListener('click', function(evt){
                             deleteToDoList(value.id);

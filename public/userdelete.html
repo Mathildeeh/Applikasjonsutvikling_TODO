@@ -29,7 +29,9 @@
 
         let cfg = {
           method: "DELETE",
-          headers: { "content-type": "application/json", authorization: token },
+          headers: { 
+            "content-type": "application/json", 
+            "authorization": token },
         };
 
         try {
@@ -50,7 +52,7 @@
       btnNotDelete.addEventListener("click", function (evt) {
         location.href = "todolist.html";
       });
-      
+
     </script>
   </body>
 </html>
